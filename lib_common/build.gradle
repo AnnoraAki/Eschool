@@ -1,0 +1,12 @@
+// 引入工程所有模块需要的三方库
+apply from: lib_config
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api deps.kotlin.runtime
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'androidx.core:core-ktx:1.1.0'
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+
+}
