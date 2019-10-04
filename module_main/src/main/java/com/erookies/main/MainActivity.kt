@@ -1,7 +1,8 @@
-package com.erookies.eschool
+package com.erookies.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModel
 
 class MainActivity : AppCompatActivity() {
 
