@@ -5,6 +5,7 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     //kotlin
     api deps.kotlin.runtime
+    api deps.kotlin.anko
 
     //androidx
     api deps.androidx.appcompat
@@ -21,7 +22,7 @@ dependencies {
 
     //room
     api deps.room.runtime
-    api deps.room.compiler
+    kapt deps.room.compiler
     api deps.room.rxjava
 
     //arouter & eventbus
@@ -31,6 +32,7 @@ dependencies {
     //retrofit
     api deps.retrofit.runtime
     api deps.retrofit.gson
+    api deps.retrofit.rxjava
 
     //okhttp
     api deps.okhttp.runtime
@@ -44,10 +46,12 @@ dependencies {
     //gson
     api deps.gson.runtime
 
-    //gilde
+    //glide
     api deps.gilde.runtime
     kapt deps.gilde.compiler
 
+    //rxpermissions
+    api deps.rxpermissions.runtime
 
     //bugly
     api deps.bugly.crashreport
