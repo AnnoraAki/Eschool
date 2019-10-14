@@ -9,10 +9,14 @@ import com.erookies.lib_common.extentions.toast
  * Time: 2019-10-11
  */
 object DefaultHandler {
-    fun handler(e : Throwable?) : Boolean {
+    fun handler(e: Throwable?): Boolean {
         when (e) {
-            null -> if (BuildConfig.DEBUG) BaseApp.context.toast("throwable should not be null") else BaseApp.context.toast("未知错误")
-            else -> if(BuildConfig.DEBUG) BaseApp.context.toast(e.toString()) else BaseApp.context.toast("服务暂时不可用")
+            null -> if (BuildConfig.DEBUG) BaseApp.context.toast("throwable should not be null") else BaseApp.context.toast(
+                "未知错误"
+            )
+            else -> if (BuildConfig.DEBUG) BaseApp.context.toast(e.toString()) else BaseApp.context.toast(
+                "服务暂时不可用"
+            )
         }
         return true
     }

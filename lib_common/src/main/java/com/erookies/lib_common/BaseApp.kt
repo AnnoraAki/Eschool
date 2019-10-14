@@ -5,9 +5,13 @@ import android.app.Application
 import android.content.Context
 import android.os.Process
 import com.alibaba.android.arouter.launcher.ARouter
+import com.erookies.lib_common.config.SP_KEY_USER
+import com.erookies.lib_common.extentions.defaultSharedPreferences
+import com.erookies.lib_common.extentions.editor
+import com.erookies.lib_common.utils.LogUtils
+import com.google.gson.Gson
 import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.bugly.crashreport.CrashReport.UserStrategy
-
 
 
 /**
@@ -20,7 +24,31 @@ open class BaseApp : Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
             private set
+
+
+        var user: User? = null
+            set(value) {
+                field = value
+                context.defaultSharedPreferences.editor {
+                    putString(SP_KEY_USER, value?.toJSON())
+                }
+            }
+            get() {
+                if (field == null) {
+                    val json = context.defaultSharedPreferences.getString(SP_KEY_USER, "")
+                    LogUtils.d(json, "userJson")
+                    try {
+                        field = Gson().fromJson(json, User::class.java)
+                    } catch (e: Throwable) {
+                        LogUtils.d(json, "userJson")
+                    }
+                }
+                return field
+            }
+
+        val isLogin get() = user != null
     }
+
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)

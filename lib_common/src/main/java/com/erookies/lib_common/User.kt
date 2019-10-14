@@ -2,6 +2,7 @@ package com.erookies.lib_common
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.Gson
 
 /**
  * Create by Cchanges.
@@ -60,4 +61,6 @@ data class User(
             return arrayOfNulls(size)
         }
     }
+
+    fun toJSON(): String = Gson().toJson(this)
 }

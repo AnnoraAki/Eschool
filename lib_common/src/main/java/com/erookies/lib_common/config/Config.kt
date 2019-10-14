@@ -7,3 +7,5 @@ package com.erookies.lib_common.config
 const val BASE_URL = ""
 
 const val DEFAULT_PREFERENCE_FILENAME = "eschool_share_data"
+const val SP_KEY_USER = "eschool_user"
+

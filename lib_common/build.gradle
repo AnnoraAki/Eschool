@@ -13,6 +13,7 @@ dependencies {
     api deps.androidx.recyclerview
     api deps.androidx.cardview
     api deps.androidx.v4
+    api deps.androidx.material
 
     //lifecycle
     api deps.lifecycle.runtime

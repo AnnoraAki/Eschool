@@ -1,10 +1,8 @@
 package com.erookies.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.erookies.lib_common.base.BaseActivity
-import com.tencent.bugly.Bugly
-import com.tencent.bugly.crashreport.CrashReport
+import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.main_activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -13,10 +11,11 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity_main)
 
-        common_toolbar.init("你好啊",listener = null)
+        common_toolbar.init("你好啊", listener = null)
 
-        btn.setOnClickListener {
-            CrashReport.testJavaCrash()
+        nav_main.apply {
+            labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
         }
+
     }
 }

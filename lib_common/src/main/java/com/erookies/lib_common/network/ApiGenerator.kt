@@ -1,7 +1,7 @@
 package com.erookies.lib_common.network
 
-import com.erookies.lib_common.config.BASE_URL
 import com.erookies.lib_common.BuildConfig
+import com.erookies.lib_common.config.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,8 +16,8 @@ import java.util.concurrent.TimeUnit
 object ApiGenerator {
     private const val DEFAULT_TIME_OUT = 10
 
-    private var retrofit : Retrofit
-    private var okHttpClient : OkHttpClient
+    private var retrofit: Retrofit
+    private var okHttpClient: OkHttpClient
 
     init {
         okHttpClient = configureOkHttp(OkHttpClient.Builder())

@@ -28,7 +28,8 @@ abstract class BaseActivity : AppCompatActivity() {
         val TAG = BaseActivity::class.java.simpleName
     }
 
-    val common_toolbar get() = toolbar
+    val common_toolbar
+        get() = toolbar
 
     protected fun Toolbar.init(
         title: String,
