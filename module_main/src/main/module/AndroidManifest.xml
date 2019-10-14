@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.erookies.main">
 
-    <application>
+    <application
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:name="debug.MainDebugApplication">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

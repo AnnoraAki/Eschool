@@ -5,7 +5,11 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.erookies.lib_common.event.LoginEvent
+import com.erookies.lib_common.utils.LogUtils
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * Create by Cchanges.
@@ -21,6 +25,11 @@ abstract class BaseFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    open fun onLoginStateChanged(event: LoginEvent) {
+        LogUtils.d("new state:${event.state},current class:${javaClass.simpleName}")
     }
 
     protected fun <T : BaseViewModel> getViewmodel(clazz: Class<T>): T {
