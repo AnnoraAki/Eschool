@@ -21,8 +21,13 @@ android {
     defaultConfig {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-
-
+        kapt {
+            //Arouter
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+        multiDexEnabled true
     }
 
     sourceSets {

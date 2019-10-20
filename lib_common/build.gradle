@@ -14,11 +14,13 @@ dependencies {
     api deps.androidx.cardview
     api deps.androidx.v4
     api deps.androidx.material
+    api deps.androidx.multidex
 
     //lifecycle
     api deps.lifecycle.runtime
     api deps.lifecycle.extentions
     api deps.lifecycle.java8
+    api deps.lifecycle.reactivestrean
     kapt deps.lifecycle.compiler
 
     //room

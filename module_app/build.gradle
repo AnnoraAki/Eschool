@@ -16,13 +16,22 @@ android {
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         kapt {
             arguments {
                 arg("AROUTER_MODULE_NAME", project.getName())
             }
+            javacOptions {
+                option("-Xmaxerrs", 500)
+            }
         }
+    }
+
+    dexOptions {
+        preDexLibraries true
+        maxProcessCount 8
     }
 
     buildTypes {
@@ -38,6 +47,11 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
