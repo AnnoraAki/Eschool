@@ -1,9 +1,11 @@
-package com.erookies.school
+package com.erookies.school.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.erookies.lib_common.base.BaseActivity
+import com.erookies.school.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
