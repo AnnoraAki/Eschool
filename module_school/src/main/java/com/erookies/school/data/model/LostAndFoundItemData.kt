@@ -1,6 +1,6 @@
 package com.erookies.school.data.model
 
-class TopicItemData : BaseItemData() {
+class LostAndFoundItemData : BaseItemData() {
     override fun handle() {
 
     }
