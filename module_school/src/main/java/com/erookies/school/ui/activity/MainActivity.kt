@@ -10,5 +10,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.school_activity_main)
+
+        common_toolbar.init("雷猴啊",listener = null)
     }
 }
