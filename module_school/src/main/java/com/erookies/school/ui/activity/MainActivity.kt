@@ -11,6 +11,6 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.school_activity_main)
 
-        common_toolbar.init("雷猴啊",listener = null)
+        common_toolbar.init("e校",listener = null)
     }
 }

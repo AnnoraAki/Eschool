@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">module_school</string>
+    <string name="school_app_name">module_school</string>
+    <string name="school_serach_people_align">寻人</string>
+    <string name="school_lost_found">失物招领</string>
 </resources>
