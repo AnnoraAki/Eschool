@@ -22,7 +22,7 @@
 
         <Button
             android:paddingEnd="22dp"
-            android:text="@string/school_serach_people_align"
+            android:text="@string/school_search_people_align"
             android:textSize="16sp"
             android:background="@null"
             android:id="@+id/school_search_switch_button"

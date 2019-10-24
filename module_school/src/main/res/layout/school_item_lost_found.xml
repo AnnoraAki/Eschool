@@ -2,7 +2,9 @@
 <layout>
 
     <data>
-
+        <variable
+            name="item"
+            type="com.erookies.school.data.viewModel.LostAndFoundViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
