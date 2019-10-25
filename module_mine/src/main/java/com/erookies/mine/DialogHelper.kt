@@ -1,25 +1,20 @@
 package com.erookies.mine
 
-<<<<<<< HEAD
 import android.content.Context
-import com.erookies.lib_common.extentions.marginHorizontal
 import org.jetbrains.anko.*
 
-=======
->>>>>>> e9efc56b3347fce559b41e91831190d4704a4288
 /**
  * Create by Cchanges.
  * Time: 2019-10-25
  */
-<<<<<<< HEAD
 object DialogHelper {
     fun editDialog(context: Context, builder: DialogBuilder) {
-         context.alert {
+        context.alert {
             customView {
                 title = builder.title
                 val edit = editText {
                     hint = builder.hint
-                }.lparam()
+                }
                 yesButton {
                     if (builder.check(edit.text.toString())) {
                         builder.todoEvent?.invoke(edit.text.toString())
@@ -27,7 +22,7 @@ object DialogHelper {
                         builder.falseEvent?.invoke()
                     }
                 }
-                noButton {  }
+                noButton { }
             }
         }.show()
     }
@@ -44,5 +39,3 @@ class DialogBuilder {
         return checkEvent?.invoke(str) ?: false
     }
 }
-=======
->>>>>>> e9efc56b3347fce559b41e91831190d4704a4288
