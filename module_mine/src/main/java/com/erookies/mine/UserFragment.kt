@@ -1,0 +1,67 @@
+package com.erookies.mine
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.erookies.lib_common.BaseApp
+import com.erookies.lib_common.base.BaseFragment
+import com.erookies.lib_common.config.MINE_ENTRY
+import com.erookies.lib_common.extentions.setImageFromUrl
+import kotlinx.android.synthetic.main.mine_fragment_user.*
+import org.jetbrains.anko.support.v4.toast
+
+
+@Route(path = MINE_ENTRY)
+class UserFragment : BaseFragment() {
+
+    private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewModel(UserViewModel::class.java) }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.mine_fragment_user, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        BaseApp.user = makeFakeUser()
+        viewModel.user.observe {
+            it ?: return@observe
+
+            civ_avatar.setImageFromUrl(it.avatar)
+            tv_nickname.text = it.nickname
+
+        }
+        civ_avatar.setOnClickListener {
+            //todo: 修改头像
+        }
+        tv_nickname.setOnClickListener { view ->
+            val builder = DialogBuilder().apply {
+                title = "设置昵称"
+                hint = "写下你想要的称呼哦～"
+                checkEvent = { it.trim() != "" }
+                todoEvent = { viewModel.nickname = it }
+                falseEvent = { toast("昵称不能为空或者全空格哦") }
+            }
+            DialogHelper.editDialog(view.context, builder)
+        }
+        tv_mine_material.setOnClickListener {
+            //todo: 我的验证资料
+        }
+        tv_mine_add.setOnClickListener {
+            //todo: 我的拼单
+        }
+        tv_find_people.setOnClickListener {
+            //todo：我的寻人
+        }
+        tv_find_things.setOnClickListener {
+            //todo: 我的失物招领
+        }
+        tv_setting.setOnClickListener {
+            //todo: 设置
+        }
+    }
+}

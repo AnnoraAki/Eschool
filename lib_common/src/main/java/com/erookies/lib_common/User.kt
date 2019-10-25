@@ -11,17 +11,17 @@ import com.google.gson.Gson
 data class User(
     val id: String = "",
     val username: String = "",
-    val pwd: String = "",
-    val nickname: String = "",
-    val email: String = "",
-    val phone: String = "",
+    var pwd: String = "",
+    var nickname: String = "",
+    var email: String = "",
+    var phone: String = "",
     // 学院
     val college: String = "",
     // 学号
     val stuNum: String = "",
     // 描述
-    val info: String = "",
-    val avatar: String = ""
+    var info: String = "",
+    var avatar: String = ""
     // val addTime :
 ) : Parcelable {
     constructor(parcel: Parcel) : this(

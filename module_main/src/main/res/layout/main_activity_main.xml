@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,12 +7,19 @@
 
     <include layout="@layout/common_toolbar" />
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/main_navigation_bottom_height"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/main_navigation_bottom_height"
         android:layout_gravity="bottom"
-        android:background="@color/colorWhite"
-        app:itemTextColor="@color/colorDark"
+        app:itemTextColor="@color/main_text_selector"
         app:menu="@menu/main_menu" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e8e8e8"
+    tools:context=".UserFragment">
+
+    <View
+        android:id="@+id/mine_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPink"
+        app:layout_constraintBottom_toTopOf="@+id/mine_guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mine_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_avatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@color/colorWhite"
+        app:layout_constraintBottom_toTopOf="@+id/mine_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mine_view"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/civ_avatar"
+        tools:text="Cchanges" />
+
+    <TextView
+        android:id="@+id/tv_mine_material"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:drawableEnd="@drawable/mine_ic_go"
+        android:padding="15dp"
+        android:text="@string/mine_material"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/mine_view" />
+
+    <TextView
+        android:id="@+id/tv_mine_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:drawableEnd="@drawable/mine_ic_go"
+        android:padding="15dp"
+        android:text="@string/mine_add"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_mine_material" />
+
+    <TextView
+        android:id="@+id/tv_find_people"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:drawableEnd="@drawable/mine_ic_go"
+        android:padding="15dp"
+        android:text="@string/mine_find_people"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_mine_add" />
+
+    <TextView
+        android:id="@+id/tv_find_things"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:drawableEnd="@drawable/mine_ic_go"
+        android:padding="15dp"
+        android:text="@string/mine_find_things"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_find_people" />
+
+    <TextView
+        android:id="@+id/tv_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:drawableEnd="@drawable/mine_ic_go"
+        android:padding="15dp"
+        android:text="@string/mine_setting"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_find_things" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

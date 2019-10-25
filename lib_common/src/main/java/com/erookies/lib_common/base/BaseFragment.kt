@@ -3,6 +3,8 @@ package com.erookies.lib_common.base
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.erookies.lib_common.event.LoginEvent
@@ -32,7 +34,7 @@ abstract class BaseFragment : Fragment() {
         LogUtils.d("new state:${event.state},current class:${javaClass.simpleName}")
     }
 
-    protected fun <T : BaseViewModel> getViewmodel(clazz: Class<T>): T {
+    protected fun <T : BaseViewModel> getViewModel(clazz: Class<T>): T {
         val factory = getFactory()
         return if (factory == null) {
             ViewModelProviders.of(this).get(clazz)
@@ -42,4 +44,10 @@ abstract class BaseFragment : Fragment() {
     }
 
     protected open fun getFactory(): ViewModelProvider.Factory? = null
+
+    inline fun <T> LiveData<T>.observe(crossinline event: (T) -> Unit) =
+        this.observe(this@BaseFragment, Observer {
+            event.invoke(it)
+        })
+
 }
