@@ -1,13 +1,17 @@
 package com.erookies.mine
 
+<<<<<<< HEAD
 import android.content.Context
 import com.erookies.lib_common.extentions.marginHorizontal
 import org.jetbrains.anko.*
 
+=======
+>>>>>>> e9efc56b3347fce559b41e91831190d4704a4288
 /**
  * Create by Cchanges.
  * Time: 2019-10-25
  */
+<<<<<<< HEAD
 object DialogHelper {
     fun editDialog(context: Context, builder: DialogBuilder) {
          context.alert {
@@ -40,3 +44,5 @@ class DialogBuilder {
         return checkEvent?.invoke(str) ?: false
     }
 }
+=======
+>>>>>>> e9efc56b3347fce559b41e91831190d4704a4288
