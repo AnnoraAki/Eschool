@@ -1,18 +1,90 @@
 package com.erookies.school.ui.fragment
 
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.erookies.lib_common.User
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.network.ApiGenerator
+import com.erookies.school.R
 import com.erookies.school.data.factory.SearchPeopleFactory
+import com.erookies.school.data.model.SearchPeopleItemData
 import com.erookies.school.data.repository.SearchPeopleRepository
 import com.erookies.school.data.viewModel.SPViewModel
+import com.erookies.school.databinding.SchoolFragmentSearchPeopleBinding
+import com.erookies.school.ui.adapter.SearchPeopleRVAdapter
+import kotlinx.android.synthetic.main.school_common_recycler_view.*
+import kotlinx.android.synthetic.main.school_fragment_search_people.*
 
 /**
  * Create by Koalak.
  * Time: 2019-10-20
+ * 自动改变viewModel.isRefresh将导致refreshLayout无法停止
  */
 class SearchPeopleFragment : BaseFragment() {
-    private val viewModel = getViewmodel(SPViewModel::class.java)
+    private lateinit var viewModel: SPViewModel
+    private lateinit var adapter:SearchPeopleRVAdapter
+
+    private lateinit var binding:SchoolFragmentSearchPeopleBinding
+
+    private val handler = Handler(Looper.getMainLooper()){msg ->
+        when(msg.what){
+            1 -> viewModel.createTestData("koalak","玲珑骰子安红豆，入骨相思知不知")
+        }
+        true
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewModel = getViewmodel(SPViewModel::class.java)
+        binding = DataBindingUtil.inflate(inflater,R.layout.school_fragment_search_people,container,false)
+        adapter = SearchPeopleRVAdapter(viewModel)
+        viewModel.createTestData("自由如风","我在萧萧的雨幕里，飘然一曲有我侧耳听，水面萧中剑的倒影，是爱中藏恨的诗句")
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this.viewLifecycleOwner
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        init()
+        observe()
+        handler.postDelayed({
+            val msg = Message.obtain()
+            msg.what = 1
+            msg.target = handler
+            msg.sendToTarget()
+        },3000)
+    }
+
+    private fun observe(){
+        viewModel.isRefresh.observe(this.viewLifecycleOwner,
+            Observer { refresh ->
+                school_search_people_refresh.isRefreshing = refresh
+                if (refresh == true){
+                    adapter.notifyDataSetChanged()
+                }
+            })
+    }
+
+    private fun init(){
+        school_common_recycler_view.layoutManager = LinearLayoutManager(this.context)
+        school_common_recycler_view.adapter = adapter
+        school_search_people_refresh.setOnRefreshListener {
+            viewModel.createTestData("雨幕","水面萧中剑的倒影，是爱中藏恨的诗句")
+        }
+    }
 
     override fun getFactory(): ViewModelProvider.Factory? = SearchPeopleFactory(
         SearchPeopleRepository.getInstance())

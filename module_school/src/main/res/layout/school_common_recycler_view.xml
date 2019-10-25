@@ -2,6 +2,9 @@
 <androidx.recyclerview.widget.RecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/school_common_recycler_view"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:itemCount="5"
+    tools:listitem="@layout/school_item_search_people"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 

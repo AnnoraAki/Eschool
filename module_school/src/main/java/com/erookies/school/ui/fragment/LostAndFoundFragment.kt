@@ -19,7 +19,12 @@ import com.erookies.school.databinding.SchoolFragmentLostFoundBinding
  * Time: 2019-10-20
  */
 class LostAndFoundFragment : BaseFragment() {
-    private val viewModel = getViewmodel(LostAndFoundViewModel::class.java)
+    private lateinit var viewModel:LostAndFoundViewModel
+
+    override fun onDetach() {
+        super.onDetach()
+        viewModel = getViewmodel(LostAndFoundViewModel::class.java)
+    }
 
     override fun getFactory(): ViewModelProvider.Factory? = LostAndFoundFactory(
         LostAndFoundRepository.getInstance())
