@@ -58,7 +58,7 @@
                     <Button
                         android:id="@+id/school_sp_item_tag_button"
                         android:text="@string/school_search_people_align"
-                        android:background="@drawable/school_tag_button_style"
+                        android:background="@drawable/school_tag_button_not_select_style"
                         android:layout_alignParentEnd="true" 
                         android:layout_width="106dp"
                         android:layout_height="30dp"
@@ -87,6 +87,15 @@
                         android:layout_width="wrap_content"
                         android:orientation="horizontal"
                         android:layout_height="wrap_content">
+
+<!--                        <ImageView-->
+<!--                            android:layout_marginEnd="12dp"-->
+<!--                            android:layout_marginBottom="8dp"-->
+<!--                            android:layout_marginTop="24dp"-->
+<!--                            android:scaleType="centerCrop"-->
+<!--                            tools:src="@mipmap/ic_launcher"-->
+<!--                            android:layout_width="100dp"-->
+<!--                            android:layout_height="130dp"/>-->
 
                     </LinearLayout>
 

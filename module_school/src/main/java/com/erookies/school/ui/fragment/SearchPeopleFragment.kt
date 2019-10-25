@@ -28,7 +28,6 @@ import kotlinx.android.synthetic.main.school_fragment_search_people.*
 /**
  * Create by Koalak.
  * Time: 2019-10-20
- * 自动改变viewModel.isRefresh将导致refreshLayout无法停止
  */
 class SearchPeopleFragment : BaseFragment() {
     private lateinit var viewModel: SPViewModel
@@ -71,7 +70,7 @@ class SearchPeopleFragment : BaseFragment() {
     private fun observe(){
         viewModel.isRefresh.observe(this.viewLifecycleOwner,
             Observer { refresh ->
-                school_search_people_refresh.isRefreshing = refresh
+                //school_search_people_refresh.isRefreshing = refresh
                 if (refresh == true){
                     adapter.notifyDataSetChanged()
                 }
@@ -81,9 +80,6 @@ class SearchPeopleFragment : BaseFragment() {
     private fun init(){
         school_common_recycler_view.layoutManager = LinearLayoutManager(this.context)
         school_common_recycler_view.adapter = adapter
-        school_search_people_refresh.setOnRefreshListener {
-            viewModel.createTestData("雨幕","水面萧中剑的倒影，是爱中藏恨的诗句")
-        }
     }
 
     override fun getFactory(): ViewModelProvider.Factory? = SearchPeopleFactory(

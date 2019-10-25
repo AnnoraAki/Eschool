@@ -25,9 +25,9 @@ class SPViewModel(private val repository: SearchPeopleRepository) :  BaseViewMod
         val user = User(username = name)
         val spid = SearchPeopleItemData(user,content)
         val data = MutableLiveData<SearchPeopleItemData>()
+        data.value = spid
         items.clear()
         for (x in 0..10){
-            data.value = spid
             items.add(data)
         }
         isRefresh.value = false

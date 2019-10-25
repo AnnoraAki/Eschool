@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
@@ -15,17 +16,17 @@ import com.erookies.lib_common.base.BaseFragment
 import com.erookies.school.R
 import com.erookies.school.data.factory.SchoolPageContainerFactory
 import com.erookies.school.data.viewModel.SchoolPageContainerViewModel
+import com.erookies.school.databinding.SchoolFragmentContainerBinding
 import com.erookies.school.utils.change
 import kotlinx.android.synthetic.main.school_fragment_container.*
 
 class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
-
-    private lateinit var mainView: View
+    private  lateinit var binding:SchoolFragmentContainerBinding
 
     //控件
-    private val spButton:TextView
+    private val spTextButton:TextView
         get() = school_search_switch_button
-    private val lfButton: TextView
+    private val lfTextButton: TextView
         get() = school_landf_switch_button
     private val viewPager:ViewPager
         get() = school_page_list_container
@@ -45,8 +46,10 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = getViewmodel(SchoolPageContainerViewModel::class.java)
-        mainView = inflater.inflate(R.layout.school_fragment_container,container,false)
-        return mainView
+        binding = DataBindingUtil.inflate(inflater,R.layout.school_fragment_container,container,false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this.viewLifecycleOwner
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,7 +59,9 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
     }
 
     private fun init(){
-        viewPager.adapter =object : FragmentStatePagerAdapter(childFragmentManager,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+        viewPager.offscreenPageLimit = 1
+        viewPager.adapter =object : FragmentStatePagerAdapter(childFragmentManager,
+            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
             override fun getItem(position: Int): Fragment {
                 return fragments[position]
             }
@@ -84,8 +89,8 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
             }
 
         })
-        spButton.setOnClickListener(this)
-        lfButton.setOnClickListener(this)
+        spTextButton.setOnClickListener(this)
+        lfTextButton.setOnClickListener(this)
     }
 
     private fun observe(){
@@ -104,17 +109,17 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
     }
 
     private fun changeButtonStatus(bool:Boolean) {
-        spButton.change(bool)
-        lfButton.change(!bool)
+        spTextButton.change(bool)
+        lfTextButton.change(!bool)
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.school_search_switch_button -> {
-                viewModel.change()
-            }
             R.id.school_landf_switch_button -> {
-                viewModel.change()
+                viewModel.buttonIndex.value = 1
+            }
+            R.id.school_search_switch_button -> {
+                viewModel.buttonIndex.value = 0
             }
         }
     }
