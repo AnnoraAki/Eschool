@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.school.R
 import com.erookies.school.data.factory.LostAndFoundFactory
@@ -47,6 +48,8 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         get() = school_others_button
     private val recyclerView:RecyclerView
         get() = school_common_recycler_view
+    private val swipeRefreshLayout:SwipeRefreshLayout
+        get() = school_landf_refresh_layout
 
     //适配器
     private lateinit var adapter:LostAndFoundRVAdapter
@@ -57,11 +60,13 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = getViewmodel(LostAndFoundViewModel::class.java)
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.school_fragment_lost_found,container,false)
+
         viewModel.createTestData()
 
         adapter = LostAndFoundRVAdapter(viewModel)
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.school_fragment_lost_found,container,false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
 
@@ -76,8 +81,13 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
 
     private fun init(){
         recyclerView.layoutManager = LinearLayoutManager(this.context)
+        Log.d("LostAndFoundFragment","LayoutManager is : ${recyclerView.layoutManager.toString()}")
         recyclerView.adapter = adapter
-        adapter.notifyDataSetChanged()
+        Log.d("LostAndFoundFragment","recyclerview list is : ${adapter.itemCount}")
+
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.createTestData()
+        }
 
         cardButton.setOnClickListener(this)
         digitalButton.setOnClickListener(this)
@@ -101,11 +111,10 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
                     buttons[tag.tag] = button
                 }
             })
-        viewModel.needNotifyAdapter.observe(this.viewLifecycleOwner,
-            Observer {need ->
-                if (need){
+        viewModel.isRefreshing.observe(this.viewLifecycleOwner,
+            Observer { refresh ->
+                if (refresh) {
                     adapter.notifyDataSetChanged()
-                    Log.d("LostAndFoundFragment","adapter is notifyDataSetChanged!")
                 }
             })
     }
@@ -114,19 +123,22 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         when(v?.id){
             R.id.school_id_card_button -> {
                 viewModel.currentTag.value = Tag.CARD
+                viewModel.createTestData()
             }
             R.id.school_digital_button -> {
                 viewModel.currentTag.value = Tag.DIGITAL
+                viewModel.createTestData()
             }
             R.id.school_daily_goods_button -> {
                 viewModel.currentTag.value = Tag.COMMODITY
+                viewModel.createTestData()
             }
             R.id.school_others_button -> {
                 viewModel.currentTag.value = Tag.OTHER
+                viewModel.createTestData()
             }
         }
         Log.d("LostAndFoundFragment","${viewModel.currentTag.value?.tag} is be selected!")
-        viewModel.createTestData()
     }
 
     override fun getFactory(): ViewModelProvider.Factory? = LostAndFoundFactory(

@@ -1,5 +1,6 @@
 package com.erookies.school.data.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.erookies.lib_common.User
@@ -15,14 +16,12 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
     var currentTag = MutableLiveData<Tag>()
 
     var isRefreshing = MutableLiveData<Boolean>()
-    var needNotifyAdapter = MutableLiveData<Boolean>()
 
     init {
         users.value = mutableListOf()
         currentUser.value = User()
         isRefreshing.value = false
         currentTag.value = Tag.CARD
-        needNotifyAdapter.value = false
     }
 
     fun createTestData(name:String,content:String){
@@ -36,9 +35,8 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
         for (x in 0..10){
             items.add(data)
         }
-        needNotifyAdapter.value = true
         isRefreshing.value = false
-        needNotifyAdapter.value = false
+        Log.d("LostAndFoundFragment","test data is created!")
     }
 
     fun createTestData() = createTestData(currentTag.value.toString(),"天若有情天亦老，人间正道是沧桑")

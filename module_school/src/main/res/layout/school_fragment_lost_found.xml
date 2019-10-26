@@ -8,62 +8,68 @@
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/school_landf_refresh_layout"
         bind:refreshing="@{viewModel.isRefreshing}"
-        bind:onRefreshListener="@{() -> viewModel.createTestData()}"
+        android:id="@+id/school_landf_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         
         <LinearLayout
-            android:paddingTop="4dp"
-            android:paddingBottom="6dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            
-            <Button
-                android:id="@+id/school_id_card_button"
-                android:layout_marginEnd="4dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/school_tag_button_not_select_style"
-                android:text="@string/school_card"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="36dp"/>
+            android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/school_digital_button"
-                android:layout_marginEnd="4dp"
-                android:layout_marginStart="4dp"
-                android:background="@drawable/school_tag_button_not_select_style"
-                android:text="@string/school_digital"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="36dp"/>
+            <LinearLayout
+                android:paddingTop="4dp"
+                android:paddingBottom="6dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/school_daily_goods_button"
-                android:layout_marginEnd="4dp"
-                android:layout_marginStart="4dp"
-                android:background="@drawable/school_tag_button_not_select_style"
-                android:text="@string/school_daily_goods"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="36dp"/>
+                <Button
+                    android:id="@+id/school_id_card_button"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/school_tag_button_not_select_style"
+                    android:text="@string/school_card"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"/>
 
-            <Button
-                android:id="@+id/school_others_button"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="4dp"
-                android:background="@drawable/school_tag_button_not_select_style"
-                android:text="@string/school_others"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="36dp"/>
-            
+                <Button
+                    android:id="@+id/school_digital_button"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/school_tag_button_not_select_style"
+                    android:text="@string/school_digital"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"/>
+
+                <Button
+                    android:id="@+id/school_daily_goods_button"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/school_tag_button_not_select_style"
+                    android:text="@string/school_daily_goods"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"/>
+
+                <Button
+                    android:id="@+id/school_others_button"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/school_tag_button_not_select_style"
+                    android:text="@string/school_others"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/school_common_recycler_view"/>
+
         </LinearLayout>
-
-        <include layout="@layout/school_common_recycler_view"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.erookies.lib_common.User
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.network.ApiGenerator
@@ -41,6 +43,10 @@ class SearchPeopleFragment : BaseFragment() {
         }
         true
     }
+
+    //控件
+    private val recyclerView:RecyclerView
+        get() = school_common_recycler_view
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,8 +84,9 @@ class SearchPeopleFragment : BaseFragment() {
     }
 
     private fun init(){
-        school_common_recycler_view.layoutManager = LinearLayoutManager(this.context)
-        school_common_recycler_view.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this.context)
+        Log.d("LostAndFoundFragment","LayoutManager is : ${recyclerView.layoutManager.toString()}")
+        recyclerView.adapter = adapter
     }
 
     override fun getFactory(): ViewModelProvider.Factory? = SearchPeopleFactory(
