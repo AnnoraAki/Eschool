@@ -11,21 +11,25 @@ import com.erookies.lib_common.base.BaseViewModel
  * Time: 2019-10-22
  */
 class UserViewModel : BaseViewModel() {
-    var user = MutableLiveData<User?>()
-    var nickname = user.value?.nickname
-        set(value) {
-            value ?: return
-            field = value
-            user.value?.nickname = value
-        }
-    var avatorUrl = user.value?.avatar
-        set(value) {
-            value ?: return
-            field = value
-            user.value?.avatar = value
-        }
+    private var user = BaseApp.user
+    var nickname = MutableLiveData<String>()
+    var avatarUrl = MutableLiveData<String>()
 
     init {
-        user.value = BaseApp.user
+        nickname.value = if(BaseApp.isLogin) user?.nickname else "暂未登陆"
+        avatarUrl.value = if(BaseApp.isLogin) user?.avatar else "暂未登陆"
     }
+
+    fun setNickname(str:String) {
+        user?.nickname = str
+        nickname.value = str
+        //todo:网络请求
+    }
+
+    fun setAvatar(str:String){
+        user?.avatar = str
+        avatarUrl.value = str
+        //todo 网络请求
+    }
+
 }

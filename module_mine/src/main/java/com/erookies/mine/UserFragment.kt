@@ -28,23 +28,18 @@ class UserFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         BaseApp.user = makeFakeUser()
-        viewModel.user.observe {
-            it ?: return@observe
-
-            civ_avatar.setImageFromUrl(it.avatar)
-            tv_nickname.text = it.nickname
-
-        }
+        viewModel.nickname.observe { tv_nickname.text = it }
+        viewModel.avatarUrl.observe { civ_avatar.setImageFromUrl(it) }
         civ_avatar.setOnClickListener {
             //todo: 修改头像
         }
         tv_nickname.setOnClickListener { view ->
             val builder = DialogBuilder().apply {
                 title = "设置昵称"
-                hint = "写下你想要的称呼哦～"
-                checkEvent = { it.trim() != "" }
-                todoEvent = { viewModel.nickname = it }
-                falseEvent = { toast("昵称不能为空或者全空格哦") }
+                editHint = "写下你想要的称呼哦～"
+                checkEvent = { it.trim() != "" && BaseApp.isLogin }
+                todoEvent = { viewModel.nickname.value = it }
+                falseEvent = { if (BaseApp.isLogin) toast("昵称不能为空或者全空格哦") else toast("请登录再设置哦") }
             }
             DialogHelper.editDialog(view.context, builder)
         }

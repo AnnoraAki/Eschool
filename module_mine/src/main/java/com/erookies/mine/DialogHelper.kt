@@ -1,6 +1,8 @@
 package com.erookies.mine
 
 import android.content.Context
+import android.view.ViewGroup
+import android.widget.EditText
 import org.jetbrains.anko.*
 
 /**
@@ -11,9 +13,15 @@ object DialogHelper {
     fun editDialog(context: Context, builder: DialogBuilder) {
         context.alert {
             customView {
-                title = builder.title
-                val edit = editText {
-                    hint = builder.hint
+                lateinit var edit: EditText
+                linearLayout {
+                    title = builder.title
+                    edit = editText {
+                        hint = builder.editHint
+                        maxLines = 1
+                    }.lparams(width = ViewGroup.LayoutParams.MATCH_PARENT) {
+                        horizontalMargin = dip(8)
+                    }
                 }
                 yesButton {
                     if (builder.check(edit.text.toString())) {
@@ -30,7 +38,7 @@ object DialogHelper {
 
 class DialogBuilder {
     var title = ""
-    var hint = ""
+    var editHint = ""
     var checkEvent: ((str: String) -> Boolean)? = null
     var todoEvent: ((str: String) -> Unit)? = null
     var falseEvent: (() -> Unit)? = null
