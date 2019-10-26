@@ -9,7 +9,6 @@ import com.erookies.school.data.viewModel.LostAndFoundViewModel
 import com.erookies.school.databinding.SchoolItemLostFoundBinding
 import com.erookies.school.ui.holder.LostAndFoundViewHolder
 
-//TODO 修复数据未传入adapter的bug
 class LostAndFoundRVAdapter(model:LostAndFoundViewModel): RecyclerView.Adapter<LostAndFoundViewHolder>() {
     private val lostAndFoundItem = model.items
 

@@ -27,7 +27,6 @@ import kotlinx.android.synthetic.main.school_fragment_lost_found.*
 /**
  * Create by Koalak.
  * Time: 2019-10-20
- * bug:无法生成列表
  */
 class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
 
