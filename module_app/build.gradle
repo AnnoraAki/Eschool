@@ -59,6 +59,7 @@ dependencies {
     implementation project(':lib_common')
     if(!isSingleModuleDebug.toBoolean()) {
         implementation project(':module_main')
+        implementation project(':module_mine')
     }
 
     kapt deps.arouter.compiler

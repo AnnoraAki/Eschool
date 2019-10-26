@@ -1,2 +1,2 @@
-include ':module_app', ':lib_common', ':module_main', ':module_school'
+include ':module_app', ':lib_common', ':module_main', ':module_school',':module_mine'
 rootProject.name='Eschool'

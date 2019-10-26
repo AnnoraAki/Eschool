@@ -6,4 +6,5 @@
     <color name="colorPrimaryDark" tools:ignore="ResourceName">#00574B</color>
     <color name="colorAccent" tools:ignore="ResourceName">#D81B60</color>
     <color name="toolbarColor" tools:ignore="ResourceName">#F98B87</color>
+    <color name="colorPink" tools:ignore="ResourceName">#F78888</color>
 </resources>
