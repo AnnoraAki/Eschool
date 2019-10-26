@@ -1,14 +1,8 @@
 <resources>
-    <string name="app_name">module_mine</string>
-<<<<<<< HEAD
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mine_hello_blank_fragment">Hello blank fragment</string>
     <string name="mine_material">我的验证资料</string>
     <string name="mine_add">我的拼单</string>
     <string name="mine_setting">设置</string>
     <string name="mine_find_things">我的失物招领</string>
     <string name="mine_find_people">我的寻人</string>
-=======
->>>>>>> e9efc56b3347fce559b41e91831190d4704a4288
 </resources>

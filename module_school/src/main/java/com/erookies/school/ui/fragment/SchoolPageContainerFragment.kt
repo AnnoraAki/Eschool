@@ -12,7 +12,9 @@ import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURR
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.erookies.lib_common.base.BaseFragment
+import com.erookies.lib_common.config.SCHOOL_ENTRY
 import com.erookies.school.R
 import com.erookies.school.data.factory.SchoolPageContainerFactory
 import com.erookies.school.data.viewModel.SchoolPageContainerViewModel
@@ -20,6 +22,7 @@ import com.erookies.school.databinding.SchoolFragmentContainerBinding
 import com.erookies.school.utils.change
 import kotlinx.android.synthetic.main.school_fragment_container.*
 
+@Route(path = SCHOOL_ENTRY)
 class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
     private  lateinit var binding:SchoolFragmentContainerBinding
 
@@ -45,7 +48,7 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = getViewmodel(SchoolPageContainerViewModel::class.java)
+        viewModel = getViewModel(SchoolPageContainerViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,R.layout.school_fragment_container,container,false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this.viewLifecycleOwner

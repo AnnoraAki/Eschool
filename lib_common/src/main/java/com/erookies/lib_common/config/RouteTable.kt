@@ -12,4 +12,4 @@ package com.erookies.lib_common.config
  * </ul>
  */
 const val MINE_ENTRY = "/mine/entry"
-
+const val SCHOOL_ENTRY = "/school/entry"

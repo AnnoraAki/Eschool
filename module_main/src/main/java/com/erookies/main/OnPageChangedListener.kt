@@ -1,18 +1,14 @@
 package com.erookies.main
 
-<<<<<<< HEAD
 import android.util.SparseArray
 import android.view.MenuItem
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-=======
->>>>>>> e9efc56b3347fce559b41e91831190d4704a4288
 /**
  * Create by Cchanges.
  * Time: 2019-10-23
  */
-<<<<<<< HEAD
 class OnPageChangedListener(private val bottomNavigationView: BottomNavigationView,
                             private val viewPager: ViewPager,
                             private val listener:((position:Int,item:MenuItem)->Unit)?)  : BottomNavigationView.OnNavigationItemSelectedListener,ViewPager.OnPageChangeListener {
@@ -52,5 +48,3 @@ class OnPageChangedListener(private val bottomNavigationView: BottomNavigationVi
     }
 
 }
-=======
->>>>>>> e9efc56b3347fce559b41e91831190d4704a4288

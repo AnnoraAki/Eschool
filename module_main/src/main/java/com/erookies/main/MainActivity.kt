@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.MINE_ENTRY
+import com.erookies.lib_common.config.SCHOOL_ENTRY
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.main_activity_main.*
 import java.util.*
@@ -22,6 +23,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initFragment() {
+        fragments.add(getFragment(SCHOOL_ENTRY))
         fragments.add(getFragment(MINE_ENTRY))
     }
 
