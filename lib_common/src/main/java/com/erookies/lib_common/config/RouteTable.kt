@@ -11,5 +11,5 @@ package com.erookies.lib_common.config
  *     <li>多级路由：/模块依赖关系倒置/功能描述，例：/user/main/entry</li>
  * </ul>
  */
-
-
+const val MINE_ENTRY = "/mine/entry"
+const val SCHOOL_ENTRY = "/school/entry"
