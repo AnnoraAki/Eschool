@@ -15,22 +15,6 @@
                     }
                 }
             ]
-        },
-        {
-            "outputFile": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\res\\merged\\debug\\values-watch-v21\\values-watch-v21.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\1b699f0dba891c6db7634d1acb459e08\\res\\values-watch-v21\\values-watch-v21.xml",
-                    "from": {
-                        "startLines": "2,6,10",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,271,499",
-                        "endLines": "5,9,13",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "266,494,724"
-                    }
-                }
-            ]
         }
     ]
 }

@@ -12,7 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.base.BaseFragment
+import com.erookies.lib_common.config.SCHOOL_LOST_FOUND
 import com.erookies.school.R
 import com.erookies.school.data.factory.LostAndFoundFactory
 import com.erookies.school.data.model.Tag
@@ -20,6 +24,7 @@ import com.erookies.school.data.repository.LostAndFoundRepository
 import com.erookies.school.data.viewModel.LostAndFoundViewModel
 import com.erookies.school.databinding.SchoolFragmentLostFoundBinding
 import com.erookies.school.ui.adapter.LostAndFoundRVAdapter
+import com.erookies.school.utils.hideButton
 import com.erookies.school.utils.restoreStyle
 import kotlinx.android.synthetic.main.school_common_recycler_view.*
 import kotlinx.android.synthetic.main.school_fragment_lost_found.*
@@ -28,7 +33,11 @@ import kotlinx.android.synthetic.main.school_fragment_lost_found.*
  * Create by Koalak.
  * Time: 2019-10-20
  */
+
+@Route(path = SCHOOL_LOST_FOUND)
 class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
+
+    var startType:Int = START_FROM_MAIN
 
     private lateinit var viewModel:LostAndFoundViewModel
 
@@ -52,6 +61,11 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
 
     //适配器
     private lateinit var adapter:LostAndFoundRVAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ARouter.getInstance().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -88,28 +102,35 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
             viewModel.createTestData()
         }
 
-        cardButton.setOnClickListener(this)
-        digitalButton.setOnClickListener(this)
-        dailyButton.setOnClickListener(this)
-        othersButton.setOnClickListener(this)
-
         buttons[Tag.CARD.tag] = cardButton
         buttons[Tag.COMMODITY.tag] = dailyButton
         buttons[Tag.DIGITAL.tag] = digitalButton
         buttons[Tag.OTHER.tag] = othersButton
+
+        if (startType == START_FROM_MAIN){
+            cardButton.setOnClickListener(this)
+            digitalButton.setOnClickListener(this)
+            dailyButton.setOnClickListener(this)
+            othersButton.setOnClickListener(this)
+        }else{
+            val btns = buttons.values
+            hideButton(btns)
+        }
     }
 
     private fun observe(){
-        viewModel.currentTag.observe(this.viewLifecycleOwner,
-            Observer {tag ->
-                Log.d("LostAndFoundFragment","current tag is changed, current tag is : ${tag.tag}")
-                val button = buttons.remove(tag.tag)
-                if (button != null) {
-                    val btns = buttons.values
-                    restoreStyle(button,btns)
-                    buttons[tag.tag] = button
-                }
-            })
+        if (startType == START_FROM_MAIN){
+            viewModel.currentTag.observe(this.viewLifecycleOwner,
+                Observer {tag ->
+                    Log.d("LostAndFoundFragment","current tag is changed, current tag is : ${tag.tag}")
+                    val button = buttons.remove(tag.tag)
+                    if (button != null) {
+                        val btns = buttons.values
+                        restoreStyle(button,btns)
+                        buttons[tag.tag] = button
+                    }
+                })
+        }
         viewModel.isRefreshing.observe(this.viewLifecycleOwner,
             Observer { refresh ->
                 if (refresh) {
@@ -142,4 +163,9 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
 
     override fun getFactory(): ViewModelProvider.Factory? = LostAndFoundFactory(
         LostAndFoundRepository.getInstance())
+
+    companion object{
+        const val START_FROM_USER = 21
+        const val START_FROM_MAIN = 20
+    }
 }

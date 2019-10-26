@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.SCHOOL_ENTRY
 import com.erookies.school.R
@@ -42,6 +43,11 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
     }
 
     private lateinit var viewModel:SchoolPageContainerViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ARouter.getInstance().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

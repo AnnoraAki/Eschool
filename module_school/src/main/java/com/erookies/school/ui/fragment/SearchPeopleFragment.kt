@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.User
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.network.ApiGenerator
@@ -47,6 +48,11 @@ class SearchPeopleFragment : BaseFragment() {
     //控件
     private val recyclerView:RecyclerView
         get() = school_common_recycler_view
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ARouter.getInstance().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
