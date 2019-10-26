@@ -1,4 +1,4 @@
-package com.erookies.mine
+package com.erookies.mine.utils
 
 import com.erookies.lib_common.User
 

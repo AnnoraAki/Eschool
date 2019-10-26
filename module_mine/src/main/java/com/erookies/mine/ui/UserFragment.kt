@@ -1,4 +1,4 @@
-package com.erookies.mine
+package com.erookies.mine.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,13 @@ import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.MINE_ENTRY
 import com.erookies.lib_common.extentions.setImageFromUrl
+import com.erookies.mine.*
+import com.erookies.mine.utils.DialogBuilder
+import com.erookies.mine.utils.DialogHelper
+import com.erookies.mine.utils.makeFakeUser
+import com.erookies.mine.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.mine_fragment_user.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 
@@ -36,7 +42,7 @@ class UserFragment : BaseFragment() {
         tv_nickname.setOnClickListener { view ->
             val builder = DialogBuilder().apply {
                 title = "设置昵称"
-                editHint = "写下你想要的称呼哦～"
+                hint = "写下你想要的称呼哦～"
                 checkEvent = { it.trim() != "" && BaseApp.isLogin }
                 todoEvent = { viewModel.nickname.value = it }
                 falseEvent = { if (BaseApp.isLogin) toast("昵称不能为空或者全空格哦") else toast("请登录再设置哦") }
@@ -55,8 +61,6 @@ class UserFragment : BaseFragment() {
         tv_find_things.setOnClickListener {
             //todo: 我的失物招领
         }
-        tv_setting.setOnClickListener {
-            //todo: 设置
-        }
+        tv_setting.setOnClickListener { startActivity<SettingActivity>() }
     }
 }

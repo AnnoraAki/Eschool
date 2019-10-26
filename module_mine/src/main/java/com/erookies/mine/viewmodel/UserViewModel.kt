@@ -1,4 +1,4 @@
-package com.erookies.mine
+package com.erookies.mine.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.erookies.lib_common.BaseApp

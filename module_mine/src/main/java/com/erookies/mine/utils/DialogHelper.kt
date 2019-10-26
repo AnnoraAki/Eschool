@@ -1,6 +1,7 @@
-package com.erookies.mine
+package com.erookies.mine.utils
 
 import android.content.Context
+import android.text.InputType
 import android.view.ViewGroup
 import android.widget.EditText
 import org.jetbrains.anko.*
@@ -17,10 +18,13 @@ object DialogHelper {
                 linearLayout {
                     title = builder.title
                     edit = editText {
-                        hint = builder.editHint
+                        hint = builder.hint
                         maxLines = 1
+                        inputType =
+                            if (builder.isPwd) InputType.TYPE_TEXT_VARIATION_PASSWORD else InputType.TYPE_CLASS_TEXT
                     }.lparams(width = ViewGroup.LayoutParams.MATCH_PARENT) {
                         horizontalMargin = dip(8)
+                        topMargin = dip(8)
                     }
                 }
                 yesButton {
@@ -34,16 +38,20 @@ object DialogHelper {
             }
         }.show()
     }
-}
 
-class DialogBuilder {
-    var title = ""
-    var editHint = ""
-    var checkEvent: ((str: String) -> Boolean)? = null
-    var todoEvent: ((str: String) -> Unit)? = null
-    var falseEvent: (() -> Unit)? = null
-
-    fun check(str: String): Boolean {
-        return checkEvent?.invoke(str) ?: false
+    fun toastDialog(context: Context, builder: DialogBuilder) {
+        context.alert {
+            title = builder.title
+            message = builder.hint
+            yesButton {
+                if (builder.check("")) {
+                    builder.todoEvent?.invoke("")
+                } else {
+                    builder.falseEvent?.invoke()
+                }
+            }
+            noButton { }
+        }.show()
     }
 }
+

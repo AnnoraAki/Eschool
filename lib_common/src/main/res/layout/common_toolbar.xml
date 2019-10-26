@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPink"
         android:fitsSystemWindows="true"
-        app:navigationIcon="@drawable/common_ic_back">
+        >
 
         <TextView
             android:id="@+id/tv_title"
