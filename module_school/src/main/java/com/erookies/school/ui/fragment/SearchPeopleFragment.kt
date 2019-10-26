@@ -53,7 +53,7 @@ class SearchPeopleFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = getViewmodel(SPViewModel::class.java)
+        viewModel = getViewModel(SPViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,R.layout.school_fragment_search_people,container,false)
         adapter = SearchPeopleRVAdapter(viewModel)
         viewModel.createTestData("自由如风","我在萧萧的雨幕里，飘然一曲有我侧耳听，水面萧中剑的倒影，是爱中藏恨的诗句")

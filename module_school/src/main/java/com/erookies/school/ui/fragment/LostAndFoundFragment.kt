@@ -58,7 +58,7 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = getViewmodel(LostAndFoundViewModel::class.java)
+        viewModel = getViewModel(LostAndFoundViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.school_fragment_lost_found,container,false)
 
