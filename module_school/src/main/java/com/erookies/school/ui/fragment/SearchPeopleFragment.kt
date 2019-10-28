@@ -14,9 +14,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.User
 import com.erookies.lib_common.base.BaseFragment
+import com.erookies.lib_common.config.SCHOOL_SEARCH_PEOPLE
 import com.erookies.lib_common.network.ApiGenerator
 import com.erookies.school.R
 import com.erookies.school.data.factory.SearchPeopleFactory
@@ -25,6 +28,7 @@ import com.erookies.school.data.repository.SearchPeopleRepository
 import com.erookies.school.data.viewModel.SPViewModel
 import com.erookies.school.databinding.SchoolFragmentSearchPeopleBinding
 import com.erookies.school.ui.adapter.SearchPeopleRVAdapter
+import com.erookies.school.utils.START_FROM_MAIN
 import kotlinx.android.synthetic.main.school_common_recycler_view.*
 import kotlinx.android.synthetic.main.school_fragment_search_people.*
 
@@ -32,8 +36,15 @@ import kotlinx.android.synthetic.main.school_fragment_search_people.*
  * Create by Koalak.
  * Time: 2019-10-20
  */
+
+@Route(path = SCHOOL_SEARCH_PEOPLE)
 class SearchPeopleFragment : BaseFragment() {
-    private lateinit var viewModel: SPViewModel
+
+    @JvmField
+    @Autowired(name = "start_type")
+    var startType = START_FROM_MAIN
+
+    private val viewModel: SPViewModel by lazy { getViewModel(SPViewModel::class.java) }
     private lateinit var adapter:SearchPeopleRVAdapter
 
     private lateinit var binding:SchoolFragmentSearchPeopleBinding
@@ -59,7 +70,6 @@ class SearchPeopleFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = getViewModel(SPViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,R.layout.school_fragment_search_people,container,false)
         adapter = SearchPeopleRVAdapter(viewModel)
         viewModel.createTestData("自由如风","我在萧萧的雨幕里，飘然一曲有我侧耳听，水面萧中剑的倒影，是爱中藏恨的诗句")

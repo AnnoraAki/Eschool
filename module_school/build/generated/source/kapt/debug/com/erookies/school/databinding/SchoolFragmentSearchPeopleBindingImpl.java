@@ -18,7 +18,7 @@ public class SchoolFragmentSearchPeopleBindingImpl extends SchoolFragmentSearchP
     // views
     // variables
     @Nullable
-    private final androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener mCallback1;
+    private final androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener mCallback2;
     // values
     // listeners
     // Inverse Binding Event Handlers
@@ -33,7 +33,7 @@ public class SchoolFragmentSearchPeopleBindingImpl extends SchoolFragmentSearchP
         this.schoolSearchPeopleRefresh.setTag(null);
         setRootTag(root);
         // listeners
-        mCallback1 = new com.erookies.school.generated.callback.OnRefreshListener(this, 1);
+        mCallback2 = new com.erookies.school.generated.callback.OnRefreshListener(this, 1);
         invalidateAll();
     }
 
@@ -135,7 +135,7 @@ public class SchoolFragmentSearchPeopleBindingImpl extends SchoolFragmentSearchP
         if ((dirtyFlags & 0x4L) != 0) {
             // api target 1
 
-            this.schoolSearchPeopleRefresh.setOnRefreshListener(mCallback1);
+            this.schoolSearchPeopleRefresh.setOnRefreshListener(mCallback2);
         }
     }
     // Listener Stub Implementations

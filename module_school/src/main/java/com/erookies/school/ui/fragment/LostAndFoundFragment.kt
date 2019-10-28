@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.IntDef
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +25,7 @@ import com.erookies.school.data.repository.LostAndFoundRepository
 import com.erookies.school.data.viewModel.LostAndFoundViewModel
 import com.erookies.school.databinding.SchoolFragmentLostFoundBinding
 import com.erookies.school.ui.adapter.LostAndFoundRVAdapter
+import com.erookies.school.utils.START_FROM_MAIN
 import com.erookies.school.utils.hideButton
 import com.erookies.school.utils.restoreStyle
 import kotlinx.android.synthetic.main.school_common_recycler_view.*
@@ -37,9 +39,12 @@ import kotlinx.android.synthetic.main.school_fragment_lost_found.*
 @Route(path = SCHOOL_LOST_FOUND)
 class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
 
+    //添加JvmField解决字段注入问题
+    @JvmField
+    @Autowired(name = "start_type")
     var startType:Int = START_FROM_MAIN
 
-    private lateinit var viewModel:LostAndFoundViewModel
+    private val viewModel:LostAndFoundViewModel by lazy { getViewModel(LostAndFoundViewModel::class.java) }
 
     private lateinit var binding:SchoolFragmentLostFoundBinding
 
@@ -56,8 +61,6 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         get() = school_others_button
     private val recyclerView:RecyclerView
         get() = school_common_recycler_view
-    private val swipeRefreshLayout:SwipeRefreshLayout
-        get() = school_landf_refresh_layout
 
     //适配器
     private lateinit var adapter:LostAndFoundRVAdapter
@@ -72,7 +75,6 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = getViewModel(LostAndFoundViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.school_fragment_lost_found,container,false)
 
@@ -97,10 +99,6 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         Log.d("LostAndFoundFragment","LayoutManager is : ${recyclerView.layoutManager.toString()}")
         recyclerView.adapter = adapter
         Log.d("LostAndFoundFragment","recyclerview list is : ${adapter.itemCount}")
-
-        swipeRefreshLayout.setOnRefreshListener {
-            viewModel.createTestData()
-        }
 
         buttons[Tag.CARD.tag] = cardButton
         buttons[Tag.COMMODITY.tag] = dailyButton
@@ -163,9 +161,4 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
 
     override fun getFactory(): ViewModelProvider.Factory? = LostAndFoundFactory(
         LostAndFoundRepository.getInstance())
-
-    companion object{
-        const val START_FROM_USER = 21
-        const val START_FROM_MAIN = 20
-    }
 }

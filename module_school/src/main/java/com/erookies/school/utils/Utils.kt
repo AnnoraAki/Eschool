@@ -11,6 +11,9 @@ import com.erookies.school.R
 import org.jetbrains.anko.backgroundDrawable
 import org.jetbrains.anko.textColor
 
+const val START_FROM_USER = 21
+const val START_FROM_MAIN = 20
+
 fun TextView.change(need: Boolean) {
     val tp = this.paint
     if (need){

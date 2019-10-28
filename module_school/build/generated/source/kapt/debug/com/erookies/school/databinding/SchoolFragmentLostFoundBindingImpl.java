@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.view.View;
 @SuppressWarnings("unchecked")
-public class SchoolFragmentLostFoundBindingImpl extends SchoolFragmentLostFoundBinding  {
+public class SchoolFragmentLostFoundBindingImpl extends SchoolFragmentLostFoundBinding implements com.erookies.school.generated.callback.OnRefreshListener.Listener {
 
     @Nullable
     private static final androidx.databinding.ViewDataBinding.IncludedLayouts sIncludes;
@@ -23,6 +23,8 @@ public class SchoolFragmentLostFoundBindingImpl extends SchoolFragmentLostFoundB
     @NonNull
     private final android.widget.LinearLayout mboundView1;
     // variables
+    @Nullable
+    private final androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener mCallback1;
     // values
     // listeners
     // Inverse Binding Event Handlers
@@ -43,6 +45,7 @@ public class SchoolFragmentLostFoundBindingImpl extends SchoolFragmentLostFoundB
         this.schoolLandfRefreshLayout.setTag(null);
         setRootTag(root);
         // listeners
+        mCallback1 = new com.erookies.school.generated.callback.OnRefreshListener(this, 1);
         invalidateAll();
     }
 
@@ -141,9 +144,30 @@ public class SchoolFragmentLostFoundBindingImpl extends SchoolFragmentLostFoundB
 
             this.schoolLandfRefreshLayout.setRefreshing(androidxDatabindingViewDataBindingSafeUnboxViewModelIsRefreshingGetValue);
         }
+        if ((dirtyFlags & 0x4L) != 0) {
+            // api target 1
+
+            this.schoolLandfRefreshLayout.setOnRefreshListener(mCallback1);
+        }
     }
     // Listener Stub Implementations
     // callback impls
+    public final void _internalCallbackOnRefresh(int sourceId ) {
+        // localize variables for thread safety
+        // viewModel
+        com.erookies.school.data.viewModel.LostAndFoundViewModel viewModel = mViewModel;
+        // viewModel != null
+        boolean viewModelJavaLangObjectNull = false;
+
+
+
+        viewModelJavaLangObjectNull = (viewModel) != (null);
+        if (viewModelJavaLangObjectNull) {
+
+
+            viewModel.createTestData();
+        }
+    }
     // dirty flag
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping

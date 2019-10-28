@@ -42,7 +42,7 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
         return SchoolPageContainerFactory()
     }
 
-    private lateinit var viewModel:SchoolPageContainerViewModel
+    private val viewModel:SchoolPageContainerViewModel by lazy { getViewModel(SchoolPageContainerViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +54,6 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = getViewModel(SchoolPageContainerViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater,R.layout.school_fragment_container,container,false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this.viewLifecycleOwner

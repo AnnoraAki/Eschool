@@ -2,7 +2,6 @@ package com.erookies.school.data.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.erookies.lib_common.User
 import com.erookies.lib_common.base.BaseViewModel
 import com.erookies.school.data.model.LostAndFoundItemData
@@ -14,6 +13,8 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
     var currentUser = MutableLiveData<User>()
     var items = mutableListOf<MutableLiveData<LostAndFoundItemData>>()
     var currentTag = MutableLiveData<Tag>()
+
+    var startType = 20
 
     var isRefreshing = MutableLiveData<Boolean>()
 

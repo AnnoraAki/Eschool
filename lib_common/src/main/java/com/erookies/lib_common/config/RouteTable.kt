@@ -13,4 +13,5 @@ package com.erookies.lib_common.config
  */
 const val MINE_ENTRY = "/mine/entry"
 const val SCHOOL_ENTRY = "/school/entry"
-const val SCHOOL_LOST_FOUND = "/school/lost"
+const val SCHOOL_LOST_FOUND = "/user/school/lost"
+const val SCHOOL_SEARCH_PEOPLE = "/user/school/search"

@@ -15,6 +15,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.fragment:fragment-ktx:1.1.0'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'com.alibaba:arouter-api:1.4.0'
 
     kapt deps.arouter.compiler
 }
