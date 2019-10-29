@@ -1,4 +1,4 @@
-package com.erookies.main
+package com.erookies.main.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

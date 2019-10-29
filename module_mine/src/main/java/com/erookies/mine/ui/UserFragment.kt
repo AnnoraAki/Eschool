@@ -1,19 +1,24 @@
 package com.erookies.mine.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.MINE_ENTRY
 import com.erookies.lib_common.extentions.setImageFromUrl
-import com.erookies.mine.*
+import com.erookies.mine.R
 import com.erookies.mine.utils.DialogBuilder
 import com.erookies.mine.utils.DialogHelper
 import com.erookies.mine.utils.makeFakeUser
 import com.erookies.mine.viewmodel.UserViewModel
+import com.wildma.pictureselector.PictureSelector
 import kotlinx.android.synthetic.main.mine_fragment_user.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -37,7 +42,8 @@ class UserFragment : BaseFragment() {
         viewModel.nickname.observe { tv_nickname.text = it }
         viewModel.avatarUrl.observe { civ_avatar.setImageFromUrl(it) }
         civ_avatar.setOnClickListener {
-            //todo: 修改头像
+            PictureSelector.create(this@UserFragment, PictureSelector.SELECT_REQUEST_CODE)
+                .selectPicture()
         }
         tv_nickname.setOnClickListener { view ->
             val builder = DialogBuilder().apply {
@@ -49,9 +55,7 @@ class UserFragment : BaseFragment() {
             }
             DialogHelper.editDialog(view.context, builder)
         }
-        tv_mine_material.setOnClickListener {
-            //todo: 我的验证资料
-        }
+        tv_mine_material.setOnClickListener { startActivity<AuthenticationActivity>() }
         tv_mine_add.setOnClickListener {
             //todo: 我的拼单
         }
@@ -62,5 +66,19 @@ class UserFragment : BaseFragment() {
             //todo: 我的失物招领
         }
         tv_setting.setOnClickListener { startActivity<SettingActivity>() }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PictureSelector.SELECT_REQUEST_CODE) {
+            val path = data?.getStringExtra(PictureSelector.PICTURE_PATH)
+            path ?: return
+            val requestOptions = RequestOptions
+                .circleCropTransform()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+            //todo:上传到网络
+            Glide.with(this).load(path).apply(requestOptions).into(civ_avatar)
+        }
     }
 }

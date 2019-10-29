@@ -13,6 +13,6 @@ class DialogBuilder {
     var isPwd = false
 
     fun check(str: String): Boolean {
-        return checkEvent?.invoke(str) ?: false
+        return checkEvent?.invoke(str) ?: true
     }
 }
