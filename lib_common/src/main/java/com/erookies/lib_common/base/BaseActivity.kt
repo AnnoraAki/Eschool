@@ -3,6 +3,7 @@ package com.erookies.lib_common.base
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.view.WindowManager
 import androidx.annotation.DrawableRes
@@ -30,6 +31,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     val common_toolbar
         get() = toolbar
+
+    var menu: Menu? = null
+        private set
 
     protected fun Toolbar.init(
         title: String,
@@ -73,6 +77,12 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onStop()
         EventBus.getDefault().unregister(this)
         LogUtils.d("${javaClass.simpleName} on Stop", TAG)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        val r = super.onPrepareOptionsMenu(menu)
+        this.menu = menu
+        return r
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
