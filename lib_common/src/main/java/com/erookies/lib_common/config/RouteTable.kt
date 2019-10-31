@@ -14,3 +14,4 @@ package com.erookies.lib_common.config
 const val MINE_ENTRY = "/mine/entry"
 const val SCHOOL_ENTRY = "/school/entry"
 const val MAIN_LOGIN = "/main/login"
+const val ADD_ENTRY = "/add/entry"

@@ -10,4 +10,10 @@
     <string name="main_login">登陆</string>
     <string name="main_forget_pwd">忘记密码</string>
     <string name="main_type_register"><![CDATA[1.输入学号 > 2.设置昵称，密码 > 3.输入姓名，学院]]></string>
+    <string name="main_next">下一步</string>
+
+    <string name="main_nickname">昵称</string>
+    <string name="main_finish">完成注册</string>
+    <string name="main_college">学院</string>
+    <string name="main_username">姓名</string>
 </resources>

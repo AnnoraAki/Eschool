@@ -17,8 +17,5 @@ class LoginActivity : BaseActivity() {
 
         common_toolbar.init("登陆")
 
-        tv_forget.setOnClickListener {
-            startActivity<RegisterActivity>()
-        }
     }
 }
