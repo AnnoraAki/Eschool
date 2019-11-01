@@ -43,6 +43,7 @@ class AddContainerFragment : BaseFragment() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.clear()
         activity?.menuInflater?.inflate(R.menu.add_menu_add, menu)
         super.onPrepareOptionsMenu(menu)
     }

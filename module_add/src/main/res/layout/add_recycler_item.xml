@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/pink"
+    app:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_add_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/tv_add_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/civ_add_avatar"
+            android:layout_alignBottom="@id/civ_add_avatar"
+            android:layout_marginStart="8dp"
+            android:layout_toStartOf="@id/tb_tag"
+            android:layout_toEndOf="@id/civ_add_avatar"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            tools:text="Cchanges" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tb_tag"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/civ_add_avatar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:textSize="15sp"
+            android:enabled="false"
+            app:strokeColor="@color/colorDark"
+            app:strokeWidth="2dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/civ_add_avatar"
+            android:layout_alignStart="@id/civ_add_avatar"
+            android:layout_alignEnd="@id/tb_tag"
+            android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:textSize="15sp"
+            tools:text="2019.8.8" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_time"
+            android:layout_alignStart="@id/civ_add_avatar"
+            android:layout_alignEnd="@id/tb_tag"
+            android:layout_marginBottom="8dp"
+            android:textSize="15sp"
+            tools:text="你好啊啦啦啦啦啦啦啦我好了我太难了\n5555555" />
+
+        <!--   加入图片    -->
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

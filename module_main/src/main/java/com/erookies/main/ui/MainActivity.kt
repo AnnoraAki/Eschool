@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.base.BaseActivity
+import com.erookies.lib_common.config.ADD_ENTRY
 import com.erookies.lib_common.config.MINE_ENTRY
 import com.erookies.lib_common.config.SCHOOL_ENTRY
 import com.erookies.main.OnPageChangedListener
@@ -26,6 +27,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initFragment() {
+        fragments.add(getFragment(ADD_ENTRY))
         fragments.add(getFragment(SCHOOL_ENTRY))
         fragments.add(getFragment(MINE_ENTRY))
     }
