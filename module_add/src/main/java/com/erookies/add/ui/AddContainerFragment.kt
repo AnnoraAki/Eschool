@@ -1,14 +1,22 @@
-package com.erookies.add
+package com.erookies.add.ui
 
+import android.annotation.TargetApi
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.erookies.add.bean.AddEntry
+import com.erookies.add.ui.adapter.AddViewAdapter
+import com.erookies.add.R
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.ADD_ENTRY
+import com.erookies.lib_common.event.ClickMenuEvent
 import kotlinx.android.synthetic.main.add_fragment_add.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import org.jetbrains.anko.support.v4.startActivity
 
 @Route(path = ADD_ENTRY)
 class AddContainerFragment : BaseFragment() {
@@ -30,11 +38,14 @@ class AddContainerFragment : BaseFragment() {
         return inflater.inflate(R.layout.add_fragment_add, container, false)
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initFragment()
-        vp_container.adapter = AddViewAdapter(fragments,childFragmentManager)
-        vp_container.offscreenPageLimit = 6
+        vp_container.apply {
+            adapter = AddViewAdapter(fragments, childFragmentManager)
+            offscreenPageLimit = 6
+        }
         tb_container.setupWithViewPager(vp_container)
     }
 
@@ -42,9 +53,10 @@ class AddContainerFragment : BaseFragment() {
         fragments = titles.map { AddEntryFragment.newInstance(it) }
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.clear()
-        activity?.menuInflater?.inflate(R.menu.add_menu_add, menu)
-        super.onPrepareOptionsMenu(menu)
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun clickMenu(event: ClickMenuEvent) {
+        if (event.position == 0) {
+            startActivity<AddActivity>()
+        }
     }
 }

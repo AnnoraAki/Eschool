@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/defaultBackground"
     android:orientation="vertical"
-    tools:context=".AddContainerFragment">
+    tools:context=".ui.AddContainerFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tb_container"

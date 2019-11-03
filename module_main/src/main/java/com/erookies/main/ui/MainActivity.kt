@@ -1,17 +1,20 @@
 package com.erookies.main.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.ADD_ENTRY
 import com.erookies.lib_common.config.MINE_ENTRY
 import com.erookies.lib_common.config.SCHOOL_ENTRY
+import com.erookies.lib_common.event.ClickMenuEvent
 import com.erookies.main.OnPageChangedListener
 import com.erookies.main.R
 import com.erookies.main.ui.adapter.ViewPagerAdapter
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.main_activity_main.*
+import org.greenrobot.eventbus.EventBus
 import java.util.*
 
 class MainActivity : BaseActivity() {
@@ -33,8 +36,20 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initNavigation() {
-        val pageListener = OnPageChangedListener(nav_main, vp_main) { _, item ->
-            common_toolbar.init(item.title.toString(), listener = null)
+        val pageListener = OnPageChangedListener(nav_main, vp_main) { position, item ->
+            if (position != 3) {
+                val listener = View.OnClickListener {
+                    postClickMenuEvent(position)
+                }
+                common_toolbar.init(
+                    item.title.toString(),
+                    listener = null,
+                    rightListener = listener
+                )
+            } else {
+                common_toolbar.init(item.title.toString(), listener = null)
+            }
+
         }
 
         nav_main.apply {
@@ -48,6 +63,10 @@ class MainActivity : BaseActivity() {
             addOnPageChangeListener(pageListener)
         }
 
+    }
+
+    private fun postClickMenuEvent(position: Int) {
+        EventBus.getDefault().post(ClickMenuEvent(position))
     }
 
     private fun getFragment(path: String) =

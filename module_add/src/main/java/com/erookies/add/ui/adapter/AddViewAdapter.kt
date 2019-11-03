@@ -1,7 +1,8 @@
-package com.erookies.add
+package com.erookies.add.ui.adapter
 
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.erookies.add.ui.AddEntryFragment
 
 /**
  * Create by Cchanges.

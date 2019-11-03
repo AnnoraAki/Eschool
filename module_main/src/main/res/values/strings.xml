@@ -16,4 +16,6 @@
     <string name="main_finish">完成注册</string>
     <string name="main_college">学院</string>
     <string name="main_username">姓名</string>
+
+    <string name="main_new_add">添加新的</string>
 </resources>

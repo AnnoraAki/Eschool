@@ -1,9 +1,11 @@
-package com.erookies.add
+package com.erookies.add.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.erookies.add.R
+import com.erookies.add.bean.AddEntry
 import com.erookies.lib_common.extentions.setImageFromUrl
 import kotlinx.android.synthetic.main.add_recycler_item.view.*
 
@@ -11,7 +13,10 @@ import kotlinx.android.synthetic.main.add_recycler_item.view.*
  * Create by Cchanges.
  * Time: 2019-11-01
  */
-class AddRecyclerViewAdapter(private val lists: List<AddEntry>) :
+class AddRecyclerViewAdapter(
+    private var lists: List<AddEntry>,
+    private val listener: (position: Int) -> Unit
+) :
     RecyclerView.Adapter<AddRecyclerViewAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entry = lists[position]
@@ -21,6 +26,9 @@ class AddRecyclerViewAdapter(private val lists: List<AddEntry>) :
             tb_tag.text = entry.tag
             tv_time.text = entry.time
             tv_address.text = entry.address
+            setOnClickListener {
+                listener.invoke(position)
+            }
         }
     }
 

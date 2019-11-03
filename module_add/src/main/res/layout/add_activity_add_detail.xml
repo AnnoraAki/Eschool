@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defaultBackground"
+    tools:context=".ui.AddDetailActivity">
+
+    <include
+        layout="@layout/common_toolbar" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_detail_avatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.10" />
+
+    <TextView
+        android:id="@+id/tv_detail_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="#666"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/civ_detail_avatar"
+        app:layout_constraintStart_toEndOf="@+id/civ_detail_avatar"
+        app:layout_constraintTop_toTopOf="@+id/civ_detail_avatar"
+        app:layout_constraintVertical_bias="0.4"
+        tools:text="cchanges" />
+
+    <TextView
+        android:id="@+id/tv_detail_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#666"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/civ_detail_avatar"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_nickname"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_nickname"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="约定时间:15:00" />
+
+    <TextView
+        android:id="@+id/tv_detail_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#666"
+        android:textSize="15sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/civ_detail_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/civ_detail_avatar"
+        tools:text="约定地点：" />
+
+    <TextView
+        android:id="@+id/tv_detail_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#666"
+        android:textSize="15sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/civ_detail_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_address"
+        tools:text="约定人数：" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,18 @@
-package com.erookies.add
+package com.erookies.add.bean
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 /**
  * Create by Cchanges.
  * Time: 2019-10-31
  */
+@Entity(tableName = "add_items")
 data class AddEntry(
+    @PrimaryKey
+    val id : Int = 0,
     val tag: String = "",
     val time: String = "",
     val address: String = "",
@@ -15,6 +20,7 @@ data class AddEntry(
     val avatar: String = ""
 ) : Parcelable {
     constructor(source: Parcel) : this(
+        source.readInt(),
         source.readString(),
         source.readString(),
         source.readString(),
@@ -47,7 +53,8 @@ data class AddEntry(
 
         @JvmField
         val CREATOR: Parcelable.Creator<AddEntry> = object : Parcelable.Creator<AddEntry> {
-            override fun createFromParcel(source: Parcel): AddEntry = AddEntry(source)
+            override fun createFromParcel(source: Parcel): AddEntry =
+                AddEntry(source)
             override fun newArray(size: Int): Array<AddEntry?> = arrayOfNulls(size)
         }
     }

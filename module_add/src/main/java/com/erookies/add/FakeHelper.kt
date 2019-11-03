@@ -1,5 +1,7 @@
 package com.erookies.add
 
+import com.erookies.add.bean.AddEntry
+
 /**
  * Create by Cchanges.
  * Time: 2019-11-01

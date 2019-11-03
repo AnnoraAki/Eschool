@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_navigation_bottom_height"
         android:layout_gravity="bottom"
+        app:itemIconTint="@color/main_text_selector"
         app:itemTextColor="@color/main_text_selector"
         app:menu="@menu/main_menu" />
 

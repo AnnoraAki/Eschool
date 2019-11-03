@@ -1,12 +1,19 @@
-package com.erookies.add
+package com.erookies.add.ui
 
+import android.annotation.TargetApi
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.erookies.add.bean.AddEntry
+import com.erookies.add.ui.adapter.AddRecyclerViewAdapter
+import com.erookies.add.FakeHelper
+import com.erookies.add.R
 import com.erookies.lib_common.base.BaseFragment
 import kotlinx.android.synthetic.main.add_fragment_container.*
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * Create by Cchanges.
@@ -34,11 +41,26 @@ class AddEntryFragment : BaseFragment() {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         lists = FakeHelper.fakeData(title)
         rv_entry.layoutManager = LinearLayoutManager(this.context)
-        rv_entry.adapter = AddRecyclerViewAdapter(lists)
+        rv_entry.adapter = AddRecyclerViewAdapter(lists) {
+
+        }
+        srl_add.apply {
+            setColorSchemeColors(
+                this@AddEntryFragment.resources.getColor(
+                    R.color.colorPink,
+                    this@AddEntryFragment.context!!.theme
+                )
+            )
+            setOnRefreshListener {
+                toast("refresh")
+                srl_add.isRefreshing = false
+            }
+        }
     }
 
     companion object {

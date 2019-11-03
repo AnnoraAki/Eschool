@@ -37,16 +37,14 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/tb_tag"
             style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/civ_add_avatar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="8dp"
-            android:textSize="15sp"
             android:enabled="false"
             app:strokeColor="@color/colorDark"
-            app:strokeWidth="2dp"
-            />
+            app:strokeWidth="1dp" />
 
         <TextView
             android:id="@+id/tv_time"
