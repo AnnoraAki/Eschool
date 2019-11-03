@@ -27,6 +27,10 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim pickerview_dialog_scale_in
+anim pickerview_dialog_scale_out
+anim pickerview_slide_in_bottom
+anim pickerview_slide_out_bottom
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -579,6 +583,13 @@ attr ttcIndex
 attr useCompatPadding
 attr viewInflaterClass
 attr voiceIcon
+attr wheelview_dividerColor
+attr wheelview_dividerWidth
+attr wheelview_gravity
+attr wheelview_lineSpacingMultiplier
+attr wheelview_textColorCenter
+attr wheelview_textColorOut
+attr wheelview_textSize
 attr windowActionBar
 attr windowActionBarOverlay
 attr windowActionModeOverlay
@@ -705,6 +716,15 @@ color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
 color notification_material_background_media_default_color
+color pickerview_bgColor_default
+color pickerview_bgColor_overlay
+color pickerview_bg_topbar
+color pickerview_timebtn_nor
+color pickerview_timebtn_pre
+color pickerview_topbar_title
+color pickerview_wheelview_textcolor_center
+color pickerview_wheelview_textcolor_divider
+color pickerview_wheelview_textcolor_out
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -938,6 +958,11 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen pickerview_textsize
+dimen pickerview_topbar_btn_textsize
+dimen pickerview_topbar_height
+dimen pickerview_topbar_padding
+dimen pickerview_topbar_title_textsize
 dimen subtitle_corner_radius
 dimen subtitle_outline_width
 dimen subtitle_shadow_offset
@@ -1075,6 +1100,7 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable school_tag_button_not_select_style
 drawable school_tag_button_select_style
+drawable selector_pickerview_btn
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -1146,6 +1172,8 @@ id barrier
 id beginning
 id blocking
 id bottom
+id btnCancel
+id btnSubmit
 id buttonPanel
 id cancel_action
 id center
@@ -1161,10 +1189,12 @@ id collapseActionView
 id container
 id content
 id contentPanel
+id content_container
 id coordinator
 id custom
 id customPanel
 id dataBinding
+id day
 id decor_content_parent
 id default_activity_button
 id design_bottom_sheet
@@ -1198,6 +1228,7 @@ id group_divider
 id groups
 id home
 id homeAsUp
+id hour
 id icon
 id icon_group
 id ifRoom
@@ -1217,7 +1248,9 @@ id masked
 id media_actions
 id message
 id middle
+id min
 id mini
+id month
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
@@ -1232,7 +1265,12 @@ id off
 id on
 id onAttachStateChangeListener
 id onDateChanged
+id options1
+id options2
+id options3
+id optionspicker
 id outline
+id outmost_container
 id packed
 id parallax
 id parent
@@ -1246,11 +1284,17 @@ id radio
 id right
 id right_icon
 id right_side
+id rv_topbar
 id save_image_matrix
 id save_non_transition_alpha
 id save_scale_type
+id school_common_picture_list
 id school_common_recycler_view
 id school_daily_goods_button
+id school_detail_content
+id school_detail_tag_button
+id school_detail_user_avatar
+id school_detail_user_name
 id school_digital_button
 id school_id_card_button
 id school_item_common_image
@@ -1286,6 +1330,7 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
+id second
 id select_dialog_listview
 id selected
 id shortcut
@@ -1330,6 +1375,7 @@ id textinput_counter
 id textinput_error
 id textinput_helper_text
 id time
+id timepicker
 id title
 id titleDividerNoCustom
 id title_template
@@ -1342,6 +1388,7 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id tvTitle
 id tv_title
 id unchecked
 id uniform
@@ -1353,8 +1400,10 @@ id visible
 id withText
 id wrap
 id wrap_content
+id year
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
+integer animation_default_duration
 integer app_bar_elevation_anim_duration
 integer bottom_sheet_slide_duration
 integer cancel_button_image_alpha
@@ -1423,6 +1472,8 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout include_pickerview_topbar
+layout layout_basepickerview
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1440,8 +1491,13 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout pickerview_options
+layout pickerview_time
+layout school_activity_detail
 layout school_activity_main
+layout school_activity_publish
 layout school_common_image
+layout school_common_picture_list
 layout school_common_recycler_view
 layout school_fragment_container
 layout school_fragment_lost_found
@@ -1495,6 +1551,14 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string pickerview_cancel
+string pickerview_day
+string pickerview_hours
+string pickerview_minutes
+string pickerview_month
+string pickerview_seconds
+string pickerview_submit
+string pickerview_year
 string school_app_name
 string school_card
 string school_daily_goods
@@ -2010,6 +2074,9 @@ style Widget_MaterialComponents_TextInputLayout_OutlinedBox
 style Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense
 style Widget_MaterialComponents_Toolbar
 style Widget_Support_CoordinatorLayout
+style custom_dialog2
+style picker_view_scale_anim
+style picker_view_slide_anim
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
@@ -2088,3 +2155,4 @@ styleable Toolbar android_gravity android_minHeight buttonGravity collapseConten
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_layout android_inflatedId
+styleable pickerview wheelview_dividerColor wheelview_dividerWidth wheelview_gravity wheelview_lineSpacingMultiplier wheelview_textColorCenter wheelview_textColorOut wheelview_textSize

@@ -23,6 +23,7 @@ class SearchPeopleRVAdapter(viewModel:SPViewModel) :
 
     override fun onBindViewHolder(holder: SearchPeopleViewHolder, position: Int) {
         holder.binding.item = list[position].value
+        holder.bind(list[position].value)
         holder.binding.executePendingBindings()
     }
 }

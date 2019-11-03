@@ -24,6 +24,7 @@ class LostAndFoundRVAdapter(model:LostAndFoundViewModel): RecyclerView.Adapter<L
 
     override fun onBindViewHolder(holder: LostAndFoundViewHolder, position: Int) {
         holder.binding.item = lostAndFoundItem[position].value
+        holder.bind(lostAndFoundItem[position].value)
         holder.binding.executePendingBindings()
     }
 }

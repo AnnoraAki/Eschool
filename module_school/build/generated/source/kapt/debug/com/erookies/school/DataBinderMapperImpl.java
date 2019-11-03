@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.databinding.DataBinderMapper;
 import androidx.databinding.DataBindingComponent;
 import androidx.databinding.ViewDataBinding;
+import com.erookies.school.databinding.SchoolActivityDetailBindingImpl;
 import com.erookies.school.databinding.SchoolActivityMainBindingImpl;
 import com.erookies.school.databinding.SchoolFragmentContainerBindingImpl;
 import com.erookies.school.databinding.SchoolFragmentLostFoundBindingImpl;
@@ -23,21 +24,24 @@ import java.util.HashMap;
 import java.util.List;
 
 public class DataBinderMapperImpl extends DataBinderMapper {
-  private static final int LAYOUT_SCHOOLACTIVITYMAIN = 1;
+  private static final int LAYOUT_SCHOOLACTIVITYDETAIL = 1;
 
-  private static final int LAYOUT_SCHOOLFRAGMENTCONTAINER = 2;
+  private static final int LAYOUT_SCHOOLACTIVITYMAIN = 2;
 
-  private static final int LAYOUT_SCHOOLFRAGMENTLOSTFOUND = 3;
+  private static final int LAYOUT_SCHOOLFRAGMENTCONTAINER = 3;
 
-  private static final int LAYOUT_SCHOOLFRAGMENTSEARCHPEOPLE = 4;
+  private static final int LAYOUT_SCHOOLFRAGMENTLOSTFOUND = 4;
 
-  private static final int LAYOUT_SCHOOLITEMLOSTFOUND = 5;
+  private static final int LAYOUT_SCHOOLFRAGMENTSEARCHPEOPLE = 5;
 
-  private static final int LAYOUT_SCHOOLITEMSEARCHPEOPLE = 6;
+  private static final int LAYOUT_SCHOOLITEMLOSTFOUND = 6;
 
-  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(6);
+  private static final int LAYOUT_SCHOOLITEMSEARCHPEOPLE = 7;
+
+  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(7);
 
   static {
+    INTERNAL_LAYOUT_ID_LOOKUP.put(com.erookies.school.R.layout.school_activity_detail, LAYOUT_SCHOOLACTIVITYDETAIL);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.erookies.school.R.layout.school_activity_main, LAYOUT_SCHOOLACTIVITYMAIN);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.erookies.school.R.layout.school_fragment_container, LAYOUT_SCHOOLFRAGMENTCONTAINER);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.erookies.school.R.layout.school_fragment_lost_found, LAYOUT_SCHOOLFRAGMENTLOSTFOUND);
@@ -55,6 +59,12 @@ public class DataBinderMapperImpl extends DataBinderMapper {
         throw new RuntimeException("view must have a tag");
       }
       switch(localizedLayoutId) {
+        case  LAYOUT_SCHOOLACTIVITYDETAIL: {
+          if ("layout/school_activity_detail_0".equals(tag)) {
+            return new SchoolActivityDetailBindingImpl(component, view);
+          }
+          throw new IllegalArgumentException("The tag for school_activity_detail is invalid. Received: " + tag);
+        }
         case  LAYOUT_SCHOOLACTIVITYMAIN: {
           if ("layout/school_activity_main_0".equals(tag)) {
             return new SchoolActivityMainBindingImpl(component, view);
@@ -146,9 +156,10 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerLayoutIdLookup {
-    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(6);
+    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(7);
 
     static {
+      sKeys.put("layout/school_activity_detail_0", com.erookies.school.R.layout.school_activity_detail);
       sKeys.put("layout/school_activity_main_0", com.erookies.school.R.layout.school_activity_main);
       sKeys.put("layout/school_fragment_container_0", com.erookies.school.R.layout.school_fragment_container);
       sKeys.put("layout/school_fragment_lost_found_0", com.erookies.school.R.layout.school_fragment_lost_found);

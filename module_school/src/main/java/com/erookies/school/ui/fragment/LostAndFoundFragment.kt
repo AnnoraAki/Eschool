@@ -16,6 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.SCHOOL_LOST_FOUND
 import com.erookies.school.R

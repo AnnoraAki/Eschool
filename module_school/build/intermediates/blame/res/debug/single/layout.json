@@ -22,5 +22,9 @@
     {
         "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_item_search_people.xml",
         "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_item_search_people.xml"
+    },
+    {
+        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_activity_detail.xml",
+        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_activity_detail.xml"
     }
 ]

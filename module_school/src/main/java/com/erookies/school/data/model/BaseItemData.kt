@@ -1,5 +1,5 @@
 package com.erookies.school.data.model
 
-abstract class BaseItemData {
-    abstract fun handle()
+open class BaseItemData {
+    open fun handle(){}
 }

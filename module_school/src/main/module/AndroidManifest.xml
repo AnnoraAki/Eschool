@@ -3,12 +3,15 @@
     package="com.erookies.school">
 
     <application
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:name="debug.MainDebugApplication">
+        android:name="debug.MainDebugApplication"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".ui.activity.PublishActivity"></activity>
+        <activity android:name=".ui.activity.DetailActivity" />
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
