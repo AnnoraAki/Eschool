@@ -8,18 +8,49 @@
     tools:context=".ui.AddDetailActivity">
 
     <include
+        android:id="@+id/common_toolbar"
         layout="@layout/common_toolbar" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_detail_type"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:enabled="false"
+        android:textColor="#666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/common_toolbar"
+        app:strokeColor="@color/colorDark"
+        app:strokeWidth="1dp"
+        tools:text="tag" />
+
+    <TextView
+        android:id="@+id/tv_detail_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:textColor="#666"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mb_detail_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mb_detail_type"
+        app:layout_constraintTop_toBottomOf="@+id/common_toolbar"
+        tools:text="参与人数：" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_detail_avatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.10" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_address"
+        app:layout_constraintVertical_bias="0.073" />
 
     <TextView
         android:id="@+id/tv_detail_nickname"
@@ -38,34 +69,59 @@
         android:id="@+id/tv_detail_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:textColor="#666"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/civ_detail_avatar"
-        app:layout_constraintStart_toStartOf="@+id/tv_detail_nickname"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_nickname"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/mb_detail_type"
+        app:layout_constraintTop_toBottomOf="@+id/mb_detail_type"
         tools:text="约定时间:15:00" />
 
     <TextView
         android:id="@+id/tv_detail_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textColor="#666"
         android:textSize="15sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/civ_detail_avatar"
-        app:layout_constraintTop_toBottomOf="@+id/civ_detail_avatar"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_time"
         tools:text="约定地点：" />
 
+
     <TextView
-        android:id="@+id/tv_detail_num"
+        android:id="@+id/tv_detail_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
         android:textColor="#666"
-        android:textSize="15sp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/civ_detail_avatar"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_address"
-        tools:text="约定人数：" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_address"
+        app:layout_constraintTop_toBottomOf="@+id/civ_detail_avatar"
+        app:layout_constraintVertical_bias="0.063"
+        tools:text="啦啦啦啦啦啦啦啦啦啦啦啦拉了" />
+
+    <View
+        android:id="@+id/add_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/colorDark"
+        app:layout_constraintBottom_toTopOf="@+id/civ_detail_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_address" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/colorDark"
+        app:layout_constraintBottom_toTopOf="@+id/tv_detail_content"
+        app:layout_constraintTop_toBottomOf="@+id/civ_detail_avatar"
+        app:layout_constraintVertical_bias="0.5" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

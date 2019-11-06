@@ -28,7 +28,8 @@ object FakeHelper {
                     time = timeList[(0..3).random()],
                     address = addressList[(0..3).random()],
                     avatar = avatarList[(0..3).random()],
-                    tag = type
+                    tag = type,
+                    peopleNum = (1..10).random()
                 )
             )
         }

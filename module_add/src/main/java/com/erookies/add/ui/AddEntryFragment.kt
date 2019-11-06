@@ -13,6 +13,7 @@ import com.erookies.add.FakeHelper
 import com.erookies.add.R
 import com.erookies.lib_common.base.BaseFragment
 import kotlinx.android.synthetic.main.add_fragment_container.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -47,7 +48,7 @@ class AddEntryFragment : BaseFragment() {
         lists = FakeHelper.fakeData(title)
         rv_entry.layoutManager = LinearLayoutManager(this.context)
         rv_entry.adapter = AddRecyclerViewAdapter(lists) {
-
+            startActivity<AddDetailActivity>("entry" to lists[it])
         }
         srl_add.apply {
             setColorSchemeColors(
