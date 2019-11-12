@@ -23,7 +23,7 @@ class AuthenticationActivity : BaseActivity() {
         if (user == null) {
             toLogin()
         } else {
-            tv_stu_name.text = "姓名：${user.username}"
+            tv_stu_name.text = "姓名：${user.name}"
             tv_college.text = "学院：${user.institute}"
             tv_stu_num.text = "学号：${user.sno}"
         }

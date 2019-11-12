@@ -22,6 +22,6 @@ interface Api {
     @POST("/api/register")
     fun register(@Body registerBody: RegisterBean): Observable<StatusBean>
 
-    @POST("/api/login")
+    @POST("/api/user")
     fun login(@Body loginBody: LoginBean): Observable<StatusWrapper<User>>
 }

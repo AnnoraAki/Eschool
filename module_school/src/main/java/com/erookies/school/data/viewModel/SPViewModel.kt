@@ -20,7 +20,7 @@ class SPViewModel(private val repository: SearchPeopleRepository) :  BaseViewMod
 
     fun createTestData(name:String,content:String){
         isRefresh.value = true
-        val user = User(username = name)
+        val user = User(name = name)
         val spid = SearchPeopleItemData(user,content)
         val data = MutableLiveData<SearchPeopleItemData>()
         data.value = spid

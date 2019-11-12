@@ -12,7 +12,7 @@ import kotlin.experimental.and
 object LogUtils {
     private val debugMode = BuildConfig.DEBUG
     private var showLog: Byte
-    private const val TAG = "Eschool"
+    private const val TAG = "Cchanges"
 
     private const val VERBOSE_MASK: Byte = 0x1
     private const val DEBUG_MASK: Byte = 0x2

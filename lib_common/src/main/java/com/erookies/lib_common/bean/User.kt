@@ -10,7 +10,7 @@ import com.google.gson.Gson
  */
 data class User(
     val id: String = "",
-    val username: String = "",
+    val name: String = "",
     var pwd: String = "",
     var nickname: String = "",
     var email: String = "",
@@ -39,7 +39,7 @@ data class User(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
-        parcel.writeString(username)
+        parcel.writeString(name)
         parcel.writeString(pwd)
         parcel.writeString(nickname)
         parcel.writeString(email)

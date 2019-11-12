@@ -26,7 +26,7 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
     fun createTestData(name:String,content:String){
         isRefreshing.value = true
         items.clear()
-        val user = User(username = name)
+        val user = User(name = name)
         val spid = LostAndFoundItemData(user,content,tag = currentTag.value!!)
         val data = MutableLiveData<LostAndFoundItemData>()
         data.value = spid

@@ -18,4 +18,6 @@
     <string name="main_username">姓名</string>
 
     <string name="main_new_add">添加新的</string>
+    <string name="main_register">没有账号？前去注册</string>
+    <string name="main_skip">跳过登陆</string>
 </resources>

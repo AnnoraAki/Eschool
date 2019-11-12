@@ -46,7 +46,7 @@
                         android:layout_height="44dp"/>
                     
                     <TextView
-                        android:text="@{item.user.username}"
+                        android:text="@{item.user.name}"
                         android:layout_marginStart="12dp"
                         android:layout_alignBottom="@id/school_sp_item_user_avatar"
                         android:layout_toEndOf="@+id/school_sp_item_user_avatar"

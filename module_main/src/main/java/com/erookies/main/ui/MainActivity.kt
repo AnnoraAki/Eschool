@@ -6,15 +6,19 @@ import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.ADD_ENTRY
+import com.erookies.lib_common.config.FIRST_IN
 import com.erookies.lib_common.config.MINE_ENTRY
 import com.erookies.lib_common.config.SCHOOL_ENTRY
 import com.erookies.lib_common.event.ClickMenuEvent
+import com.erookies.lib_common.extentions.defaultSharedPreferences
+import com.erookies.lib_common.utils.LogUtils
 import com.erookies.main.OnPageChangedListener
 import com.erookies.main.R
 import com.erookies.main.ui.adapter.ViewPagerAdapter
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.main_activity_main.*
 import org.greenrobot.eventbus.EventBus
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 class MainActivity : BaseActivity() {
@@ -24,6 +28,14 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity_main)
+
+        val isFirstIn = defaultSharedPreferences.getBoolean(FIRST_IN, true)
+
+        LogUtils.d("main first in:$isFirstIn")
+
+        if (isFirstIn) {
+            startActivity<LoginActivity>()
+        }
 
         initFragment()
         initNavigation()
