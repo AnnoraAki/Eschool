@@ -2,7 +2,6 @@ package com.erookies.mine.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.erookies.lib_common.BaseApp
-import com.erookies.lib_common.User
 import com.erookies.lib_common.base.BaseViewModel
 
 

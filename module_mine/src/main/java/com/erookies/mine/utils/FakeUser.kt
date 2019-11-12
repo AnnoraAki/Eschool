@@ -1,6 +1,6 @@
 package com.erookies.mine.utils
 
-import com.erookies.lib_common.User
+import com.erookies.lib_common.bean.User
 
 /**
  * Create by Cchanges.
@@ -9,8 +9,9 @@ import com.erookies.lib_common.User
 
 fun makeFakeUser(): User = User(
     nickname = "Cchanges",
-    college = "通信与信息工程学院",
-    stuNum = "2017210441",
+    institute = "通信与信息工程学院",
+    sno = "2017210441",
     username = "清夏",
-    avatar = "http://p1.music.126.net/XLXcxAvGIFLF_cgWdgcjgg==/109951164444109270.jpg?param=180y180")
+    avatar = "http://p1.music.126.net/XLXcxAvGIFLF_cgWdgcjgg==/109951164444109270.jpg?param=180y180"
+)
 

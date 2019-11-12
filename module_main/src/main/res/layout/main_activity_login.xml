@@ -11,7 +11,6 @@
     <include layout="@layout/common_toolbar" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_stu_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -21,6 +20,7 @@
         app:passwordToggleDrawable="@null">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/til_stu_num"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorWhite"
@@ -33,7 +33,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -43,6 +42,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/til_pwd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorWhite"

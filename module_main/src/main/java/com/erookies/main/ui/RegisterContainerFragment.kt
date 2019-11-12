@@ -40,16 +40,65 @@ class RegisterContainerFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         when (layoutId) {
             R.layout.main_fragment_stu -> btn_next_pwd.setOnClickListener {
-                (activity as RegisterActivity).showFragment(newInstance(R.layout.main_fragment_pwd))
+                if (!check(tip_register_stu.text.toString())) {
+                    toast("没有填写完整哦")
+                    return@setOnClickListener
+                }
+                (activity as RegisterActivity).apply {
+                    saveSno(tip_register_stu.text.toString())
+                    showFragment(
+                        newInstance(R.layout.main_fragment_pwd),
+                        2
+                    )
+                }
             }
-            R.layout.main_fragment_pwd -> btn_next_auc.setOnClickListener {
-                (activity as RegisterActivity).showFragment(newInstance(R.layout.main_fragment_auc))
+            R.layout.main_fragment_pwd -> {
+                btn_next_auc.setOnClickListener {
+                    if (!check(
+                            tip_register_pwd.text.toString(),
+                            tip_register_nickname.text.toString()
+                        )
+                    ) {
+                        toast("没有填写完整哦")
+                        return@setOnClickListener
+                    }
+                    (activity as RegisterActivity).apply {
+                        savePwd(
+                            tip_register_pwd.text.toString(),
+                            tip_register_nickname.text.toString()
+                        )
+                        showFragment(
+                            newInstance(R.layout.main_fragment_auc),
+                            3
+                        )
+                    }
+                }
             }
             R.layout.main_fragment_auc -> btn_finish.setOnClickListener {
-                toast("完成注册!")
-                activity?.finish()
+                if (!check(
+                        tip_register_college.text.toString(),
+                        tip_register_username.text.toString()
+                    )
+                ) {
+                    toast("没有填写完整哦")
+                    return@setOnClickListener
+                }
+                (activity as RegisterActivity).apply {
+                    saveReal(
+                        tip_register_username.text.toString(),
+                        tip_register_college.text.toString()
+                    )
+                    register()
+                }
             }
         }
+    }
+
+    private fun check(vararg strs: String): Boolean {
+        repeat(strs.size) {
+            if (strs[it].isEmpty()) return false
+        }
+        return true
     }
 
     companion object {

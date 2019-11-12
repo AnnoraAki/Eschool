@@ -1,4 +1,4 @@
-package com.erookies.lib_common
+package com.erookies.lib_common.bean
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -16,9 +16,9 @@ data class User(
     var email: String = "",
     var phone: String = "",
     // 学院
-    val college: String = "",
+    val institute: String = "",
     // 学号
-    val stuNum: String = "",
+    val sno: String = "",
     // 描述
     var info: String = "",
     var avatar: String = ""
@@ -44,8 +44,8 @@ data class User(
         parcel.writeString(nickname)
         parcel.writeString(email)
         parcel.writeString(phone)
-        parcel.writeString(college)
-        parcel.writeString(stuNum)
+        parcel.writeString(institute)
+        parcel.writeString(sno)
         parcel.writeString(info)
         parcel.writeString(avatar)
     }

@@ -9,23 +9,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.erookies.lib_common.User
 import com.erookies.lib_common.base.BaseFragment
-import com.erookies.lib_common.network.ApiGenerator
 import com.erookies.school.R
 import com.erookies.school.data.factory.SearchPeopleFactory
-import com.erookies.school.data.model.SearchPeopleItemData
 import com.erookies.school.data.repository.SearchPeopleRepository
 import com.erookies.school.data.viewModel.SPViewModel
 import com.erookies.school.databinding.SchoolFragmentSearchPeopleBinding
 import com.erookies.school.ui.adapter.SearchPeopleRVAdapter
 import kotlinx.android.synthetic.main.school_common_recycler_view.*
-import kotlinx.android.synthetic.main.school_fragment_search_people.*
 
 /**
  * Create by Koalak.

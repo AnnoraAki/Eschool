@@ -24,8 +24,8 @@ class AuthenticationActivity : BaseActivity() {
             toLogin()
         } else {
             tv_stu_name.text = "姓名：${user.username}"
-            tv_college.text = "学院：${user.college}"
-            tv_stu_num.text = "学号：${user.stuNum}"
+            tv_college.text = "学院：${user.institute}"
+            tv_stu_num.text = "学号：${user.sno}"
         }
 
         btn_add_auth.setOnClickListener {

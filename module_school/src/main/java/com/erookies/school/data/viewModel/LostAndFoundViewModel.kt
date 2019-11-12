@@ -2,8 +2,7 @@ package com.erookies.school.data.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.erookies.lib_common.User
+import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.base.BaseViewModel
 import com.erookies.school.data.model.LostAndFoundItemData
 import com.erookies.school.data.model.Tag

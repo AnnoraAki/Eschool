@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tip_register_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -15,6 +14,7 @@
         android:hint="@string/main_username">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tip_register_username"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorWhite"
@@ -22,7 +22,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tip_register_college"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -31,6 +30,7 @@
         android:hint="@string/main_college">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tip_register_college"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorWhite"
