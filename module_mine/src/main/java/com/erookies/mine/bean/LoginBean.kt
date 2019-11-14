@@ -1,4 +1,4 @@
-package com.erookies.main.bean
+package com.erookies.mine.bean
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -23,7 +23,8 @@ data class LoginBean(val sno: String, val password: String) : Parcelable {
     companion object {
         @JvmField
         val CREATOR: Parcelable.Creator<LoginBean> = object : Parcelable.Creator<LoginBean> {
-            override fun createFromParcel(source: Parcel): LoginBean = LoginBean(source)
+            override fun createFromParcel(source: Parcel): LoginBean =
+                LoginBean(source)
             override fun newArray(size: Int): Array<LoginBean?> = arrayOfNulls(size)
         }
     }

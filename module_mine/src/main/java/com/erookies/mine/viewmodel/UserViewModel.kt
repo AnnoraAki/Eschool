@@ -3,6 +3,7 @@ package com.erookies.mine.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseViewModel
+import com.erookies.lib_common.bean.User
 
 
 /**
@@ -10,24 +11,19 @@ import com.erookies.lib_common.base.BaseViewModel
  * Time: 2019-10-22
  */
 class UserViewModel : BaseViewModel() {
-    private var user = BaseApp.user
-    var nickname = MutableLiveData<String>()
-    var avatarUrl = MutableLiveData<String>()
+    var user = MutableLiveData<User?>()
 
     init {
-        nickname.value = if(BaseApp.isLogin) user?.nickname else "暂未登陆"
-        avatarUrl.value = if(BaseApp.isLogin) user?.avatar else "暂未登陆"
+        user.value = BaseApp.user
     }
 
     fun setNickname(str:String) {
-        user?.nickname = str
-        nickname.value = str
+        user.value?.nickname = str
         //todo:网络请求
     }
 
     fun setAvatar(str:String){
-        user?.avatar = str
-        avatarUrl.value = str
+        user.value?.avatar = str
         //todo 网络请求
     }
 

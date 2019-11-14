@@ -1,4 +1,4 @@
-package com.erookies.main.viewmodel
+package com.erookies.mine.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.erookies.lib_common.BaseApp
@@ -6,22 +6,15 @@ import com.erookies.lib_common.base.BaseViewModel
 import com.erookies.lib_common.extentions.safeSubscribeBy
 import com.erookies.lib_common.extentions.setSchedulers
 import com.erookies.lib_common.network.ApiGenerator
-import com.erookies.lib_common.utils.LogUtils
-import com.erookies.main.bean.LoginBean
-import com.erookies.main.bean.SnoBean
-import com.erookies.main.network.Api
+import com.erookies.mine.bean.ChangeBody
+import com.erookies.mine.bean.LoginBean
+import com.erookies.mine.bean.SnoBean
+import com.erookies.mine.network.Api
 
 /**
  * Create by Cchanges.
  * Time: 2019-11-11
  */
-const val EMPTY_SNO = 1
-const val EMPTY_PWD = 2
-const val GO_REGISTER = 3
-const val GO_LOGIN = 4
-const val LOGIN_SUCCEED = 5
-const val ERROR_PWD = 6
-const val ERROR_EXIST = 7
 
 class LoginViewModel : BaseViewModel() {
     val statusEvent = MutableLiveData<Int>()
@@ -32,7 +25,8 @@ class LoginViewModel : BaseViewModel() {
             return
         }
 
-        ApiGenerator.getApiService(Api::class.java).verify(SnoBean(sno.trim()))
+        ApiGenerator.getApiService(Api::class.java)
+            .verify(SnoBean(sno.trim()))
             .setSchedulers()
             .safeSubscribeBy {
                 statusEvent.value = if (it.code == 0) GO_LOGIN else GO_REGISTER
@@ -49,10 +43,11 @@ class LoginViewModel : BaseViewModel() {
             return
         }
 
-        ApiGenerator.getApiService(Api::class.java).login(LoginBean(sno, pwd))
+        ApiGenerator.getApiService(Api::class.java)
+            .login(LoginBean(sno, pwd))
             .setSchedulers()
             .safeSubscribeBy {
-                statusEvent.value = when(it.code) {
+                statusEvent.value = when (it.code) {
                     0 -> {
                         BaseApp.user = it.data
                         LOGIN_SUCCEED
@@ -63,4 +58,13 @@ class LoginViewModel : BaseViewModel() {
             }.lifeCycle()
     }
 
+    companion object {
+        const val EMPTY_SNO = 1
+        const val EMPTY_PWD = 2
+        const val GO_REGISTER = 3
+        const val GO_LOGIN = 4
+        const val LOGIN_SUCCEED = 5
+        const val ERROR_PWD = 6
+        const val ERROR_EXIST = 7
+    }
 }

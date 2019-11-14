@@ -5,7 +5,8 @@ import android.os.Bundle
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseActivity
-import com.erookies.lib_common.config.MAIN_LOGIN
+import com.erookies.lib_common.config.MINE_LOGIN
+import com.erookies.lib_common.extentions.toast
 import com.erookies.mine.R
 import com.erookies.mine.utils.DialogBuilder
 import com.erookies.mine.utils.DialogHelper
@@ -29,7 +30,7 @@ class AuthenticationActivity : BaseActivity() {
         }
 
         btn_add_auth.setOnClickListener {
-            ARouter.getInstance().build(MAIN_LOGIN).navigation()
+            toast("验证资料")
             finish()
         }
     }
@@ -39,7 +40,7 @@ class AuthenticationActivity : BaseActivity() {
             title = "亲现在还没有登陆哦～"
             hint = "点击去登陆，体验更多功能"
             todoEvent = {
-                ARouter.getInstance().build(MAIN_LOGIN).navigation()
+                ARouter.getInstance().build(MINE_LOGIN).navigation()
                 finish()
             }
         }

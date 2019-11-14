@@ -1,4 +1,4 @@
-package com.erookies.main.ui
+package com.erookies.mine.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import com.erookies.lib_common.base.BaseFragment
-import com.erookies.main.R
-import kotlinx.android.synthetic.main.main_fragment_auc.*
-import kotlinx.android.synthetic.main.main_fragment_pwd.*
-import kotlinx.android.synthetic.main.main_fragment_stu.*
+import com.erookies.mine.R
+import kotlinx.android.synthetic.main.mine_fragment_auc.*
+import kotlinx.android.synthetic.main.mine_fragment_pwd.*
+import kotlinx.android.synthetic.main.mine_fragment_stu.*
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -39,7 +39,7 @@ class RegisterContainerFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         when (layoutId) {
-            R.layout.main_fragment_stu -> btn_next_pwd.setOnClickListener {
+            R.layout.mine_fragment_stu -> btn_next_pwd.setOnClickListener {
                 if (!check(tip_register_stu.text.toString())) {
                     toast("没有填写完整哦")
                     return@setOnClickListener
@@ -47,12 +47,12 @@ class RegisterContainerFragment : BaseFragment() {
                 (activity as RegisterActivity).apply {
                     saveSno(tip_register_stu.text.toString())
                     showFragment(
-                        newInstance(R.layout.main_fragment_pwd),
+                        newInstance(R.layout.mine_fragment_pwd),
                         2
                     )
                 }
             }
-            R.layout.main_fragment_pwd -> {
+            R.layout.mine_fragment_pwd -> {
                 btn_next_auc.setOnClickListener {
                     if (!check(
                             tip_register_pwd.text.toString(),
@@ -68,13 +68,13 @@ class RegisterContainerFragment : BaseFragment() {
                             tip_register_nickname.text.toString()
                         )
                         showFragment(
-                            newInstance(R.layout.main_fragment_auc),
+                            newInstance(R.layout.mine_fragment_auc),
                             3
                         )
                     }
                 }
             }
-            R.layout.main_fragment_auc -> btn_finish.setOnClickListener {
+            R.layout.mine_fragment_auc -> btn_finish.setOnClickListener {
                 if (!check(
                         tip_register_college.text.toString(),
                         tip_register_username.text.toString()

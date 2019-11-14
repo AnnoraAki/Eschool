@@ -1,4 +1,4 @@
-package com.erookies.main.bean
+package com.erookies.mine.bean
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -35,7 +35,8 @@ data class RegisterBean(
     companion object {
         @JvmField
         val CREATOR: Parcelable.Creator<RegisterBean> = object : Parcelable.Creator<RegisterBean> {
-            override fun createFromParcel(source: Parcel): RegisterBean = RegisterBean(source)
+            override fun createFromParcel(source: Parcel): RegisterBean =
+                RegisterBean(source)
             override fun newArray(size: Int): Array<RegisterBean?> = arrayOfNulls(size)
         }
     }

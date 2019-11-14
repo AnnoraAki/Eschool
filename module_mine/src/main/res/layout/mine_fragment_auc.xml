@@ -11,7 +11,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="@string/main_username">
+        android:hint="@string/mine_username">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tip_register_username"
@@ -27,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="@string/main_college">
+        android:hint="@string/mine_college">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tip_register_college"
@@ -42,7 +42,7 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_finish"
+        android:text="@string/mine_finish"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"

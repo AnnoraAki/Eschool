@@ -1,4 +1,4 @@
-package com.erookies.main.bean
+package com.erookies.mine.bean
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -21,7 +21,8 @@ data class SnoBean(val sno: String) : Parcelable {
     companion object {
         @JvmField
         val CREATOR: Parcelable.Creator<SnoBean> = object : Parcelable.Creator<SnoBean> {
-            override fun createFromParcel(source: Parcel): SnoBean = SnoBean(source)
+            override fun createFromParcel(source: Parcel): SnoBean =
+                SnoBean(source)
             override fun newArray(size: Int): Array<SnoBean?> = arrayOfNulls(size)
         }
     }

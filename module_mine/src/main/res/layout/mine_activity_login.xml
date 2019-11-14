@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/defaultBackground"
     android:orientation="vertical"
-    tools:context=".ui.LoginActivity">
+    tools:context="com.erookies.mine.ui.LoginActivity">
 
     <include
         android:id="@+id/common_toolbar"
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="@string/main_input_hint_stu_num"
+        android:hint="@string/mine_input_hint_stu_num"
         app:boxBackgroundMode="filled"
         app:layout_constraintTop_toBottomOf="@+id/common_toolbar"
         app:passwordToggleDrawable="@null"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="@string/main_input_hint_pwd"
+        android:hint="@string/mine_input_hint_pwd"
         app:boxBackgroundMode="filled"
         app:layout_constraintTop_toBottomOf="@+id/main_textinputlayout"
         app:passwordToggleEnabled="true">
@@ -65,7 +65,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/colorPink"
-        android:text="@string/main_login"
+        android:text="@string/mine_login"
         android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/main_register"
+        android:text="@string/mine_register"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/main_forget_pwd"
+        android:text="@string/mine_forget_pwd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
@@ -101,7 +101,7 @@
         android:layout_gravity="end"
         android:layout_margin="16dp"
         android:backgroundTint="@color/colorPink"
-        android:text="@string/main_skip"
+        android:text="@string/mine_skip"
         android:textColor="@color/colorWhite"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent" />

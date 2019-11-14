@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/defaultBackground"
     android:orientation="vertical"
-    tools:context=".ui.RegisterActivity">
+    tools:context="com.erookies.mine.ui.RegisterActivity">
 
     <include layout="@layout/common_toolbar" />
 
@@ -16,7 +16,7 @@
         android:background="@color/colorWhite"
         android:gravity="center"
         android:padding="8dp"
-        android:text="@string/main_type_register" />
+        android:text="@string/mine_type_register" />
 
     <FrameLayout
         android:id="@+id/fl_container"

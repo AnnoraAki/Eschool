@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -39,8 +40,14 @@ class UserFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         BaseApp.user = makeFakeUser()
-        viewModel.nickname.observe { tv_nickname.text = it }
-        viewModel.avatarUrl.observe { civ_avatar.setImageFromUrl(it) }
+        viewModel.user.observe(this, Observer {
+            if (it == null) {
+                tv_nickname.text = "暂未登录"
+            } else {
+                tv_nickname.text = it.nickname
+                civ_avatar.setImageFromUrl(it.avatar)
+            }
+        })
         civ_avatar.setOnClickListener {
             PictureSelector.create(this@UserFragment, PictureSelector.SELECT_REQUEST_CODE)
                 .selectPicture()
@@ -50,7 +57,7 @@ class UserFragment : BaseFragment() {
                 title = "设置昵称"
                 hint = "写下你想要的称呼哦～"
                 checkEvent = { it.trim() != "" && BaseApp.isLogin }
-                todoEvent = { viewModel.nickname.value = it }
+                todoEvent = { viewModel.user.value?.nickname = it }
                 falseEvent = { if (BaseApp.isLogin) toast("昵称不能为空或者全空格哦") else toast("请登录再设置哦") }
             }
             DialogHelper.editDialog(view.context, builder)

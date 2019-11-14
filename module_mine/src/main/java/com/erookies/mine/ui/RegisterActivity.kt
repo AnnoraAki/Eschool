@@ -1,4 +1,4 @@
-package com.erookies.main.ui
+package com.erookies.mine.ui
 
 import android.os.Bundle
 import android.text.Spannable
@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.extentions.toast
-import com.erookies.main.R
-import com.erookies.main.bean.RegisterBean
-import com.erookies.main.viewmodel.REGISTER_FAILED
-import com.erookies.main.viewmodel.REGISTER_SUCCEED
-import com.erookies.main.viewmodel.RegisterViewModel
-import kotlinx.android.synthetic.main.main_activity_register.*
+import com.erookies.mine.R
+import com.erookies.mine.bean.RegisterBean
+import com.erookies.mine.viewmodel.RegisterViewModel
+import com.erookies.mine.viewmodel.RegisterViewModel.Companion.REGISTER_FAILED
+import com.erookies.mine.viewmodel.RegisterViewModel.Companion.REGISTER_SUCCEED
+import kotlinx.android.synthetic.main.mine_activity_register.*
 import org.jetbrains.anko.startActivity
 
 class RegisterActivity : BaseActivity() {
@@ -30,14 +30,14 @@ class RegisterActivity : BaseActivity() {
     private val style by lazy(LazyThreadSafetyMode.NONE) {
         SpannableStringBuilder(
             resources.getString(
-                R.string.main_type_register
+                R.string.mine_type_register
             )
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity_register)
+        setContentView(R.layout.mine_activity_register)
 
         common_toolbar.init("注册")
 
@@ -54,7 +54,7 @@ class RegisterActivity : BaseActivity() {
             }
         }
 
-        showFragment(RegisterContainerFragment.newInstance(R.layout.main_fragment_stu), 1)
+        showFragment(RegisterContainerFragment.newInstance(R.layout.mine_fragment_stu), 1)
     }
 
     fun showFragment(fragment: Fragment, status: Int) {
