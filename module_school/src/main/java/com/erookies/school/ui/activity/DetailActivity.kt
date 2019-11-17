@@ -1,10 +1,12 @@
 package com.erookies.school.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.extentions.setImageFromUrl
@@ -12,11 +14,14 @@ import com.erookies.school.R
 import com.erookies.school.data.factory.DetailFactory
 import com.erookies.school.data.model.BaseItemData
 import com.erookies.school.data.model.LostAndFoundItemData
+import com.erookies.school.data.model.Picture
 import com.erookies.school.data.model.SearchPeopleItemData
 import com.erookies.school.data.viewModel.DetailViewModel
+import com.erookies.school.ui.adapter.CommonPicRVAdapter
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.school_activity_detail.*
 import kotlinx.android.synthetic.main.school_common_picture_list.*
+import kotlin.properties.Delegates
 
 /**
  * Create by Koalak
@@ -29,15 +34,12 @@ class DetailActivity : BaseActivity() {
 
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewmodel(DetailViewModel::class.java) }
 
-    private val type:Int by lazy(LazyThreadSafetyMode.NONE) {
-        intent.getIntExtra("type",15)
-    }
+    private var type = 15
 
-    private var itemData:BaseItemData = when(type){
-        15 -> intent.getParcelableExtra<LostAndFoundItemData>("item_data")
-        16 -> intent.getParcelableExtra<SearchPeopleItemData>("item_data")
-        else -> intent.getParcelableExtra<LostAndFoundItemData>("item_data")
-    }
+    private val adapter:CommonPicRVAdapter
+        get() = CommonPicRVAdapter()
+
+    private lateinit var itemData:BaseItemData
 
     //控件列表
     private val tagButton:Button
@@ -55,6 +57,8 @@ class DetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.school_activity_detail)
 
+        type = intent.getIntExtra("type",15)
+
         val title = when(type){
             15 -> "失物详情"
             16 -> "寻人详情"
@@ -62,6 +66,12 @@ class DetailActivity : BaseActivity() {
         }
 
         common_toolbar.init(title)
+
+        itemData = when(type){
+            15 -> intent.getParcelableExtra<LostAndFoundItemData>("item_data")
+            16 -> intent.getParcelableExtra<SearchPeopleItemData>("item_data")
+            else -> intent.getParcelableExtra<LostAndFoundItemData>("item_data")
+        }
 
         when(type){
             15 -> viewModel.itemData1.value = itemData as LostAndFoundItemData
@@ -73,29 +83,49 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun init(){
-        //todo 初始化RecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this,RecyclerView.HORIZONTAL,false)
+        recyclerView.adapter = adapter
     }
 
     private fun observe(){
+        val list:MutableList<Picture> = mutableListOf()
         when(type){
             15 -> {
                 viewModel.itemData1.observe(this,
                     Observer { lsData ->
                         tagButton.text = lsData.tag.tag
-                        userAvatar.setImageFromUrl(lsData.user.avatar)
-                        userName.text = lsData.user.nickname
+                        if (lsData.user.avatar.isNotEmpty()){
+                            userAvatar.setImageFromUrl(lsData.user.avatar)
+                        }else{
+                            userAvatar.setImageResource(R.mipmap.ic_launcher)
+                        }
+                        userName.text = lsData.user.username
                         content.text = lsData.content
-                        //todo 图片列表适配器
+                        if (lsData.picUrls.isNullOrEmpty()){
+                            recyclerView.visibility = View.GONE
+                        }else{
+                            list.addAll(lsData.picUrls)
+                            adapter.updateAdapter(list)
+                        }
                     })
             }
             16 -> {
                 viewModel.itemData2.observe(this,
                     Observer { spData ->
                         tagButton.text = spData.tag
-                        userAvatar.setImageFromUrl(spData.user.avatar)
-                        userName.text = spData.user.nickname
+                        if (spData.user.avatar.isNotEmpty()){
+                            userAvatar.setImageFromUrl(spData.user.avatar)
+                        }else{
+                            userAvatar.setImageResource(R.mipmap.ic_launcher)
+                        }
+                        userName.text = spData.user.username
                         content.text = spData.content
-                        //todo 图片列表适配器
+                        if (spData.picUrls.isNullOrEmpty()){
+                            recyclerView.visibility = View.GONE
+                        }else{
+                            list.addAll(spData.picUrls)
+                            adapter.updateAdapter(list)
+                        }
                     })
             }
         }
