@@ -165,7 +165,7 @@ public class SchoolFragmentLostFoundBindingImpl extends SchoolFragmentLostFoundB
         if (viewModelJavaLangObjectNull) {
 
 
-            viewModel.createTestData();
+            viewModel.getItemDataList();
         }
     }
     // dirty flag

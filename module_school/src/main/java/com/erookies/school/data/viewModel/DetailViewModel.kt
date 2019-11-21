@@ -2,15 +2,12 @@ package com.erookies.school.data.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import com.erookies.lib_common.base.BaseViewModel
-import com.erookies.school.data.model.LostAndFoundItemData
-import com.erookies.school.data.model.SearchPeopleItemData
+import com.erookies.school.data.model.ItemData
 
 class DetailViewModel : BaseViewModel() {
-    var itemData1 = MutableLiveData<LostAndFoundItemData>()
-    var itemData2 = MutableLiveData<SearchPeopleItemData>()
+    var itemData = MutableLiveData<ItemData>()
 
     init {
-        itemData2.value = SearchPeopleItemData()
-        itemData1.value = LostAndFoundItemData()
+        itemData.value = ItemData()
     }
 }

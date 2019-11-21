@@ -1,27 +1,23 @@
 package com.erookies.school.ui.activity
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.extentions.setImageFromUrl
 import com.erookies.school.R
 import com.erookies.school.data.factory.DetailFactory
-import com.erookies.school.data.model.BaseItemData
-import com.erookies.school.data.model.LostAndFoundItemData
-import com.erookies.school.data.model.Picture
-import com.erookies.school.data.model.SearchPeopleItemData
+import com.erookies.school.data.model.ItemData
 import com.erookies.school.data.viewModel.DetailViewModel
 import com.erookies.school.ui.adapter.CommonPicRVAdapter
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.school_activity_detail.*
 import kotlinx.android.synthetic.main.school_common_picture_list.*
-import kotlin.properties.Delegates
 
 /**
  * Create by Koalak
@@ -39,7 +35,7 @@ class DetailActivity : BaseActivity() {
     private val adapter:CommonPicRVAdapter
         get() = CommonPicRVAdapter()
 
-    private lateinit var itemData:BaseItemData
+    private var itemData:ItemData = ItemData()
 
     //控件列表
     private val tagButton:Button
@@ -65,18 +61,10 @@ class DetailActivity : BaseActivity() {
             else -> "失物详情"
         }
 
+        itemData = intent.getParcelableExtra("item_data") as ItemData
+        viewModel.itemData.value = itemData
+
         common_toolbar.init(title)
-
-        itemData = when(type){
-            15 -> intent.getParcelableExtra<LostAndFoundItemData>("item_data")
-            16 -> intent.getParcelableExtra<SearchPeopleItemData>("item_data")
-            else -> intent.getParcelableExtra<LostAndFoundItemData>("item_data")
-        }
-
-        when(type){
-            15 -> viewModel.itemData1.value = itemData as LostAndFoundItemData
-            16 -> viewModel.itemData2.value = itemData as SearchPeopleItemData
-        }
 
         init()
         observe()
@@ -88,47 +76,19 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun observe(){
-        val list:MutableList<Picture> = mutableListOf()
-        when(type){
-            15 -> {
-                viewModel.itemData1.observe(this,
-                    Observer { lsData ->
-                        tagButton.text = lsData.tag.tag
-                        if (lsData.user.avatar.isNotEmpty()){
-                            userAvatar.setImageFromUrl(lsData.user.avatar)
-                        }else{
-                            userAvatar.setImageResource(R.mipmap.ic_launcher)
-                        }
-                        userName.text = lsData.user.username
-                        content.text = lsData.content
-                        if (lsData.picUrls.isNullOrEmpty()){
-                            recyclerView.visibility = View.GONE
-                        }else{
-                            list.addAll(lsData.picUrls)
-                            adapter.updateAdapter(list)
-                        }
-                    })
-            }
-            16 -> {
-                viewModel.itemData2.observe(this,
-                    Observer { spData ->
-                        tagButton.text = spData.tag
-                        if (spData.user.avatar.isNotEmpty()){
-                            userAvatar.setImageFromUrl(spData.user.avatar)
-                        }else{
-                            userAvatar.setImageResource(R.mipmap.ic_launcher)
-                        }
-                        userName.text = spData.user.username
-                        content.text = spData.content
-                        if (spData.picUrls.isNullOrEmpty()){
-                            recyclerView.visibility = View.GONE
-                        }else{
-                            list.addAll(spData.picUrls)
-                            adapter.updateAdapter(list)
-                        }
-                    })
-            }
-        }
+        val pictures:MutableList<String> = mutableListOf()
+        viewModel.itemData.observe(this,
+            Observer { data->
+                tagButton.text = data.tag.tag
+                if (data.user.avatar.isNotEmpty()){
+                    userAvatar.setImageFromUrl(data.user.avatar)
+                }else{
+                    userAvatar.setImageResource(R.mipmap.ic_launcher_round)
+                }
+                userName.text = data.user.nickname
+                content.text = data.content
+                pictures.addAll(data.pictures)
+            })
     }
 
     override fun getFactory(): ViewModelProvider.Factory? = DetailFactory()

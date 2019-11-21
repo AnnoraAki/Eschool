@@ -3,7 +3,7 @@
     package="com.erookies.school">
 
     <application
-        android:name="debug.MainDebugApplication"
+        android:name="com.erookies.lib_common.BaseApp"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".ui.activity.PublishActivity"/>
         <activity android:name=".ui.activity.DetailActivity" />

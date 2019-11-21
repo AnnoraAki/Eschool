@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.IntDef
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -16,9 +17,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.SCHOOL_LOST_FOUND
+import com.erookies.lib_common.config.START_FROM_MAIN
 import com.erookies.school.R
 import com.erookies.school.data.factory.LostAndFoundFactory
 import com.erookies.school.data.model.Tag
@@ -26,9 +29,9 @@ import com.erookies.school.data.repository.LostAndFoundRepository
 import com.erookies.school.data.viewModel.LostAndFoundViewModel
 import com.erookies.school.databinding.SchoolFragmentLostFoundBinding
 import com.erookies.school.ui.adapter.LostAndFoundRVAdapter
-import com.erookies.school.utils.START_FROM_MAIN
 import com.erookies.school.utils.hideButton
 import com.erookies.school.utils.restoreStyle
+import com.erookies.school.utils.toast
 import kotlinx.android.synthetic.main.school_common_recycler_view.*
 import kotlinx.android.synthetic.main.school_fragment_lost_found.*
 
@@ -79,11 +82,12 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.school_fragment_lost_found,container,false)
 
-        viewModel.createTestData()
+        binding.viewModel = viewModel
 
+        viewModel.currentUser.value = BaseApp.user
+        viewModel.getItemDataList()
         adapter = LostAndFoundRVAdapter(viewModel)
 
-        binding.viewModel = viewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
 
         return binding.root
@@ -133,7 +137,13 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         viewModel.isRefreshing.observe(this.viewLifecycleOwner,
             Observer { refresh ->
                 if (refresh) {
-                    adapter.notifyDataSetChanged()
+                    adapter.dataChanged(viewModel.items.value)
+                }
+            })
+        viewModel.needToast.observe(this.viewLifecycleOwner,
+            Observer {need ->
+                if (need){
+                    toast(viewModel.errorMsg)
                 }
             })
     }
@@ -142,21 +152,18 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         when(v?.id){
             R.id.school_id_card_button -> {
                 viewModel.currentTag.value = Tag.CARD
-                viewModel.createTestData()
             }
             R.id.school_digital_button -> {
                 viewModel.currentTag.value = Tag.DIGITAL
-                viewModel.createTestData()
             }
             R.id.school_daily_goods_button -> {
                 viewModel.currentTag.value = Tag.COMMODITY
-                viewModel.createTestData()
             }
             R.id.school_others_button -> {
                 viewModel.currentTag.value = Tag.OTHER
-                viewModel.createTestData()
             }
         }
+        viewModel.getItemByCurrentTag()
         Log.d("LostAndFoundFragment","${viewModel.currentTag.value?.tag} is be selected!")
     }
 

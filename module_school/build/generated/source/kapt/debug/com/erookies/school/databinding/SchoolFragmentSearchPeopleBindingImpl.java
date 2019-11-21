@@ -153,7 +153,7 @@ public class SchoolFragmentSearchPeopleBindingImpl extends SchoolFragmentSearchP
         if (viewModelJavaLangObjectNull) {
 
 
-            viewModel.createTestData();
+            viewModel.getItemDataListFromNetWork();
         }
     }
     // dirty flag

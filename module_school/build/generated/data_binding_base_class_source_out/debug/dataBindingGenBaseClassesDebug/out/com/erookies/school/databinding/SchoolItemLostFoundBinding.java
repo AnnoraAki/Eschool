@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import com.erookies.school.data.model.LostAndFoundItemData;
+import com.erookies.school.data.model.ItemData;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.Deprecated;
 import java.lang.Object;
@@ -29,7 +29,7 @@ public abstract class SchoolItemLostFoundBinding extends ViewDataBinding {
   public final TextView schoolItemUserName;
 
   @Bindable
-  protected LostAndFoundItemData mItem;
+  protected ItemData mItem;
 
   protected SchoolItemLostFoundBinding(Object _bindingComponent, View _root, int _localFieldCount,
       TextView schoolItemContent, Button schoolItemTagButton, CircleImageView schoolItemUserAvatar,
@@ -41,10 +41,10 @@ public abstract class SchoolItemLostFoundBinding extends ViewDataBinding {
     this.schoolItemUserName = schoolItemUserName;
   }
 
-  public abstract void setItem(@Nullable LostAndFoundItemData item);
+  public abstract void setItem(@Nullable ItemData item);
 
   @Nullable
-  public LostAndFoundItemData getItem() {
+  public ItemData getItem() {
     return mItem;
   }
 

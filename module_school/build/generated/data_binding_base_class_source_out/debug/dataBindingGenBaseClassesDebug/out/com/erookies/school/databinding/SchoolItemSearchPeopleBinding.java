@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import com.erookies.school.data.model.SearchPeopleItemData;
+import com.erookies.school.data.model.ItemData;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.Deprecated;
 import java.lang.Object;
@@ -33,7 +33,7 @@ public abstract class SchoolItemSearchPeopleBinding extends ViewDataBinding {
   public final TextView schoolSpItemUserName;
 
   @Bindable
-  protected SearchPeopleItemData mItem;
+  protected ItemData mItem;
 
   protected SchoolItemSearchPeopleBinding(Object _bindingComponent, View _root,
       int _localFieldCount, TextView schoolSpItemContent, LinearLayout schoolSpItemImageGroup,
@@ -47,10 +47,10 @@ public abstract class SchoolItemSearchPeopleBinding extends ViewDataBinding {
     this.schoolSpItemUserName = schoolSpItemUserName;
   }
 
-  public abstract void setItem(@Nullable SearchPeopleItemData item);
+  public abstract void setItem(@Nullable ItemData item);
 
   @Nullable
-  public SearchPeopleItemData getItem() {
+  public ItemData getItem() {
     return mItem;
   }
 

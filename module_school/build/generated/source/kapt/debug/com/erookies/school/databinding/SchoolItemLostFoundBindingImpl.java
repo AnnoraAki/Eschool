@@ -1,4 +1,5 @@
 package com.erookies.school.databinding;
+import com.erookies.lib_common.bean.User;
 import com.erookies.school.R;
 import com.erookies.school.BR;
 import androidx.annotation.NonNull;
@@ -66,7 +67,7 @@ public class SchoolItemLostFoundBindingImpl extends SchoolItemLostFoundBinding  
     public boolean setVariable(int variableId, @Nullable Object variable)  {
         boolean variableSet = true;
         if (BR.item == variableId) {
-            setItem((com.erookies.school.data.model.LostAndFoundItemData) variable);
+            setItem((com.erookies.school.data.model.ItemData) variable);
         }
         else {
             variableSet = false;
@@ -74,7 +75,7 @@ public class SchoolItemLostFoundBindingImpl extends SchoolItemLostFoundBinding  
             return variableSet;
     }
 
-    public void setItem(@Nullable com.erookies.school.data.model.LostAndFoundItemData Item) {
+    public void setItem(@Nullable com.erookies.school.data.model.ItemData Item) {
         this.mItem = Item;
         synchronized(this) {
             mDirtyFlags |= 0x1L;
@@ -99,10 +100,10 @@ public class SchoolItemLostFoundBindingImpl extends SchoolItemLostFoundBinding  
         }
         java.lang.String itemTagTag = null;
         com.erookies.school.data.model.Tag itemTag = null;
-        com.erookies.school.data.model.LostAndFoundItemData item = mItem;
+        com.erookies.school.data.model.ItemData item = mItem;
+        java.lang.String itemUserNickname = null;
         java.lang.String itemContent = null;
-        java.lang.String itemUserUsername = null;
-        com.erookies.lib_common.User itemUser = null;
+        User itemUser = null;
 
         if ((dirtyFlags & 0x3L) != 0) {
 
@@ -123,8 +124,8 @@ public class SchoolItemLostFoundBindingImpl extends SchoolItemLostFoundBinding  
                     itemTagTag = itemTag.getTag();
                 }
                 if (itemUser != null) {
-                    // read item.user.username
-                    itemUserUsername = itemUser.getUsername();
+                    // read item.user.nickname
+                    itemUserNickname = itemUser.getNickname();
                 }
         }
         // batch finished
@@ -133,7 +134,7 @@ public class SchoolItemLostFoundBindingImpl extends SchoolItemLostFoundBinding  
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.schoolItemContent, itemContent);
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.schoolItemTagButton, itemTagTag);
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.schoolItemUserName, itemUserUsername);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.schoolItemUserName, itemUserNickname);
         }
     }
     // Listener Stub Implementations
