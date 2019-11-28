@@ -1,5 +1,4 @@
 package com.erookies.school.databinding;
-import com.erookies.lib_common.bean.User;
 import com.erookies.school.R;
 import com.erookies.school.BR;
 import androidx.annotation.NonNull;
@@ -103,7 +102,7 @@ public class SchoolItemLostFoundBindingImpl extends SchoolItemLostFoundBinding  
         com.erookies.school.data.model.ItemData item = mItem;
         java.lang.String itemUserNickname = null;
         java.lang.String itemContent = null;
-        User itemUser = null;
+        com.erookies.lib_common.bean.User itemUser = null;
 
         if ((dirtyFlags & 0x3L) != 0) {
 

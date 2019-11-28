@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingComponent;
 import androidx.databinding.ViewDataBinding;
 import com.erookies.school.databinding.SchoolActivityDetailBindingImpl;
 import com.erookies.school.databinding.SchoolActivityMainBindingImpl;
+import com.erookies.school.databinding.SchoolActivityPublishBindingImpl;
+import com.erookies.school.databinding.SchoolActivityPublishBindingV28Impl;
 import com.erookies.school.databinding.SchoolCommonImageBindingImpl;
 import com.erookies.school.databinding.SchoolFragmentContainerBindingImpl;
 import com.erookies.school.databinding.SchoolFragmentLostFoundBindingImpl;
@@ -29,23 +31,26 @@ public class DataBinderMapperImpl extends DataBinderMapper {
 
   private static final int LAYOUT_SCHOOLACTIVITYMAIN = 2;
 
-  private static final int LAYOUT_SCHOOLCOMMONIMAGE = 3;
+  private static final int LAYOUT_SCHOOLACTIVITYPUBLISH = 3;
 
-  private static final int LAYOUT_SCHOOLFRAGMENTCONTAINER = 4;
+  private static final int LAYOUT_SCHOOLCOMMONIMAGE = 4;
 
-  private static final int LAYOUT_SCHOOLFRAGMENTLOSTFOUND = 5;
+  private static final int LAYOUT_SCHOOLFRAGMENTCONTAINER = 5;
 
-  private static final int LAYOUT_SCHOOLFRAGMENTSEARCHPEOPLE = 6;
+  private static final int LAYOUT_SCHOOLFRAGMENTLOSTFOUND = 6;
 
-  private static final int LAYOUT_SCHOOLITEMLOSTFOUND = 7;
+  private static final int LAYOUT_SCHOOLFRAGMENTSEARCHPEOPLE = 7;
 
-  private static final int LAYOUT_SCHOOLITEMSEARCHPEOPLE = 8;
+  private static final int LAYOUT_SCHOOLITEMLOSTFOUND = 8;
 
-  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(8);
+  private static final int LAYOUT_SCHOOLITEMSEARCHPEOPLE = 9;
+
+  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(9);
 
   static {
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.erookies.school.R.layout.school_activity_detail, LAYOUT_SCHOOLACTIVITYDETAIL);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.erookies.school.R.layout.school_activity_main, LAYOUT_SCHOOLACTIVITYMAIN);
+    INTERNAL_LAYOUT_ID_LOOKUP.put(com.erookies.school.R.layout.school_activity_publish, LAYOUT_SCHOOLACTIVITYPUBLISH);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.erookies.school.R.layout.school_common_image, LAYOUT_SCHOOLCOMMONIMAGE);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.erookies.school.R.layout.school_fragment_container, LAYOUT_SCHOOLFRAGMENTCONTAINER);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.erookies.school.R.layout.school_fragment_lost_found, LAYOUT_SCHOOLFRAGMENTLOSTFOUND);
@@ -74,6 +79,15 @@ public class DataBinderMapperImpl extends DataBinderMapper {
             return new SchoolActivityMainBindingImpl(component, view);
           }
           throw new IllegalArgumentException("The tag for school_activity_main is invalid. Received: " + tag);
+        }
+        case  LAYOUT_SCHOOLACTIVITYPUBLISH: {
+          if ("layout-v28/school_activity_publish_0".equals(tag)) {
+            return new SchoolActivityPublishBindingV28Impl(component, view);
+          }
+          if ("layout/school_activity_publish_0".equals(tag)) {
+            return new SchoolActivityPublishBindingImpl(component, view);
+          }
+          throw new IllegalArgumentException("The tag for school_activity_publish is invalid. Received: " + tag);
         }
         case  LAYOUT_SCHOOLCOMMONIMAGE: {
           if ("layout/school_common_image_0".equals(tag)) {
@@ -166,11 +180,13 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerLayoutIdLookup {
-    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(8);
+    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(10);
 
     static {
       sKeys.put("layout/school_activity_detail_0", com.erookies.school.R.layout.school_activity_detail);
       sKeys.put("layout/school_activity_main_0", com.erookies.school.R.layout.school_activity_main);
+      sKeys.put("layout-v28/school_activity_publish_0", com.erookies.school.R.layout.school_activity_publish);
+      sKeys.put("layout/school_activity_publish_0", com.erookies.school.R.layout.school_activity_publish);
       sKeys.put("layout/school_common_image_0", com.erookies.school.R.layout.school_common_image);
       sKeys.put("layout/school_fragment_container_0", com.erookies.school.R.layout.school_fragment_container);
       sKeys.put("layout/school_fragment_lost_found_0", com.erookies.school.R.layout.school_fragment_lost_found);

@@ -65,7 +65,7 @@ class SearchPeopleFragment : BaseFragment() {
         viewModel.startType = startType
         viewModel.currentUser.value = BaseApp.user
         viewModel.getItemDataListFromNetWork()
-        adapter = SearchPeopleRVAdapter(viewModel)
+        adapter = SearchPeopleRVAdapter(viewModel.items.value)
 
         binding.lifecycleOwner = this.viewLifecycleOwner
         return binding.root
@@ -77,9 +77,9 @@ class SearchPeopleFragment : BaseFragment() {
     }
 
     private fun observe(){
-        viewModel.items.observe(this.viewLifecycleOwner,
-            Observer {items->
-                adapter.dataChanged(items)
+        viewModel.isRefresh.observe(this.viewLifecycleOwner,
+            Observer {
+                adapter.notifyDataSetChanged()
             })
         viewModel.needToast.observe { need->
             if (need){

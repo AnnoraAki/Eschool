@@ -9,8 +9,8 @@ import com.erookies.school.data.viewModel.LostAndFoundViewModel
 import com.erookies.school.databinding.SchoolItemLostFoundBinding
 import com.erookies.school.ui.holder.LostAndFoundViewHolder
 
-class LostAndFoundRVAdapter(model:LostAndFoundViewModel): RecyclerView.Adapter<LostAndFoundViewHolder>() {
-    private val lostAndFoundItem = model.items.value
+class LostAndFoundRVAdapter(private val list: MutableList<ItemData>? = mutableListOf())
+    : RecyclerView.Adapter<LostAndFoundViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LostAndFoundViewHolder {
         val binding = SchoolItemLostFoundBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -18,25 +18,13 @@ class LostAndFoundRVAdapter(model:LostAndFoundViewModel): RecyclerView.Adapter<L
     }
 
     override fun getItemCount(): Int {
-        Log.d("LostAndFoundFragment","lost and found item size:${lostAndFoundItem?.size}")
-        return lostAndFoundItem?.size ?: 0
+        Log.d("LostAndFoundFragment","lost and found item size:${list?.size}")
+        return list?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: LostAndFoundViewHolder, position: Int) {
-        holder.binding.item = lostAndFoundItem?.get(position) ?: ItemData()
-        holder.bind(lostAndFoundItem?.get(position))
+        holder.binding.item = list?.get(position) ?: ItemData()
+        holder.bind(list?.get(position))
         holder.binding.executePendingBindings()
-    }
-
-    private fun updateItem(list: MutableList<ItemData>) {
-        lostAndFoundItem?.clear()
-        lostAndFoundItem?.addAll(list)
-    }
-
-    fun dataChanged(list: MutableList<ItemData>?){
-        if (list != null) {
-            updateItem(list)
-            notifyDataSetChanged()
-        }
     }
 }

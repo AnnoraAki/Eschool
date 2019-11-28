@@ -41,6 +41,7 @@ class SPViewModel(private val repository: SearchPeopleRepository) :  BaseViewMod
             }
             isRefresh.value = false
         },{
+            isRefresh.value = false
             needToast.value = true
             error = "建立连接失败"
             Log.d("SPViewModel",it)

@@ -1078,11 +1078,13 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_add_picture
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_school_ic_add
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1098,6 +1100,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable school_ic_select
 drawable school_tag_button_not_select_style
 drawable school_tag_button_select_style
 drawable selector_pickerview_btn
@@ -1265,6 +1268,9 @@ id off
 id on
 id onAttachStateChangeListener
 id onDateChanged
+id option_div
+id option_select_button
+id option_type_text
 id options1
 id options2
 id options3
@@ -1280,6 +1286,12 @@ id percent
 id pin
 id progress_circular
 id progress_horizontal
+id publish_add_picture_button
+id publish_common_toolbar
+id publish_detail_describe
+id publish_divide
+id publish_pictures
+id publish_sample_describe
 id radio
 id right
 id right_icon
@@ -1508,6 +1520,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+menu school_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 string abc_action_bar_home_description
@@ -1565,6 +1578,7 @@ string school_daily_goods
 string school_digital
 string school_lost_found
 string school_others
+string school_publish
 string school_search_people_align
 string search_menu_title
 string status_bar_notification_info_overflow

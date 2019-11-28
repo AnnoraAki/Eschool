@@ -86,7 +86,7 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
 
         viewModel.currentUser.value = BaseApp.user
         viewModel.getItemDataList()
-        adapter = LostAndFoundRVAdapter(viewModel)
+        adapter = LostAndFoundRVAdapter(viewModel.items.value)
 
         binding.lifecycleOwner = this.viewLifecycleOwner
 
@@ -135,10 +135,8 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
                 })
         }
         viewModel.isRefreshing.observe(this.viewLifecycleOwner,
-            Observer { refresh ->
-                if (refresh) {
-                    adapter.dataChanged(viewModel.items.value)
-                }
+            Observer {
+                adapter.notifyDataSetChanged()
             })
         viewModel.needToast.observe(this.viewLifecycleOwner,
             Observer {need ->
@@ -152,18 +150,21 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         when(v?.id){
             R.id.school_id_card_button -> {
                 viewModel.currentTag.value = Tag.CARD
+                viewModel.getItemByCurrentTag()
             }
             R.id.school_digital_button -> {
                 viewModel.currentTag.value = Tag.DIGITAL
+                viewModel.getItemByCurrentTag()
             }
             R.id.school_daily_goods_button -> {
                 viewModel.currentTag.value = Tag.COMMODITY
+                viewModel.getItemByCurrentTag()
             }
             R.id.school_others_button -> {
                 viewModel.currentTag.value = Tag.OTHER
+                viewModel.getItemByCurrentTag()
             }
         }
-        viewModel.getItemByCurrentTag()
         Log.d("LostAndFoundFragment","${viewModel.currentTag.value?.tag} is be selected!")
     }
 
