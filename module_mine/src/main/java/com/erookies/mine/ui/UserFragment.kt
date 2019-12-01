@@ -12,8 +12,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseFragment
+import com.erookies.lib_common.config.BASE_URL
 import com.erookies.lib_common.config.MINE_ENTRY
+import com.erookies.lib_common.event.LoginEvent
 import com.erookies.lib_common.extentions.setImageFromUrl
+import com.erookies.lib_common.utils.LogUtils
 import com.erookies.mine.R
 import com.erookies.mine.utils.DialogBuilder
 import com.erookies.mine.utils.DialogHelper
@@ -39,15 +42,20 @@ class UserFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        BaseApp.user = makeFakeUser()
         viewModel.user.observe(this, Observer {
             if (it == null) {
                 tv_nickname.text = "暂未登录"
             } else {
                 tv_nickname.text = it.nickname
-                civ_avatar.setImageFromUrl(it.avatar)
+                civ_avatar.setImageFromUrl("$BASE_URL${it.avatar}")
             }
         })
+        viewModel.status.observe {
+            when(it) {
+                UserViewModel.CHANGE_SUCCEED -> toast("修改成功")
+                UserViewModel.CHANGE_FAILED -> toast("修改有问题")
+            }
+        }
         civ_avatar.setOnClickListener {
             PictureSelector.create(this@UserFragment, PictureSelector.SELECT_REQUEST_CODE)
                 .selectPicture()
@@ -84,8 +92,13 @@ class UserFragment : BaseFragment() {
                 .circleCropTransform()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
-            //todo:上传到网络
+            viewModel.setAvatar(path)
             Glide.with(this).load(path).apply(requestOptions).into(civ_avatar)
         }
+    }
+
+    override fun onLoginStateChanged(event: LoginEvent) {
+        super.onLoginStateChanged(event)
+        viewModel.user.value = if(event.state) BaseApp.user else null
     }
 }

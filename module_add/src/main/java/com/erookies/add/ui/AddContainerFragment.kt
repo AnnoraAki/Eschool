@@ -1,15 +1,14 @@
 package com.erookies.add.ui
 
-import android.annotation.TargetApi
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.erookies.add.R
 import com.erookies.add.bean.AddEntry
 import com.erookies.add.ui.adapter.AddViewAdapter
-import com.erookies.add.R
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.ADD_ENTRY
 import com.erookies.lib_common.event.ClickMenuEvent
@@ -38,7 +37,6 @@ class AddContainerFragment : BaseFragment() {
         return inflater.inflate(R.layout.add_fragment_add, container, false)
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initFragment()

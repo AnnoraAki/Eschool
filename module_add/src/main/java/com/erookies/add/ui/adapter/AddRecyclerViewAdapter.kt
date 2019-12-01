@@ -1,11 +1,13 @@
 package com.erookies.add.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.erookies.add.R
 import com.erookies.add.bean.AddEntry
+import com.erookies.add.int2String
 import com.erookies.lib_common.extentions.setImageFromUrl
 import kotlinx.android.synthetic.main.add_recycler_item.view.*
 
@@ -14,18 +16,21 @@ import kotlinx.android.synthetic.main.add_recycler_item.view.*
  * Time: 2019-11-01
  */
 class AddRecyclerViewAdapter(
-    private var lists: List<AddEntry>,
     private val listener: (position: Int) -> Unit
 ) :
     RecyclerView.Adapter<AddRecyclerViewAdapter.ViewHolder>() {
+
+    private var lists = mutableListOf<AddEntry>()
+
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entry = lists[position]
         holder.itemView.apply {
-            civ_add_avatar.setImageFromUrl(entry.avatar)
-            tv_add_nickname.text = entry.nickname
-            tb_tag.text = entry.tag
-            tv_time.text = entry.time
-            tv_address.text = entry.address
+            civ_add_avatar.setImageFromUrl(entry.user?.avatar)
+            tv_add_nickname.text = entry.user?.nickname
+            tv_tag.text = int2String(entry.tag)
+            tv_time.text = "约定时间：${entry.time}"
+            tv_address.text = "约定地点（店名）：${entry.content}"
             setOnClickListener {
                 listener.invoke(position)
             }
@@ -39,6 +44,12 @@ class AddRecyclerViewAdapter(
     }
 
     override fun getItemCount() = lists.size
+
+    fun changeData(newList: MutableList<AddEntry>) {
+        lists.clear()
+        lists.addAll(newList)
+        notifyDataSetChanged()
+    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }

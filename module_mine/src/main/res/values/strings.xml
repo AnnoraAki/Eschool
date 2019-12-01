@@ -6,7 +6,7 @@
     <string name="mine_find_people">我的寻人</string>
     <string name="mine_change_pwd">修改密码</string>
     <string name="mine_exit">退出登陆</string>
-    <string name="mine_update_authentication">提交我的验证资料</string>
+    <string name="mine_update_authentication">修改我的验证资料</string>
 
     <string name="mine_input_hint_stu_num">学号</string>
     <string name="mine_input_hint_pwd">密码</string>

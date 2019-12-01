@@ -4,6 +4,7 @@
     <string name="add_time">约定时间</string>
     <string name="add_sure">确认</string>
     <string name="add_type">拼单类型：</string>
-    <string name="add_address">地点（点名）：</string>
+    <string name="add_address">地点（店名）：</string>
     <string name="add_person_num">人数</string>
+    <string name="add_description">简述：</string>
 </resources>

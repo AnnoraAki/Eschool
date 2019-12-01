@@ -3,6 +3,7 @@ package com.erookies.lib_common.bean
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 
 /**
  * Create by Cchanges.
@@ -21,6 +22,7 @@ data class User(
     val sno: String = "",
     // 描述
     var info: String = "",
+    @SerializedName("face_url")
     var avatar: String = ""
     // val addTime :
 ) : Parcelable {

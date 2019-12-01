@@ -2,50 +2,58 @@ package com.erookies.add.bean
 
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import com.erookies.lib_common.bean.User
+import com.google.gson.annotations.SerializedName
 
 /**
  * Create by Cchanges.
- * Time: 2019-10-31
+ * Time: 2019-12-01
  */
-@Entity(tableName = "add_items")
 data class AddEntry(
-    @PrimaryKey
+    @SerializedName("Existing_number")
+    var addNum: Int = 0,
+    @SerializedName("creat_time")
+    val createTime: String = "",
     val id: Int = 0,
-    val tag: String = "",
-    val time: String = "",
-    val address: String = "",
-    val nickname: String = "",
-    val avatar: String = "",
-    val content: String = "",
-    val peopleNum: Int = 0
+    var info: String = "",
+    var number: Int = 0,
+    var others: List<String> = arrayListOf(),
+    var tag: Int = 0,
+    var time: String = "",
+    val user: User? = null,
+    @SerializedName("where")
+    val content: String = ""
 ) : Parcelable {
-    constructor(source: Parcel) : this(
-        source.readInt(),
-        source.readString(),
-        source.readString(),
-        source.readString(),
-        source.readString(),
-        source.readString(),
-        source.readString(),
-        source.readInt()
+    constructor(source:Parcel) : this(
+    source.readInt(),
+    source.readString(),
+    source.readInt(),
+    source.readString(),
+    source.readInt(),
+    source.createStringArrayList(),
+    source.readInt(),
+    source.readString(),
+    source.readParcelable<User>(User::class.java.classLoader),
+    source.readString()
     )
 
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        writeInt(addNum)
+        writeString(createTime)
         writeInt(id)
-        writeString(tag)
+        writeString(info)
+        writeInt(number)
+        writeStringList(others)
+        writeInt(tag)
         writeString(time)
-        writeString(address)
-        writeString(nickname)
-        writeString(avatar)
+        writeParcelable(user, 0)
         writeString(content)
-        writeInt(peopleNum)
     }
 
     companion object {
+
         const val CAR = "拼车"
 
         const val MOVIE = "电影"
@@ -60,9 +68,7 @@ data class AddEntry(
 
         @JvmField
         val CREATOR: Parcelable.Creator<AddEntry> = object : Parcelable.Creator<AddEntry> {
-            override fun createFromParcel(source: Parcel): AddEntry =
-                AddEntry(source)
-
+            override fun createFromParcel(source: Parcel): AddEntry = AddEntry(source)
             override fun newArray(size: Int): Array<AddEntry?> = arrayOfNulls(size)
         }
     }

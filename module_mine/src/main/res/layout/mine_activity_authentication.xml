@@ -1,43 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defaultBackground"
     android:orientation="vertical"
     tools:context=".ui.AuthenticationActivity">
 
-    <include layout="@layout/common_toolbar" />
+    <include layout="@layout/common_toolbar"
+        android:id="@+id/common_toolbar"/>
 
-    <TextView
-        android:id="@+id/tv_stu_num"
+    <View
+        android:id="@+id/v_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:padding="15dp"
-        android:textSize="16sp"
-        tools:text="学号" />
+        android:layout_height="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/common_toolbar"
+        android:background="@color/themeYellow"/>
 
     <TextView
         android:id="@+id/tv_stu_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:background="@color/colorWhite"
-        android:padding="15dp"
+        android:background="@drawable/mine_shape_filled_bg"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_below="@id/v_view"
+        android:padding="10dp"
         android:textSize="16sp"
         tools:text="姓名" />
+
+    <TextView
+        android:id="@+id/tv_stu_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mine_shape_filled_bg"
+        android:layout_below="@id/tv_stu_name"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:padding="10dp"
+        android:textSize="16sp"
+        tools:text="学号" />
 
     <TextView
         android:id="@+id/tv_college"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:background="@color/colorWhite"
-        android:padding="15dp"
+        android:background="@drawable/mine_shape_filled_bg"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_below="@id/tv_stu_num"
+        android:padding="10dp"
         android:textSize="16sp"
         tools:text="学院" />
+
+    <View
+        android:id="@+id/v_view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_below="@id/tv_college"
+        android:background="@color/mine_view_yellow" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_add_auth"
@@ -46,13 +74,21 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:gravity="center"
         android:text="@string/mine_update_authentication"
         android:padding="8dp"
-        app:backgroundTint="@color/colorPink"
+        app:backgroundTint="@color/themeYellow"
+        android:layout_above="@id/v_view1"
         app:cornerRadius="5dp" />
 
+    <View
+        android:id="@+id/v_view1"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/themeYellow" />
 
-</LinearLayout>
+</RelativeLayout>

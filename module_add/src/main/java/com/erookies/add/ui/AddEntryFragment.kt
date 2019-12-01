@@ -1,20 +1,19 @@
 package com.erookies.add.ui
 
-import android.annotation.TargetApi
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.erookies.add.R
 import com.erookies.add.bean.AddEntry
 import com.erookies.add.ui.adapter.AddRecyclerViewAdapter
-import com.erookies.add.FakeHelper
-import com.erookies.add.R
+import com.erookies.add.ui.viemodel.AddEntryViewModel
 import com.erookies.lib_common.base.BaseFragment
 import kotlinx.android.synthetic.main.add_fragment_container.*
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * Create by Cchanges.
@@ -25,6 +24,11 @@ class AddEntryFragment : BaseFragment() {
     private lateinit var lists: List<AddEntry>
     var title = ""
         private set
+    private val viewModel: AddEntryViewModel by lazy(LazyThreadSafetyMode.NONE) {
+        getViewModel(
+            AddEntryViewModel::class.java
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,26 +46,32 @@ class AddEntryFragment : BaseFragment() {
     }
 
 
-    @TargetApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        lists = FakeHelper.fakeData(title)
-        rv_entry.layoutManager = LinearLayoutManager(this.context)
-        rv_entry.adapter = AddRecyclerViewAdapter(lists) {
+        val adapter = AddRecyclerViewAdapter {
             startActivity<AddDetailActivity>("entry" to lists[it])
         }
+        viewModel.list.observe {
+            adapter.changeData(it.toMutableList())
+        }
+        viewModel.status.observe {
+
+        }
+        rv_entry.layoutManager = LinearLayoutManager(this.context)
+        rv_entry.adapter = adapter
         srl_add.apply {
             setColorSchemeColors(
-                this@AddEntryFragment.resources.getColor(
-                    R.color.colorPink,
-                    this@AddEntryFragment.context!!.theme
-                )
+                ContextCompat.getColor(context, R.color.themeYellow)
             )
             setOnRefreshListener {
-                toast("refresh")
+                viewModel.getData()
                 srl_add.isRefreshing = false
             }
         }
+    }
+
+    override fun getFactory(): ViewModelProvider.Factory? {
+        return AddEntryViewModel.Factory(title, true)
     }
 
     companion object {

@@ -8,8 +8,12 @@ import com.erookies.mine.bean.LoginBean
 import com.erookies.mine.bean.RegisterBean
 import com.erookies.mine.bean.SnoBean
 import io.reactivex.Observable
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Body
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 
 /**
  * Create by Cchanges.
@@ -27,4 +31,8 @@ interface Api {
 
     @POST("/api/pwd_reset")
     fun changePwd(@Body changeBody: ChangeBody): Observable<StatusBean>
+
+    @Multipart
+    @POST("/api/up_file")
+    fun upAvatar(@Part sno: RequestBody, @Part file: MultipartBody.Part) : Observable<StatusWrapper<String>>
 }
