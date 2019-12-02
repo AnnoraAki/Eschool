@@ -33,6 +33,6 @@ interface Api {
     fun changePwd(@Body changeBody: ChangeBody): Observable<StatusBean>
 
     @Multipart
-    @POST("/api/up_file")
+    @POST("/api/up_face")
     fun upAvatar(@Part("sno") sno: RequestBody, @Part file: MultipartBody.Part) : Observable<StatusWrapper<String>>
 }
