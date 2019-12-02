@@ -28,11 +28,6 @@ class AuthenticationActivity : BaseActivity() {
             tv_college.text = "学院：${user.institute}"
             tv_stu_num.text = "学号：${user.sno}"
         }
-
-        btn_add_auth.setOnClickListener {
-            toast("验证资料")
-            finish()
-        }
     }
 
     private fun toLogin() {

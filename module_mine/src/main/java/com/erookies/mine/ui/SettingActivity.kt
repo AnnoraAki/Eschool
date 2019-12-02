@@ -61,7 +61,6 @@ class SettingActivity : BaseActivity() {
                         checkEvent = { true }
                         todoEvent = {
                             EventBus.getDefault().post(LoginEvent(false))
-                            BaseApp.user = null
                             finish()
                         }
                     }

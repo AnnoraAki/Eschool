@@ -4,10 +4,7 @@ import com.erookies.add.bean.AddEntry
 import com.erookies.lib_common.bean.StatusBean
 import com.erookies.lib_common.bean.StatusWrapper
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * Create by Cchanges.
@@ -15,6 +12,7 @@ import retrofit2.http.Query
  */
 interface Api {
     @POST("/api/purchase")
+    @FormUrlEncoded
     fun uploadData(
         @Field("tag") tag: Int,
         @Field("sno") sno: String,
@@ -24,7 +22,7 @@ interface Api {
         @Field("info") info: String
     ): Observable<StatusBean>
 
-    @GET("/api/get_purchase/")
+    @GET("/api/get_purchase")
     fun getData(
         @Query("tag") tag: Int,
         @Query("sno") sno: String = "0"

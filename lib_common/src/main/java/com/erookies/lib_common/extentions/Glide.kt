@@ -17,7 +17,6 @@ fun Context.loadPicture(rowUrl: String?, imageView: ImageView) {
         rowUrl.startsWith("http://") || rowUrl.startsWith("https://") -> rowUrl
         else -> ""
     }
-    val options = RequestOptions.errorOf(R.drawable.common_default_avatar)
     Glide.with(this).load(url).into(imageView)
 }
 
@@ -27,6 +26,5 @@ fun ImageView.setImageFromUrl(url: String?) {
 
 fun ImageView.setAvatar(url:String?) {
     val real = "$PIC_BASE_URL$url"
-    val options = RequestOptions.errorOf(R.drawable.common_default_avatar)
-    Glide.with(this).setDefaultRequestOptions(options).load(real).into(this)
+    Glide.with(this).load(real).placeholder(R.drawable.common_default_avatar).into(this)
 }

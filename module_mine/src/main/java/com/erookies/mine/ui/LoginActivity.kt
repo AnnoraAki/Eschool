@@ -5,6 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.FIRST_IN
 import com.erookies.lib_common.config.MINE_LOGIN
+import com.erookies.lib_common.event.LoginEvent
 import com.erookies.lib_common.extentions.defaultSharedPreferences
 import com.erookies.lib_common.extentions.editor
 import com.erookies.lib_common.extentions.toast
@@ -24,6 +25,7 @@ import com.erookies.mine.viewmodel.LosePwdViewModel
 import com.erookies.mine.viewmodel.LosePwdViewModel.Companion.CHANGE_ERROR
 import com.erookies.mine.viewmodel.LosePwdViewModel.Companion.CHANGE_SUCCEED
 import kotlinx.android.synthetic.main.mine_activity_login.*
+import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.startActivity
 
 @Route(path = MINE_LOGIN)
@@ -64,6 +66,7 @@ class LoginActivity : BaseActivity() {
                 )
                 LOGIN_SUCCEED -> {
                     toast("欢迎登陆")
+                    EventBus.getDefault().post(LoginEvent(true))
                     finish()
                 }
                 ERROR_PWD -> toast("密码输入错误，请重试哟")

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.erookies.add.R
 import com.erookies.add.bean.AddEntry
 import com.erookies.add.int2String
+import com.erookies.lib_common.extentions.setAvatar
 import com.erookies.lib_common.extentions.setImageFromUrl
 import kotlinx.android.synthetic.main.add_recycler_item.view.*
 
@@ -26,7 +27,7 @@ class AddRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entry = lists[position]
         holder.itemView.apply {
-            civ_add_avatar.setImageFromUrl(entry.user?.avatar)
+            civ_add_avatar.setAvatar(entry.user?.avatar)
             tv_add_nickname.text = entry.user?.nickname
             tv_tag.text = int2String(entry.tag)
             tv_time.text = "约定时间：${entry.time}"

@@ -34,5 +34,5 @@ interface Api {
 
     @Multipart
     @POST("/api/up_file")
-    fun upAvatar(@Part sno: RequestBody, @Part file: MultipartBody.Part) : Observable<StatusWrapper<String>>
+    fun upAvatar(@Part("sno") sno: RequestBody, @Part file: MultipartBody.Part) : Observable<StatusWrapper<String>>
 }

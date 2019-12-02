@@ -67,21 +67,21 @@
         android:layout_below="@id/tv_college"
         android:background="@color/mine_view_yellow" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_add_auth"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center"
-        android:text="@string/mine_update_authentication"
-        android:padding="8dp"
-        app:backgroundTint="@color/themeYellow"
-        android:layout_above="@id/v_view1"
-        app:cornerRadius="5dp" />
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/btn_add_auth"-->
+<!--        style="@style/Widget.MaterialComponents.Button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="@string/mine_update_authentication"-->
+<!--        android:padding="8dp"-->
+<!--        app:backgroundTint="@color/themeYellow"-->
+<!--        android:layout_above="@id/v_view1"-->
+<!--        app:cornerRadius="5dp" />-->
 
     <View
         android:id="@+id/v_view1"

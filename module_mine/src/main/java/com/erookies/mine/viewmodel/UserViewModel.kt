@@ -38,7 +38,7 @@ class UserViewModel : BaseViewModel() {
         val sno = user.value?.sno
         sno ?: return
         val file = File(str)
-        val body= MultipartBody.Part.createFormData("fold", file.name, file.getRequestBody())
+        val body= MultipartBody.Part.createFormData("file", file.name, file.getRequestBody())
         val numBody = sno.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         ApiGenerator.getApiService(Api::class.java)
             .upAvatar(numBody,body)

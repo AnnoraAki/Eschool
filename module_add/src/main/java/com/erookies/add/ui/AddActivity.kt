@@ -30,6 +30,8 @@ class AddActivity : BaseActivity() {
             })
             .setSubmitText("确定")
             .setCancelText("取消")
+            .setSubmitColor(R.color.themeYellow)
+            .setCancelColor(R.color.themeYellow)
             .build<String>().apply {
                 setPicker(typeList)
             }
