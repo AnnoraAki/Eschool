@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"/>
 
-                <include layout="@layout/school_common_picture_list"/>
+                <include layout="@layout/school_common_image"/>
 
             </LinearLayout>
 

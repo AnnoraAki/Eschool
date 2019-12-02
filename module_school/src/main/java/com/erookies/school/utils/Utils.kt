@@ -1,20 +1,22 @@
 package com.erookies.school.utils
 
+import android.app.Activity
 import android.graphics.Color
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
-import androidx.databinding.BindingAdapter
+import androidx.core.content.ContextCompat
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.school.R
 import com.erookies.school.data.model.Tag
-import org.jetbrains.anko.backgroundDrawable
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureConfig
+import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.style.PictureCropParameterStyle
+import com.luck.picture.lib.style.PictureParameterStyle
 import org.jetbrains.anko.textColor
-import org.jetbrains.anko.toast
-import java.lang.StringBuilder
+
 
 fun TextView.change(need: Boolean) {
     val tp = this.paint
@@ -70,5 +72,18 @@ fun TagParseToInt(tag:Tag):Int{
         Tag.CARD -> 1
         else -> 4
     }
+}
+
+fun ConfiguratePictureSelector(activity:Activity){
+    PictureSelector.create(activity)
+        .openGallery(PictureMimeType.ofImage())
+        .loadImageEngine(GlideEngine)
+        .maxSelectNum(3)
+        .imageSpanCount(4)
+        .selectionMode(PictureConfig.MULTIPLE)
+        .imageFormat(PictureMimeType.JPEG)
+        .compress(true)
+        .isGif(false)
+        .forResult(PictureConfig.CHOOSE_REQUEST)
 }
 

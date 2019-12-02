@@ -75,45 +75,72 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <EditText
-            android:lineHeight="22dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="120"
             android:layout_marginEnd="48dp"
             android:layout_marginStart="48dp"
-            android:layout_marginTop="12dp"
-            android:background="@null"
             android:layout_below="@id/publish_sample_describe"
             android:id="@+id/publish_detail_describe"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/publish_detail_describe_input"
+                android:maxLines="10"
+                android:background="@null"
+                android:textSize="20sp"
+                android:maxHeight="160dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <View
-            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_above="@id/publish_pictures"
+            android:id="@+id/publish_divide_1"
             android:background="#99000000"
-            android:layout_below="@id/publish_detail_describe"
-            android:layout_marginEnd="48dp"
-            android:layout_marginStart="48dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginBottom="12dp"
+            android:layout_above="@id/publish_add_picture_button"
             android:id="@+id/publish_pictures"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="48dp"
-            android:layout_marginTop="25dp"
-            android:layout_below="@id/publish_detail_describe"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:layout_width="wrap_content"
-            android:minHeight="180dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="180dp"/>
 
-        <ImageView
-            android:src="@drawable/ic_add_picture"
-            android:layout_marginTop="12dp"
+        <ImageButton
+            android:layout_above="@id/publish_info"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/publish_add_picture_button"
+            android:background="@drawable/ic_add_picture"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/publish_pictures"
             android:layout_width="60dp"
             android:layout_height="60dp"/>
+
+        <Button
+            app:cornerRadius="8dp"
+            android:id="@+id/publish_info"
+            android:background="@color/colorPink"
+            android:layout_alignParentBottom="true"
+            android:text="发           布"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 </layout>

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.erookies.school.R
+import com.erookies.school.databinding.SchoolCommonImageBinding
 import com.erookies.school.ui.holder.CommonPicRVVH
 
 class CommonPicRVAdapter(private val list:MutableList<String> = mutableListOf()) : RecyclerView.Adapter<CommonPicRVVH>() {
@@ -19,15 +20,5 @@ class CommonPicRVAdapter(private val list:MutableList<String> = mutableListOf())
 
     override fun onBindViewHolder(holder: CommonPicRVVH, position: Int) {
         holder.load(list[position])
-    }
-
-    private fun addNewData(pictureUri: MutableList<String>){
-        list.clear()
-        list.addAll(pictureUri)
-    }
-
-    fun updateAdapter(pictureUri: MutableList<String>){
-        addNewData(pictureUri)
-        notifyDataSetChanged()
     }
 }

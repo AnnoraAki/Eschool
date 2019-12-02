@@ -27,4 +27,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.contrarywind:Android-PickerView:4.1.9'
     kapt deps.arouter.compiler
+
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.3.4'
 }
