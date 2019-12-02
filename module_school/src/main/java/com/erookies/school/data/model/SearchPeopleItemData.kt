@@ -1,6 +1,6 @@
 package com.erookies.school.data.model
 
-import com.erookies.lib_common.User
+import com.erookies.lib_common.bean.User
 
 /**
  * Create by Koalak.

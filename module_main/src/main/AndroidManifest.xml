@@ -3,10 +3,16 @@
     package="com.erookies.main">
 
     <application>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.erookies.mine.ui.RegisterActivity"></activity>
+        <activity android:name="com.erookies.mine.ui.LoginActivity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

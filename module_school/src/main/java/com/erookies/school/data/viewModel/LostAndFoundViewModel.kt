@@ -2,8 +2,7 @@ package com.erookies.school.data.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.erookies.lib_common.User
+import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.base.BaseViewModel
 import com.erookies.school.data.model.LostAndFoundItemData
 import com.erookies.school.data.model.Tag
@@ -27,7 +26,7 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
     fun createTestData(name:String,content:String){
         isRefreshing.value = true
         items.clear()
-        val user = User(username = name)
+        val user = User(name = name)
         val spid = LostAndFoundItemData(user,content,tag = currentTag.value!!)
         val data = MutableLiveData<LostAndFoundItemData>()
         data.value = spid

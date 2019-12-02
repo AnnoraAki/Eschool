@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e8e8e8"
-    tools:context=".UserFragment">
+    android:background="@color/defaultBackground"
+    tools:context=".ui.UserFragment">
 
     <View
         android:id="@+id/mine_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorPink"
+        android:background="@color/themeBlue"
         app:layout_constraintBottom_toTopOf="@+id/mine_guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +26,7 @@
         android:id="@+id/civ_avatar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@color/colorWhite"
+        android:src="@drawable/common_default_avatar"
         app:layout_constraintBottom_toTopOf="@+id/mine_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -46,14 +46,27 @@
         app:layout_constraintTop_toBottomOf="@id/civ_avatar"
         tools:text="Cchanges" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/themeYellow"
+        app:layout_constraintBottom_toTopOf="@+id/tv_mine_material"
+        app:layout_constraintTop_toTopOf="@+id/mine_guideline" />
+
     <TextView
         android:id="@+id/tv_mine_material"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/colorWhite"
+        android:drawableStart="@drawable/mine_ic_material"
         android:drawableEnd="@drawable/mine_ic_go"
-        android:padding="15dp"
+        android:drawablePadding="13dp"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="15dp"
         android:text="@string/mine_material"
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/mine_view" />
@@ -64,7 +77,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/colorWhite"
+        android:drawableStart="@drawable/mine_ic_add"
         android:drawableEnd="@drawable/mine_ic_go"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
         android:padding="15dp"
         android:text="@string/mine_add"
         android:textSize="15sp"
@@ -75,8 +91,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
+        android:drawableStart="@drawable/mine_ic_find"
         android:drawableEnd="@drawable/mine_ic_go"
-        android:padding="15dp"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="15dp"
         android:text="@string/mine_find_people"
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/tv_mine_add" />
@@ -86,7 +108,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
+        android:drawableStart="@drawable/mine_ic_lost"
         android:drawableEnd="@drawable/mine_ic_go"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
         android:padding="15dp"
         android:text="@string/mine_find_things"
         android:textSize="15sp"
@@ -98,11 +123,39 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/colorWhite"
+        android:drawableStart="@drawable/mine_ic_setting"
         android:drawableEnd="@drawable/mine_ic_go"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
         android:padding="15dp"
         android:text="@string/mine_setting"
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/tv_find_things" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/themeYellow"
+        app:layout_constraintBottom_toTopOf="@+id/tv_find_things"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/mine_guideline2"
+        app:layout_constraintTop_toTopOf="@+id/tv_find_things" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/themeYellow"
+        app:layout_constraintBottom_toTopOf="@+id/tv_find_people"
+        app:layout_constraintStart_toStartOf="@+id/mine_guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_mine_add"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mine_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="54dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

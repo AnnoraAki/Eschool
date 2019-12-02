@@ -8,10 +8,14 @@ import android.view.WindowManager
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.erookies.lib_common.R
 import com.erookies.lib_common.event.LoginEvent
+import com.erookies.lib_common.extentions.gone
+import com.erookies.lib_common.extentions.visible
 import com.erookies.lib_common.utils.LogUtils
 import kotlinx.android.synthetic.main.common_toolbar.*
 import org.greenrobot.eventbus.EventBus
@@ -34,7 +38,9 @@ abstract class BaseActivity : AppCompatActivity() {
     protected fun Toolbar.init(
         title: String,
         @DrawableRes icon: Int = R.drawable.common_ic_back,
-        listener: View.OnClickListener? = View.OnClickListener { finish() }
+        listener: View.OnClickListener? = View.OnClickListener { finish() },
+        @DrawableRes rightIcon: Int = R.drawable.common_ic_add,
+        rightListener: View.OnClickListener? = null
     ) {
         tv_title.text = title
         this.title = ""
@@ -44,6 +50,13 @@ abstract class BaseActivity : AppCompatActivity() {
         } else {
             setNavigationIcon(icon)
             setNavigationOnClickListener(listener)
+        }
+        if (rightListener == null) {
+            iv_right.gone()
+        } else {
+            iv_right.visible()
+            iv_right.setImageResource(rightIcon)
+            iv_right.setOnClickListener(rightListener)
         }
     }
 
@@ -80,7 +93,7 @@ abstract class BaseActivity : AppCompatActivity() {
         LogUtils.d("new state:${event.state},current class:$localClassName")
     }
 
-    protected fun <T : BaseViewModel> getViewmodel(clazz: Class<T>): T {
+    protected fun <T : BaseViewModel> getViewModel(clazz: Class<T>): T {
         val factory = getFactory()
         return if (factory == null) {
             ViewModelProviders.of(this).get(clazz)
@@ -90,4 +103,10 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected open fun getFactory(): ViewModelProvider.Factory? = null
+
+
+    inline fun <T> LiveData<T>.observe(crossinline event: (T) -> Unit) =
+        this.observe(this@BaseActivity, Observer {
+            event.invoke(it)
+        })
 }

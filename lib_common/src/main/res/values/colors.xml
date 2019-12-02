@@ -7,4 +7,8 @@
     <color name="colorAccent" tools:ignore="ResourceName">#D81B60</color>
     <color name="toolbarColor" tools:ignore="ResourceName">#F98B87</color>
     <color name="colorPink" tools:ignore="ResourceName">#F78888</color>
+    <color name="defaultBackground" tools:ignore="ResourceName">#e8e8e8</color>
+    <color name="themeYellow" tools:ignore="ResourceName">#FBCD97</color>
+    <color name="themeBlue" tools:ignore="ResourceName">#586e9a</color>
+    <color name="themeGrey" tools:ignore="ResourceName">#f3f3f3</color>
 </resources>

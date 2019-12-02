@@ -65,6 +65,7 @@ dependencies {
         implementation project(':module_main')
         implementation project(':module_mine')
         implementation project(':module_school')
+        implementation project(':module_add')
     }
 
     kapt deps.arouter.compiler

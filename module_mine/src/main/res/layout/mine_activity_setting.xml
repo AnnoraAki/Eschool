@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.SettingActivity">
+
+    <include layout="@layout/common_toolbar"
+        android:id="@+id/common_toolbar"/>
+
+    <View
+        android:id="@+id/v_view"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/common_toolbar"
+        android:background="@color/themeYellow"/>
+
+
+    <TextView
+        android:id="@+id/tv_mine_change_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mine_change_pwd"
+        android:background="@color/colorWhite"
+        android:drawableEnd="@drawable/mine_ic_go"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:layout_below="@id/v_view"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
+
+    <View
+        android:id="@+id/v_view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tv_mine_change_pwd"
+        android:background="@color/mine_view_yellow"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tv_mine_login_exit"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/v_view1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:padding="8dp"
+        android:text="@string/mine_exit"
+        android:textSize="15sp"
+        app:backgroundTint="@color/mine_exit_red" />
+
+    <View
+        android:id="@+id/v_view1"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/themeYellow"/>
+
+</RelativeLayout>

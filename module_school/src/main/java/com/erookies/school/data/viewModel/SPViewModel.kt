@@ -1,12 +1,10 @@
 package com.erookies.school.data.viewModel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.erookies.lib_common.User
+import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.base.BaseViewModel
 import com.erookies.school.data.model.SearchPeopleItemData
 import com.erookies.school.data.repository.SearchPeopleRepository
-import java.util.*
 
 class SPViewModel(private val repository: SearchPeopleRepository) :  BaseViewModel() {
     var userMutableList = MutableLiveData<MutableList<User>>()
@@ -22,7 +20,7 @@ class SPViewModel(private val repository: SearchPeopleRepository) :  BaseViewMod
 
     fun createTestData(name:String,content:String){
         isRefresh.value = true
-        val user = User(username = name)
+        val user = User(name = name)
         val spid = SearchPeopleItemData(user,content)
         val data = MutableLiveData<SearchPeopleItemData>()
         data.value = spid

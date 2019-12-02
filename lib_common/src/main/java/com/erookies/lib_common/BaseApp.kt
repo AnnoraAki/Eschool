@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Process
 import com.alibaba.android.arouter.launcher.ARouter
+import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.config.SP_KEY_USER
 import com.erookies.lib_common.extentions.defaultSharedPreferences
 import com.erookies.lib_common.extentions.editor

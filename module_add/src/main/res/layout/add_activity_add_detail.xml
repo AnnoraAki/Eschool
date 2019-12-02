@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AddDetailActivity">
+
+    <include
+        android:id="@+id/common_toolbar"
+        layout="@layout/common_toolbar" />
+
+
+    <TextView
+        android:id="@+id/tv_detail_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:background="@drawable/add_shape_stoke_bg"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_time"
+        app:layout_constraintEnd_toEndOf="@+id/add_view"
+        app:layout_constraintTop_toTopOf="@+id/tv_detail_time"
+        tools:text="tag" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_detail_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/add_view2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_address"
+        app:layout_constraintVertical_bias="0.072" />
+
+    <TextView
+        android:id="@+id/tv_detail_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="#666"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/civ_detail_avatar"
+        app:layout_constraintStart_toEndOf="@+id/civ_detail_avatar"
+        app:layout_constraintTop_toTopOf="@+id/civ_detail_avatar"
+        app:layout_constraintVertical_bias="0.4"
+        tools:text="cchanges" />
+
+    <TextView
+        android:id="@+id/tv_detail_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/add_shape_filled_bg"
+        android:padding="3dp"
+        android:textColor="#666"
+        android:textSize="15sp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@+id/civ_detail_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/common_toolbar"
+        tools:text="约定时间：15:00" />
+
+    <TextView
+        android:id="@+id/tv_detail_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="#666"
+        android:textSize="15sp"
+        android:background="@drawable/add_shape_filled_bg"
+        android:padding="3dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_time"
+        tools:text="约定地点：" />
+
+
+    <TextView
+        android:id="@+id/tv_detail_description_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/add_description"
+        app:layout_constraintStart_toStartOf="@+id/add_view2"
+        app:layout_constraintTop_toBottomOf="@+id/add_view2" />
+
+
+    <TextView
+        android:id="@+id/tv_detail_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/add_shape_filled_bg"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/add_view2"
+        app:layout_constraintStart_toStartOf="@+id/add_view2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_description_title"
+        tools:text="lalalalalalala" />
+
+
+    <View
+        android:id="@+id/add_view"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/themeYellow"
+        app:layout_constraintBottom_toTopOf="@+id/civ_detail_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_address" />
+
+    <View
+        android:id="@+id/add_view2"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/themeYellow"
+        app:layout_constraintEnd_toEndOf="@+id/add_view"
+        app:layout_constraintStart_toStartOf="@+id/add_view"
+        app:layout_constraintTop_toBottomOf="@+id/civ_detail_avatar" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
