@@ -99,10 +99,10 @@ public class SchoolItemSearchPeopleBindingImpl extends SchoolItemSearchPeopleBin
             dirtyFlags = mDirtyFlags;
             mDirtyFlags = 0;
         }
+        java.lang.String itemUserName = null;
         com.erookies.school.data.model.SearchPeopleItemData item = mItem;
         java.lang.String itemContent = null;
-        java.lang.String itemUserUsername = null;
-        com.erookies.lib_common.User itemUser = null;
+        com.erookies.lib_common.bean.User itemUser = null;
 
         if ((dirtyFlags & 0x3L) != 0) {
 
@@ -117,8 +117,8 @@ public class SchoolItemSearchPeopleBindingImpl extends SchoolItemSearchPeopleBin
 
 
                 if (itemUser != null) {
-                    // read item.user.username
-                    itemUserUsername = itemUser.getUsername();
+                    // read item.user.name
+                    itemUserName = itemUser.getName();
                 }
         }
         // batch finished
@@ -126,7 +126,7 @@ public class SchoolItemSearchPeopleBindingImpl extends SchoolItemSearchPeopleBin
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.schoolSpItemContent, itemContent);
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.schoolSpItemUserName, itemUserUsername);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.schoolSpItemUserName, itemUserName);
         }
     }
     // Listener Stub Implementations

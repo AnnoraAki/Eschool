@@ -1,10 +1,10 @@
 [
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\design_ic_visibility.xml",
-        "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\14ab5fbefc11c457e561045c87aca6e0\\res\\drawable-anydpi-v21\\design_ic_visibility.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility_off.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/drawable-anydpi-v21/design_ic_visibility_off.xml"
     },
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\design_ic_visibility_off.xml",
-        "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\14ab5fbefc11c457e561045c87aca6e0\\res\\drawable-anydpi-v21\\design_ic_visibility_off.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/drawable-anydpi-v21/design_ic_visibility.xml"
     }
 ]

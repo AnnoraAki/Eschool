@@ -10,10 +10,4 @@
     <string name="school_lost_found">失物招领</string>
     <string name="school_others">其他</string>
     <string name="school_search_people_align">寻人</string>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
 </resources>

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\res\\merged\\debug\\values-v24\\values-v24.xml",
+            "outputFile": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\1b699f0dba891c6db7634d1acb459e08\\res\\values-v24\\values-v24.xml",
+                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\f3f0a6c4a9940a566037efcf591fcde2\\res\\values-v24\\values-v24.xml",
+                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -33,10 +33,10 @@
             ]
         },
         {
-            "outputFile": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\1b699f0dba891c6db7634d1acb459e08\\res\\values-v24\\values-v24.xml",
+                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -46,7 +46,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\f3f0a6c4a9940a566037efcf591fcde2\\res\\values-v24\\values-v24.xml",
+                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

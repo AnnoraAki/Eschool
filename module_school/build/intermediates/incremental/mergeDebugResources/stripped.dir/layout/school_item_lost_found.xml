@@ -46,7 +46,7 @@
                         android:layout_height="44dp"/>
 
                     <TextView
-                        android:tag="binding_1"             
+                        android:tag="binding_1"         
                         android:layout_marginStart="12dp"
                         android:layout_alignBottom="@id/school_item_user_avatar"
                         android:layout_toEndOf="@+id/school_item_user_avatar"

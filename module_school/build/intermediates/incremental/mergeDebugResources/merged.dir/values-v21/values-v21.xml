@@ -4,11 +4,11 @@
     <dimen name="notification_content_margin_start">0dp</dimen>
     <dimen name="notification_main_column_padding_top">0dp</dimen>
     <dimen name="notification_media_narrow_margin">12dp</dimen>
-    <style name="AppTheme" ns1:ignore="ResourceName" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" ns1:ignore="ResourceName" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/themeYellow</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/themeBlue</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>

@@ -638,9 +638,11 @@ color cardview_shadow_end_color
 color cardview_shadow_start_color
 color colorAccent
 color colorDark
+color colorPink
 color colorPrimary
 color colorPrimaryDark
 color colorWhite
+color defaultBackground
 color design_bottom_navigation_shadow_color
 color design_default_color_primary
 color design_default_color_primary_dark
@@ -726,6 +728,9 @@ color switch_thumb_material_dark
 color switch_thumb_material_light
 color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
+color themeBlue
+color themeGrey
+color themeYellow
 color toolbarColor
 color tooltip_background_dark
 color tooltip_background_light
@@ -1048,6 +1053,8 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable common_default_avatar
+drawable common_ic_add
 drawable common_ic_back
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
@@ -1181,6 +1188,7 @@ id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
+id iv_right
 id labeled
 id largeLabel
 id left
