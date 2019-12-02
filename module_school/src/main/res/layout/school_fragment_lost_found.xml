@@ -9,6 +9,7 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         bind:refreshing="@{viewModel.isRefreshing}"
+        bind:onRefreshListener="@{() -> viewModel.getItemDataList()}"
         android:id="@+id/school_landf_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

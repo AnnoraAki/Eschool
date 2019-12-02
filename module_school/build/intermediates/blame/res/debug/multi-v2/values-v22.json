@@ -1,26 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/values-v22/values-v22.xml",
+            "outputFile": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
             "map": [
                 {
-                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/values-v22/values-v22.xml",
-                    "from": {
-                        "startLines": "2,3,4,9",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,130,217,553",
-                        "endLines": "2,3,8,13",
-                        "endColumns": "74,86,12,12",
-                        "endOffsets": "125,212,548,896"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
-            "map": [
-                {
-                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/values-v22/values-v22.xml",
+                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\1b699f0dba891c6db7634d1acb459e08\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

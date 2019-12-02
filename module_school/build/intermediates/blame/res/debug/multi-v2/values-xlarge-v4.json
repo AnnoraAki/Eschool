@@ -1,25 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/values-xlarge-v4/values-xlarge-v4.xml",
+            "outputFile": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
             "map": [
                 {
-                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/values-xlarge-v4/values-xlarge-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,126,197,267,337,405",
-                        "endColumns": "70,70,69,69,67,67",
-                        "endOffsets": "121,192,262,332,400,468"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/merged.dir/values-xlarge-v4/values-xlarge-v4.xml",
-            "map": [
-                {
-                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/values-xlarge-v4/values-xlarge-v4.xml",
+                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\1b699f0dba891c6db7634d1acb459e08\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",

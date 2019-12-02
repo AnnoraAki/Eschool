@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/common_toolbar" android:id="@+id/publish_common_toolbar"/>
+
+        <RelativeLayout
+            android:layout_below="@+id/publish_common_toolbar"
+            android:id="@+id/option_div"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="48dp"
+                android:text="选择类型"
+                android:textColor="#99000000"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/option_type_text"
+                    android:text="校卡/身份证"
+                    android:textColor="#99000000"
+                    android:textSize="20sp"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"/>
+
+                <ImageButton
+                    android:id="@+id/option_select_button"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/school_ic_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/publish_divide"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_below="@id/option_div"
+            android:background="#99000000"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <TextView
+            android:id="@+id/publish_sample_describe"
+            android:text="简述："
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/publish_divide"
+            android:textColor="#99000000"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="120"
+            android:layout_marginEnd="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_below="@id/publish_sample_describe"
+            android:id="@+id/publish_detail_describe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/publish_detail_describe_input"
+                android:maxLines="10"
+                android:background="@null"
+                android:textSize="20sp"
+                android:maxHeight="160dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_marginBottom="8dp"
+            android:layout_above="@id/publish_pictures"
+            android:id="@+id/publish_divide_1"
+            android:background="#99000000"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginBottom="12dp"
+            android:layout_above="@id/publish_add_picture_button"
+            android:id="@+id/publish_pictures"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"/>
+
+        <ImageButton
+            android:layout_above="@id/publish_info"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/publish_add_picture_button"
+            android:background="@drawable/ic_add_picture"
+            android:layout_centerHorizontal="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+
+        <Button
+            app:cornerRadius="8dp"
+            android:id="@+id/publish_info"
+            android:background="@color/colorPink"
+            android:layout_alignParentBottom="true"
+            android:text="发           布"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</layout>

@@ -11,7 +11,7 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         bind:refreshing="@{viewModel.isRefresh}"
-        bind:onRefreshListener="@{() -> viewModel.createTestData()}"
+        bind:onRefreshListener="@{() -> viewModel.getItemDataListFromNetWork()}"
         android:id="@+id/school_search_people_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

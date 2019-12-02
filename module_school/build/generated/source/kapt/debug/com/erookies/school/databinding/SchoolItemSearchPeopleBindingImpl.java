@@ -68,7 +68,7 @@ public class SchoolItemSearchPeopleBindingImpl extends SchoolItemSearchPeopleBin
     public boolean setVariable(int variableId, @Nullable Object variable)  {
         boolean variableSet = true;
         if (BR.item == variableId) {
-            setItem((com.erookies.school.data.model.SearchPeopleItemData) variable);
+            setItem((com.erookies.school.data.model.ItemData) variable);
         }
         else {
             variableSet = false;
@@ -76,7 +76,7 @@ public class SchoolItemSearchPeopleBindingImpl extends SchoolItemSearchPeopleBin
             return variableSet;
     }
 
-    public void setItem(@Nullable com.erookies.school.data.model.SearchPeopleItemData Item) {
+    public void setItem(@Nullable com.erookies.school.data.model.ItemData Item) {
         this.mItem = Item;
         synchronized(this) {
             mDirtyFlags |= 0x1L;
@@ -99,8 +99,8 @@ public class SchoolItemSearchPeopleBindingImpl extends SchoolItemSearchPeopleBin
             dirtyFlags = mDirtyFlags;
             mDirtyFlags = 0;
         }
-        java.lang.String itemUserName = null;
-        com.erookies.school.data.model.SearchPeopleItemData item = mItem;
+        com.erookies.school.data.model.ItemData item = mItem;
+        java.lang.String itemUserNickname = null;
         java.lang.String itemContent = null;
         com.erookies.lib_common.bean.User itemUser = null;
 
@@ -117,8 +117,8 @@ public class SchoolItemSearchPeopleBindingImpl extends SchoolItemSearchPeopleBin
 
 
                 if (itemUser != null) {
-                    // read item.user.name
-                    itemUserName = itemUser.getName();
+                    // read item.user.nickname
+                    itemUserNickname = itemUser.getNickname();
                 }
         }
         // batch finished
@@ -126,7 +126,7 @@ public class SchoolItemSearchPeopleBindingImpl extends SchoolItemSearchPeopleBin
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.schoolSpItemContent, itemContent);
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.schoolSpItemUserName, itemUserName);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.schoolSpItemUserName, itemUserNickname);
         }
     }
     // Listener Stub Implementations

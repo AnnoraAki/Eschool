@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
+import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.school.R
 import com.erookies.school.ui.fragment.SchoolPageContainerFragment
@@ -19,6 +20,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.school_activity_main)
+        ARouter.getInstance().inject(this)
 
         common_toolbar.init("e校",listener = null)
 
