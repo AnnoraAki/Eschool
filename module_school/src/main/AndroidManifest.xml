@@ -2,4 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.erookies.school">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name="com.erookies.lib_common.BaseApp"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".ui.activity.PublishActivity" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".ui.activity.DetailActivity" />
+
+    </application>
+
 </manifest>

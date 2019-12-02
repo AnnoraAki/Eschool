@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.erookies.school.data.model.SearchPeopleItemData" />
+            type="com.erookies.school.data.model.ItemData" />
     </data>
 
     <LinearLayout
@@ -46,7 +46,7 @@
                         android:layout_height="44dp"/>
                     
                     <TextView
-                        android:text="@{item.user.name}"
+                        android:text="@{item.user.nickname}"
                         android:layout_marginStart="12dp"
                         android:layout_alignBottom="@id/school_sp_item_user_avatar"
                         android:layout_toEndOf="@+id/school_sp_item_user_avatar"

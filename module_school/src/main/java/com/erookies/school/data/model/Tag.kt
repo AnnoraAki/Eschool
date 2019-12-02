@@ -1,8 +1,15 @@
 package com.erookies.school.data.model
 
-enum class Tag(val tag:String) {
+import android.annotation.SuppressLint
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@SuppressLint("ParcelCreator")
+@Parcelize
+enum class Tag(val tag:String) : Parcelable {
     CARD("校卡/身份证"),
     DIGITAL("数码"),
     COMMODITY("生活用品"),
+    SP("寻人"),
     OTHER("其他")
 }

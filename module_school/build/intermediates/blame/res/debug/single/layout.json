@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_activity_main.xml",
+        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_activity_main.xml"
+    },
+    {
+        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_fragment_container.xml",
+        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_fragment_container.xml"
+    },
+    {
+        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_item_lost_found.xml",
+        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_item_lost_found.xml"
+    },
+    {
+        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_fragment_lost_found.xml",
+        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_fragment_lost_found.xml"
+    },
+    {
+        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_common_image.xml",
+        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_common_image.xml"
+    },
+    {
+        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_activity_publish.xml",
+        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_activity_publish.xml"
+    },
+    {
+        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_fragment_search_people.xml",
+        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_fragment_search_people.xml"
+    },
+    {
+        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_item_search_people.xml",
+        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_item_search_people.xml"
+    },
+    {
+        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_activity_detail.xml",
+        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_activity_detail.xml"
+    }
+]

@@ -1,37 +1,50 @@
 package com.erookies.school.data.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.base.BaseViewModel
-import com.erookies.school.data.model.SearchPeopleItemData
+import com.erookies.lib_common.config.START_FROM_MAIN
+import com.erookies.school.data.model.ItemData
 import com.erookies.school.data.repository.SearchPeopleRepository
 
 class SPViewModel(private val repository: SearchPeopleRepository) :  BaseViewModel() {
-    var userMutableList = MutableLiveData<MutableList<User>>()
     var currentUser = MutableLiveData<User>()
-    var items = mutableListOf<MutableLiveData<SearchPeopleItemData>>()
+
+    var items = MutableLiveData<MutableList<ItemData>>()
+    var startType = START_FROM_MAIN
+
     var isRefresh = MutableLiveData<Boolean>()
+    var needToast = MutableLiveData<Boolean>()
+    var error:String = ""
 
     init {
+        items.value = mutableListOf()
+        needToast.value = false
         isRefresh.value = false
         currentUser.value = User()
-        userMutableList.value = mutableListOf()
     }
 
-    fun createTestData(name:String,content:String){
+    fun getItemDataListFromNetWork(){
         isRefresh.value = true
-        val user = User(name = name)
-        val spid = SearchPeopleItemData(user,content)
-        val data = MutableLiveData<SearchPeopleItemData>()
-        data.value = spid
-        items.clear()
-        for (x in 0..10){
-            items.add(data)
-        }
-        isRefresh.value = false
-    }
+        needToast.value = false
+        error = ""
 
-    fun createTestData(){
-        createTestData("雨幕","梦里梦到醒不来的梦，红线里被软禁的红，所有...")
+        Log.d("SPViewModel",items.value.toString())
+
+        items.value?.clear()
+        repository.loadItemList(startType, {list ->
+            items.value?.addAll(list)
+            if (items.value.isNullOrEmpty()){
+                needToast.value = true
+                error = "没有相关数据"
+            }
+            isRefresh.value = false
+        },{
+            isRefresh.value = false
+            needToast.value = true
+            error = "建立连接失败"
+            Log.d("SPViewModel",it)
+        })
     }
 }
