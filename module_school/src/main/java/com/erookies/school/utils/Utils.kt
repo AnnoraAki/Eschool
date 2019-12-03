@@ -10,6 +10,10 @@ import androidx.core.content.ContextCompat
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.school.R
 import com.erookies.school.data.model.Tag
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureConfig
+import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.entity.LocalMedia
 import org.jetbrains.anko.textColor
 
 
@@ -69,5 +73,19 @@ fun TagParseToInt(tag:Tag):Int{
         Tag.CARD -> 1
         else -> 4
     }
+}
+
+fun ConfigurePictureSelect(activity: Activity,medias:List<LocalMedia>){
+    PictureSelector.create(activity)
+        .openGallery(PictureMimeType.ofImage())
+        .loadImageEngine(GlideEngine)
+        .selectionMode(PictureConfig.MULTIPLE)
+        .isOriginalImageControl(true)
+        .compress(true)
+        .selectionMedia(medias)
+        .isCamera(false)
+        .previewEggs(true)
+        .maxSelectNum(3)
+        .forResult(PictureConfig.CHOOSE_REQUEST)
 }
 

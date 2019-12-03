@@ -1,33 +1,32 @@
 package com.erookies.school.ui.activity
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
+import com.luck.picture.lib.PictureSelector
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.BaseApp.Companion.context
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.SCHOOL_PUBLISH
 import com.erookies.lib_common.extentions.getRequestBody
-import com.erookies.lib_common.extentions.gone
-import com.erookies.lib_common.extentions.toast
-import com.erookies.lib_common.extentions.visible
 import com.erookies.lib_common.network.ApiGenerator
 import com.erookies.school.R
 import com.erookies.school.network.Api
 import com.erookies.school.ui.adapter.CommonPicRVAdapter
-import com.wildma.pictureselector.PictureSelector
+import com.erookies.school.utils.ConfigurePictureSelect
+import com.luck.picture.lib.config.PictureConfig
+import com.luck.picture.lib.entity.LocalMedia
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.school_activity_publish.*
@@ -42,6 +41,7 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
     private var bigTag = 1
     private var smallTag = 4
     private var content = ""
+    private val selectedPicture = mutableListOf<LocalMedia>()
     private var picturesForLoad = mutableListOf<String>()
     private val userNo:String? by lazy { BaseApp.user?.stuNum.toString() }
 
@@ -119,11 +119,7 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
 
             R.id.publish_add_picture_button -> {
                 Log.d("PublishActivity","start to select picture")
-                if (picturesForLoad.size < 2){
-                    PictureSelector.create(this,PictureSelector.SELECT_REQUEST_CODE).selectPicture()
-                }else{
-                    toast("已选择3张照片")
-                }
+                ConfigurePictureSelect(this,selectedPicture)
             }
             R.id.publish_info -> {
                 changeLoadingDialogStatus(true)
@@ -135,17 +131,31 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PictureSelector.SELECT_REQUEST_CODE) {
-            val path = data?.getStringExtra(PictureSelector.PICTURE_PATH)
-            path ?: return
-            Log.d("PublishActivityInfo",path)
-            picturesForLoad.add(path)
-            adapter.notifyDataSetChanged()
+        if (resultCode == Activity.RESULT_OK){
+            when(requestCode){
+                PictureConfig.CHOOSE_REQUEST -> {
+                    picturesForLoad.clear()
+                    val selectors = PictureSelector.obtainMultipleResult(data)
+                    selectedPicture.clear()
+                    selectedPicture.addAll(selectors)
+                    if (selectedPicture.isNotEmpty()){
+                        for (media in selectedPicture){
+                            if (media.isOriginal){
+                                picturesForLoad.add(media.originalPath)
+                            }else{
+                                picturesForLoad.add(media.compressPath)
+                            }
+                        }
+                    }
+                    adapter.notifyDataSetChanged()
+                }
+            }
         }
     }
 
     @SuppressLint("CheckResult")
     private fun upload(fileName:String?){
+        Log.d("PublishActivityInfo",fileName)
         val sno = BaseApp.user?.stuNum
         val file = File(fileName)
         val filePart = MultipartBody.Part.createFormData("file",file.name,file.getRequestBody())
@@ -156,13 +166,13 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
             .subscribe({wrapper->
                 if (wrapper.code == 0){
                     Log.d("PublishActivityInfo",wrapper.msg)
-                    toast("上传成功")
+                    Toast.makeText(this,"上传成功",Toast.LENGTH_SHORT).show()
                 }else{
                     Log.d("PublishActivityInfo",wrapper.msg)
-                    toast("上传失败")
+                    Toast.makeText(this,"上传失败",Toast.LENGTH_SHORT).show()
                 }
             },{err->
-                toast(err.message.toString())
+                Toast.makeText(this,err.message.toString(),Toast.LENGTH_SHORT).show()
                 Log.d("PublishActivityInfo",err.message.toString())
             })
     }

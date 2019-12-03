@@ -7,16 +7,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/common_toolbar" android:id="@+id/publish_common_toolbar"/>
-
         <androidx.core.widget.ContentLoadingProgressBar
-
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:id="@+id/publish_loading_dialog"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <include layout="@layout/common_toolbar" android:id="@+id/publish_common_toolbar"/>
 
         <RelativeLayout
             android:layout_below="@+id/publish_common_toolbar"
