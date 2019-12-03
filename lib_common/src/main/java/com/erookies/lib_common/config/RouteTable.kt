@@ -20,3 +20,4 @@ const val SCHOOL_DETAIL = "/school/detail"
 const val SCHOOL_PUBLISH = "/school/publish"
 
 const val ADD_ENTRY = "/add/entry"
+const val ADD_OWN = "/own/add/entry"

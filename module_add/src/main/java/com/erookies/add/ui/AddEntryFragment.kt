@@ -21,7 +21,9 @@ import org.jetbrains.anko.support.v4.startActivity
  */
 class AddEntryFragment : BaseFragment() {
     private val titleTag = "title"
+    private val isOwnTag = "isOwn"
     private lateinit var lists: List<AddEntry>
+    private var isOwn = false
     var title = ""
         private set
     private val viewModel: AddEntryViewModel by lazy(LazyThreadSafetyMode.NONE) {
@@ -34,6 +36,7 @@ class AddEntryFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             title = it.getString(titleTag, "")
+            isOwn = it.getBoolean(isOwnTag, false)
         }
     }
 
@@ -73,13 +76,14 @@ class AddEntryFragment : BaseFragment() {
     }
 
     override fun getFactory(): ViewModelProvider.Factory? {
-        return AddEntryViewModel.Factory(title, isOwn = false)
+        return AddEntryViewModel.Factory(title, isOwn)
     }
 
     companion object {
-        fun newInstance(str: String) = AddEntryFragment().apply {
+        fun newInstance(str: String, isOwn: Boolean) = AddEntryFragment().apply {
             arguments = Bundle().apply {
                 putString(titleTag, str)
+                putBoolean(isOwnTag, isOwn)
             }
         }
     }

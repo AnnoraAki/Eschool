@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.erookies.add.R
 import com.erookies.add.bean.AddEntry
@@ -30,6 +29,8 @@ class AddContainerFragment : BaseFragment() {
         AddEntry.OTHER
     )
 
+    private var isOwn = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,10 +46,13 @@ class AddContainerFragment : BaseFragment() {
             offscreenPageLimit = 6
         }
         tb_container.setupWithViewPager(vp_container)
+        titles.forEachIndexed { index, s ->
+            tb_container.getTabAt(index)?.text = s
+        }
     }
 
     private fun initFragment() {
-        fragments = titles.map { AddEntryFragment.newInstance(it) }
+        fragments = titles.map { AddEntryFragment.newInstance(it, isOwn) }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

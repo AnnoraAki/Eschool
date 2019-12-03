@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseFragment
+import com.erookies.lib_common.config.ADD_ENTRY
+import com.erookies.lib_common.config.ADD_OWN
 import com.erookies.lib_common.config.BASE_URL
 import com.erookies.lib_common.config.MINE_ENTRY
 import com.erookies.lib_common.event.LoginEvent
@@ -81,7 +84,7 @@ class UserFragment : BaseFragment() {
         }
         tv_mine_material.setOnClickListener { startActivity<AuthenticationActivity>() }
         tv_mine_add.setOnClickListener {
-            //todo: 我的拼单
+            ARouter.getInstance().build(ADD_OWN).navigation()
         }
         tv_find_people.setOnClickListener {
             //todo：我的寻人
