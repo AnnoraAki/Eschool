@@ -10,11 +10,6 @@ import androidx.core.content.ContextCompat
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.school.R
 import com.erookies.school.data.model.Tag
-import com.luck.picture.lib.PictureSelector
-import com.luck.picture.lib.config.PictureConfig
-import com.luck.picture.lib.config.PictureMimeType
-import com.luck.picture.lib.style.PictureCropParameterStyle
-import com.luck.picture.lib.style.PictureParameterStyle
 import org.jetbrains.anko.textColor
 
 
@@ -31,8 +26,10 @@ fun TextView.change(need: Boolean) {
 
 fun Button.changeStyle(restore:Boolean){
     if (!restore){
+        this.textColor = Color.parseColor("#ffffff")
         this.background = resources.getDrawable(R.drawable.school_tag_button_select_style,null)
     }else{
+        this.textColor = Color.parseColor("#000000")
         this.background = resources.getDrawable(R.drawable.school_tag_button_not_select_style,null)
     }
 }
@@ -72,18 +69,5 @@ fun TagParseToInt(tag:Tag):Int{
         Tag.CARD -> 1
         else -> 4
     }
-}
-
-fun ConfiguratePictureSelector(activity:Activity){
-    PictureSelector.create(activity)
-        .openGallery(PictureMimeType.ofImage())
-        .loadImageEngine(GlideEngine)
-        .maxSelectNum(3)
-        .imageSpanCount(4)
-        .selectionMode(PictureConfig.MULTIPLE)
-        .imageFormat(PictureMimeType.JPEG)
-        .compress(true)
-        .isGif(false)
-        .forResult(PictureConfig.CHOOSE_REQUEST)
 }
 

@@ -3,13 +3,7 @@ package com.erookies.school.data.model
 import com.google.gson.annotations.SerializedName
 import java.lang.StringBuilder
 
-class ItemDataWrapper {
-
-    @SerializedName("code")
-    var code:Int = 0
-
-    @SerializedName("msg")
-    var msg:String = ""
+class ItemDataWrapper : Wrapper() {
 
     @SerializedName("data")
     var data:List<ItemData> = mutableListOf()

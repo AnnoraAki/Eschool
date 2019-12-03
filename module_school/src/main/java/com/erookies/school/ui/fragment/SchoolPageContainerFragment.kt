@@ -15,6 +15,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.SCHOOL_ENTRY
 import com.erookies.lib_common.config.SCHOOL_PUBLISH
+import com.erookies.lib_common.event.ClickMenuEvent
 import com.erookies.school.R
 import com.erookies.school.data.factory.SchoolPageContainerFactory
 import com.erookies.school.data.viewModel.SchoolPageContainerViewModel
@@ -22,6 +23,8 @@ import com.erookies.school.databinding.SchoolFragmentContainerBinding
 import com.erookies.school.ui.activity.PublishActivity
 import com.erookies.school.utils.change
 import kotlinx.android.synthetic.main.school_fragment_container.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.support.v4.startActivity
 
 @Route(path = SCHOOL_ENTRY)
@@ -134,17 +137,10 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            R.id.add -> {
-                ARouter.getInstance().build(SCHOOL_PUBLISH).navigation()
-            }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun clickMenu(event: ClickMenuEvent) {
+        if (event.position == 1) {
+            startActivity<PublishActivity>()
         }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.school_menu,menu)
     }
 }

@@ -2,6 +2,7 @@ package com.erookies.school.network
 
 import com.erookies.school.data.model.ItemData
 import com.erookies.school.data.model.ItemDataWrapper
+import com.erookies.school.data.model.Wrapper
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -17,5 +18,5 @@ interface Api{
 
     @Multipart
     @POST("/api/up_file")
-    fun uploadInfo(@Part body:List<MultipartBody.Part>, sno: String):Observable<ItemDataWrapper>
+    fun uploadInfo(@Part files:MultipartBody.Part?, @Part("sno") sno: RequestBody):Observable<Wrapper>
 }
