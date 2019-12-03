@@ -30,8 +30,10 @@ open class BaseApp : Application() {
         var user: User? = null
             set(value) {
                 field = value
+                val json = value?.toJSON() ?: ""
+                LogUtils.e("value=$value,json:$json")
                 context.defaultSharedPreferences.editor {
-                    putString(SP_KEY_USER, value?.toJSON())
+                    putString(SP_KEY_USER, json)
                 }
             }
             get() {

@@ -45,6 +45,7 @@ class UserFragment : BaseFragment() {
         viewModel.user.observe(this, Observer {
             if (it == null) {
                 tv_nickname.text = "暂未登录"
+                civ_avatar.setAvatar("")
             } else {
                 tv_nickname.text = it.nickname
                 civ_avatar.setAvatar(it.avatar)

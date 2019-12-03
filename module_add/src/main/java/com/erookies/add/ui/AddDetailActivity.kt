@@ -28,6 +28,6 @@ class AddDetailActivity : BaseActivity() {
         tv_detail_address.text = "约定地点：${entry.content}"
         tv_detail_nickname.text = entry.user?.nickname ?: ""
         tv_detail_time.text = "约定时间：${entry.time}"
-        tv_detail_description.text = "相关描述：${entry.info}"
+        tv_detail_description.text = entry.info
     }
 }

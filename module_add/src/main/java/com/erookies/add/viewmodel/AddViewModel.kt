@@ -18,7 +18,7 @@ class AddViewModel : BaseViewModel() {
 
     fun check(type: String, address: String, description : String, peopleNum: Int, time: String) {
         val user = BaseApp.user
-        val sno = user?.sno ?: return
+        val sno = user?.stuNum ?: return
         if (type.isBlank()|| address.isBlank()|| peopleNum == 0 || time.isBlank() || description.isBlank()) {
             statusData.value = MISS_INFORMATION
         } else {

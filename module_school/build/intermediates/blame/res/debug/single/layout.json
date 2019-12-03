@@ -1,38 +1,442 @@
 [
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_activity_main.xml",
-        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_activity_main.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_tooltip.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_tooltip.xml"
     },
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_fragment_container.xml",
-        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_fragment_container.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_preview_title_bar.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_preview_title_bar.xml"
     },
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_item_lost_found.xml",
-        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_item_lost_found.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_navigation_item_subheader.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_navigation_item_subheader.xml"
     },
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_fragment_lost_found.xml",
-        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_fragment_lost_found.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_layout_snackbar_include.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_layout_snackbar_include.xml"
     },
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_common_image.xml",
-        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_common_image.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_text_input_password_icon.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_text_input_password_icon.xml"
     },
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_activity_publish.xml",
-        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_activity_publish.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/school_fragment_search_people.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_fragment_search_people.xml"
     },
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_fragment_search_people.xml",
-        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_fragment_search_people.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b9e49e56518f7725f7bf11d756d75e0e/res/layout/notification_template_part_time.xml"
     },
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_item_search_people.xml",
-        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_item_search_people.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/school_fragment_container.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_fragment_container.xml"
     },
     {
-        "merged": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\school_activity_detail.xml",
-        "source": "D:\\ForkPro\\Eschool\\module_school\\src\\main\\res\\layout\\school_activity_detail.xml"
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/ucrop_controls.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/3ce1a730c96b221ea09eca155c814133/res/layout/ucrop_controls.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_screen_simple.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_empty.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_empty.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/pickerview_time.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/4237cb977ebd5fe846717754967e7405/res/layout/pickerview_time.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_common_recycler_view.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_common_recycler_view.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_wind_base_dialog_xml.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_wind_base_dialog_xml.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/school_fragment_lost_found.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_fragment_lost_found.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_item_search_people.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_item_search_people.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/ucrop_activity_photobox.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/3ce1a730c96b221ea09eca155c814133/res/layout/ucrop_activity_photobox.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_menu_item_action_area.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b9e49e56518f7725f7bf11d756d75e0e/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/pickerview_options.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/4237cb977ebd5fe846717754967e7405/res/layout/pickerview_options.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow_custom.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/layout/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_layout_tab_text.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_layout_tab_text.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_album_folder_item.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_album_folder_item.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_alert_dialog.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_alert_dialog.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/ucrop_aspect_ratio.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/3ce1a730c96b221ea09eca155c814133/res/layout/ucrop_aspect_ratio.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_activity_publish.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_activity_publish.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_fragment_container.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_fragment_container.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/include_pickerview_topbar.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/4237cb977ebd5fe846717754967e7405/res/layout/include_pickerview_topbar.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/school_activity_detail.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_activity_detail.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_selector.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_selector.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_fragment_search_people.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_fragment_search_people.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/layout_basepickerview.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/4237cb977ebd5fe846717754967e7405/res/layout/layout_basepickerview.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_camera_pop_layout.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_camera_pop_layout.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_item_camera.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_item_camera.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/ucrop_picture_activity_multi_cutting.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/3ce1a730c96b221ea09eca155c814133/res/layout/ucrop_picture_activity_multi_cutting.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_common_image.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_common_image.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_window_folder.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_window_folder.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_bottom_navigation_item.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_bottom_navigation_item.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_activity_main.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_activity_main.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_alert_dialog_title_material.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/mtrl_layout_snackbar_include.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/mtrl_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_activity_video_play.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_activity_video_play.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/layout/notification_template_lines_media.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_cascading_menu_item_layout.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_cascading_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_preview.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_preview.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/layout/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/school_common_image.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_common_image.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/school_item_search_people.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_item_search_people.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_image_preview.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_image_preview.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_layout_snackbar.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_navigation_item.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_navigation_item.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_audio_dialog.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_audio_dialog.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_item_lost_found.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_item_lost_found.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/common_toolbar.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/lib_common/build/intermediates/packaged_res/debug/layout/common_toolbar.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/custom_dialog.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b9e49e56518f7725f7bf11d756d75e0e/res/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/layout/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/school_activity_main.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_activity_main.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_navigation_item_header.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_navigation_item_header.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/ucrop_view.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/3ce1a730c96b221ea09eca155c814133/res/layout/ucrop_view.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/ucrop_layout_rotate_wheel.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/3ce1a730c96b221ea09eca155c814133/res/layout/ucrop_layout_rotate_wheel.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_activity_detail.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_activity_detail.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_activity_external_preview.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_activity_external_preview.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_play_audio.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_play_audio.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/mtrl_layout_snackbar.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/mtrl_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_screen_content_include.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/school_activity_publish.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_activity_publish.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_image_grid_item.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_image_grid_item.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_layout_tab_icon.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/layout/notification_template_media_custom.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/notification_template_big_media_custom.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/bb3915638cb0fefb8981fb58b6a41931/res/layout/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/school_item_lost_found.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_item_lost_found.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_common_picture_list.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_common_picture_list.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/school_fragment_lost_found.xml",
+        "source": "/Users/cchanges/AndroidProject/Eschool/module_school/src/main/res/layout/school_fragment_lost_found.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/ucrop_layout_scale_wheel.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/3ce1a730c96b221ea09eca155c814133/res/layout/ucrop_layout_scale_wheel.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_navigation_menu.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_navigation_menu.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/design_navigation_menu_item.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/layout/design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/ucrop_picture_gf_adapter_edit_list.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/3ce1a730c96b221ea09eca155c814133/res/layout/ucrop_picture_gf_adapter_edit_list.xml"
+    },
+    {
+        "merged": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/layout/picture_title_bar.xml",
+        "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/40bc3348252e677f70c1ec41885857e7/res/layout/picture_title_bar.xml"
     }
 ]

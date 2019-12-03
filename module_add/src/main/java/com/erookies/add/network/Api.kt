@@ -12,14 +12,13 @@ import retrofit2.http.*
  */
 interface Api {
     @POST("/api/purchase")
-    @FormUrlEncoded
     fun uploadData(
-        @Field("tag") tag: Int,
-        @Field("sno") sno: String,
-        @Field("time") time: String,
-        @Field("where") where: String,
-        @Field("number") number: Int,
-        @Field("info") info: String
+        @Query("tag") tag: Int,
+        @Query("sno") sno: String,
+        @Query("time") time: String,
+        @Query("where") where: String,
+        @Query("number") number: Int,
+        @Query("info") info: String
     ): Observable<StatusBean>
 
     @GET("/api/get_purchase")

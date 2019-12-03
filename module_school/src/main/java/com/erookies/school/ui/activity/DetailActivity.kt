@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.school_common_picture_list.*
 
 class DetailActivity : BaseActivity() {
 
-    private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewmodel(DetailViewModel::class.java) }
+    private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewModel(DetailViewModel::class.java) }
 
     private var type = 15
 

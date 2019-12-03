@@ -23,7 +23,7 @@ class AddEntryViewModel(private val kind: String, private val own: Boolean) : Ba
 
     fun getData() {
         ApiGenerator.getApiService(Api::class.java)
-            .getData(string2Int(kind),if (own) BaseApp.user?.sno ?: "0" else "0")
+            .getData(string2Int(kind),if (own) BaseApp.user?.stuNum ?: "0" else "0")
             .setSchedulers()
             .safeSubscribeBy {
                 status.value = it.code

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
+import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.*
 import com.erookies.lib_common.event.ClickMenuEvent
@@ -12,6 +13,7 @@ import com.erookies.lib_common.utils.LogUtils
 import com.erookies.main.OnPageChangedListener
 import com.erookies.main.R
 import com.erookies.main.ui.adapter.ViewPagerAdapter
+import com.erookies.main.viewmodel.LoginViewModel
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.main_activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -20,6 +22,7 @@ import java.util.*
 class MainActivity : BaseActivity() {
 
     private val fragments = ArrayList<Fragment>()
+    private val viewModel : LoginViewModel by lazy (LazyThreadSafetyMode.NONE) { getViewModel(LoginViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +30,10 @@ class MainActivity : BaseActivity() {
 
         val isFirstIn = defaultSharedPreferences.getBoolean(FIRST_IN, true)
 
-        LogUtils.d("main first in:$isFirstIn")
-
         if (isFirstIn) {
             ARouter.getInstance().build(MINE_LOGIN).navigation()
+        } else {
+            viewModel.login(BaseApp.user?.stuNum ?: "",BaseApp.user?.pwd ?: "")
         }
 
         initFragment()

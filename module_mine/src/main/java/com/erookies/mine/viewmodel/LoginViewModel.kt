@@ -49,6 +49,7 @@ class LoginViewModel : BaseViewModel() {
             .safeSubscribeBy {
                 statusEvent.value = when (it.code) {
                     0 -> {
+                        it.data.pwd = pwd
                         BaseApp.user = it.data
                         LOGIN_SUCCEED
                     }

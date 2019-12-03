@@ -1,8 +1,8 @@
 package com.erookies.mine.network
 
+import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.bean.StatusBean
 import com.erookies.lib_common.bean.StatusWrapper
-import com.erookies.lib_common.bean.User
 import com.erookies.mine.bean.ChangeBody
 import com.erookies.mine.bean.LoginBean
 import com.erookies.mine.bean.RegisterBean

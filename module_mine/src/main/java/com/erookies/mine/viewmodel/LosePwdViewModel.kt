@@ -22,7 +22,7 @@ class LosePwdViewModel : BaseViewModel() {
         if (user == null) changePwdStatusEvent.value = NOT_LOGIN
         else {
             ApiGenerator.getApiService(Api::class.java)
-                .changePwd(ChangeBody(if (sno.isBlank()) user.sno else sno, str))
+                .changePwd(ChangeBody(if (sno.isBlank()) user.stuNum else sno, str))
                 .setSchedulers()
                 .safeSubscribeBy {
                     changePwdStatusEvent.value = if (it.code == 0) CHANGE_SUCCEED else CHANGE_ERROR

@@ -1,8 +1,9 @@
-package com.erookies.lib_common
+package com.erookies.lib_common.bean
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 
 /**
  * Create by Cchanges.
@@ -10,18 +11,23 @@ import com.google.gson.Gson
  */
 data class User(
     val id: String = "",
-    @SerializedName("name") val username: String = "",
+    @SerializedName("name")
+    val username: String = "",
     var pwd: String = "",
-    @SerializedName("nickname") var nickname: String = "",
+    @SerializedName("nickname")
+    var nickname: String = "",
     var email: String = "",
     var phone: String = "",
     // 学院
-    @SerializedName("institute") val college: String = "",
+    @SerializedName("institute")
+    val college: String = "",
     // 学号
-    @SerializedName("sno") val stuNum: String = "",
+    @SerializedName("sno")
+    val stuNum: String = "",
     // 描述
     var info: String = "",
-    @SerializedName("face_url") var avatar: String = ""
+    @SerializedName("face_url")
+    var avatar: String = ""
     // val addTime :
 ) : Parcelable {
     constructor(parcel: Parcel) : this(

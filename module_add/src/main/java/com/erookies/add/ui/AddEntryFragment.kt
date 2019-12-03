@@ -53,10 +53,12 @@ class AddEntryFragment : BaseFragment() {
         }
         viewModel.list.observe {
             adapter.changeData(it.toMutableList())
+            lists = it
         }
         viewModel.status.observe {
 
         }
+        viewModel.getData()
         rv_entry.layoutManager = LinearLayoutManager(this.context)
         rv_entry.adapter = adapter
         srl_add.apply {
@@ -71,7 +73,7 @@ class AddEntryFragment : BaseFragment() {
     }
 
     override fun getFactory(): ViewModelProvider.Factory? {
-        return AddEntryViewModel.Factory(title, true)
+        return AddEntryViewModel.Factory(title, isOwn = false)
     }
 
     companion object {
