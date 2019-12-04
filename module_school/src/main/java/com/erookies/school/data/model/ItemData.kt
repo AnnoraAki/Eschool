@@ -24,6 +24,7 @@ class ItemData(@SerializedName("id") var id:Int = -1,
             append("id: $id,\n")
             append("create_time: $createTime,\n")
             append("user: ${user.nickname},\n")
+            append("user_avatar: ${user.avatar}\n")
             append("info: $content,\n")
             append("tag: $tagNum,\n")
             append("pictures: $pictures\n")

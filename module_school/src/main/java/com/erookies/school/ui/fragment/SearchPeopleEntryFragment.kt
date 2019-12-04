@@ -33,7 +33,7 @@ import kotlinx.android.synthetic.main.school_common_recycler_view.*
  */
 
 @Route(path = SCHOOL_SEARCH_PEOPLE)
-class SearchPeopleFragment : BaseFragment() {
+class SearchPeopleEntryFragment : BaseFragment() {
 
     @JvmField
     @Autowired(name = "start_type")

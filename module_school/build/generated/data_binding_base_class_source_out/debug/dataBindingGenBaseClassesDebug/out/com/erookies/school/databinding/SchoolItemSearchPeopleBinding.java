@@ -4,13 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.recyclerview.widget.RecyclerView;
 import com.erookies.school.data.model.ItemData;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.Deprecated;
@@ -21,7 +21,7 @@ public abstract class SchoolItemSearchPeopleBinding extends ViewDataBinding {
   public final TextView schoolSpItemContent;
 
   @NonNull
-  public final LinearLayout schoolSpItemImageGroup;
+  public final RecyclerView schoolSpItemPictures;
 
   @NonNull
   public final Button schoolSpItemTagButton;
@@ -36,12 +36,12 @@ public abstract class SchoolItemSearchPeopleBinding extends ViewDataBinding {
   protected ItemData mItem;
 
   protected SchoolItemSearchPeopleBinding(Object _bindingComponent, View _root,
-      int _localFieldCount, TextView schoolSpItemContent, LinearLayout schoolSpItemImageGroup,
+      int _localFieldCount, TextView schoolSpItemContent, RecyclerView schoolSpItemPictures,
       Button schoolSpItemTagButton, CircleImageView schoolSpItemUserAvatar,
       TextView schoolSpItemUserName) {
     super(_bindingComponent, _root, _localFieldCount);
     this.schoolSpItemContent = schoolSpItemContent;
-    this.schoolSpItemImageGroup = schoolSpItemImageGroup;
+    this.schoolSpItemPictures = schoolSpItemPictures;
     this.schoolSpItemTagButton = schoolSpItemTagButton;
     this.schoolSpItemUserAvatar = schoolSpItemUserAvatar;
     this.schoolSpItemUserName = schoolSpItemUserName;

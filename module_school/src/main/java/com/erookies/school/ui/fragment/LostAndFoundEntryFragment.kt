@@ -41,7 +41,7 @@ import kotlinx.android.synthetic.main.school_fragment_lost_found.*
  */
 
 @Route(path = SCHOOL_LOST_FOUND)
-class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
+class LostAndFoundEntryFragment : BaseFragment(),View.OnClickListener {
 
     //添加JvmField解决字段注入问题
     @JvmField
@@ -150,19 +150,19 @@ class LostAndFoundFragment : BaseFragment(),View.OnClickListener {
         when(v?.id){
             R.id.school_id_card_button -> {
                 viewModel.currentTag.value = Tag.CARD
-                viewModel.getItemByCurrentTag()
+                viewModel.getItemDataList()
             }
             R.id.school_digital_button -> {
                 viewModel.currentTag.value = Tag.DIGITAL
-                viewModel.getItemByCurrentTag()
+                viewModel.getItemDataList()
             }
             R.id.school_daily_goods_button -> {
                 viewModel.currentTag.value = Tag.COMMODITY
-                viewModel.getItemByCurrentTag()
+                viewModel.getItemDataList()
             }
             R.id.school_others_button -> {
                 viewModel.currentTag.value = Tag.OTHER
-                viewModel.getItemByCurrentTag()
+                viewModel.getItemDataList()
             }
         }
         Log.d("LostAndFoundFragment","${viewModel.currentTag.value?.tag} is be selected!")

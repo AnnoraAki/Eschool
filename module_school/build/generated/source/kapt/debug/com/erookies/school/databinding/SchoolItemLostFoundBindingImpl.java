@@ -15,6 +15,7 @@ public class SchoolItemLostFoundBindingImpl extends SchoolItemLostFoundBinding  
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.school_item_user_avatar, 4);
+        sViewsWithIds.put(R.id.school_item_pictures, 5);
     }
     // views
     @NonNull
@@ -25,11 +26,12 @@ public class SchoolItemLostFoundBindingImpl extends SchoolItemLostFoundBinding  
     // Inverse Binding Event Handlers
 
     public SchoolItemLostFoundBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 5, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
     }
     private SchoolItemLostFoundBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (android.widget.TextView) bindings[3]
+            , (androidx.recyclerview.widget.RecyclerView) bindings[5]
             , (android.widget.Button) bindings[2]
             , (de.hdodenhof.circleimageview.CircleImageView) bindings[4]
             , (android.widget.TextView) bindings[1]

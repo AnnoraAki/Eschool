@@ -1,7 +1,7 @@
 package com.erookies.school.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.*
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -12,16 +12,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.SCHOOL_ENTRY
-import com.erookies.lib_common.config.SCHOOL_PUBLISH
 import com.erookies.lib_common.event.ClickMenuEvent
 import com.erookies.school.R
 import com.erookies.school.data.factory.SchoolPageContainerFactory
 import com.erookies.school.data.viewModel.SchoolPageContainerViewModel
 import com.erookies.school.databinding.SchoolFragmentContainerBinding
 import com.erookies.school.ui.activity.PublishActivity
+import com.erookies.school.utils.Constans
 import com.erookies.school.utils.change
+import com.erookies.school.utils.toast
 import kotlinx.android.synthetic.main.school_fragment_container.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -40,7 +42,7 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
         get() = school_page_list_container
 
     //fragment列表
-    val fragments = mutableListOf<Fragment>(SearchPeopleFragment(),LostAndFoundFragment())
+    val fragments = mutableListOf<Fragment>(SearchPeopleEntryFragment(),LostAndFoundEntryFragment())
 
     override fun getFactory(): ViewModelProvider.Factory? {
         return SchoolPageContainerFactory()
@@ -69,6 +71,7 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         observe()
         init()
+        initConstants()
     }
 
     private fun init(){
@@ -140,7 +143,22 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun clickMenu(event: ClickMenuEvent) {
         if (event.position == 1) {
-            startActivity<PublishActivity>()
+            if (BaseApp.isLogin){
+                startActivity<PublishActivity>()
+            }else{
+                toast("请先登录！")
+            }
+        }
+    }
+
+    fun initConstants(){
+        if (!Constans.initStatus){
+            val windowManager = this.activity?.windowManager ?: return
+            val outMetric = DisplayMetrics()
+            windowManager.defaultDisplay.getMetrics(outMetric)
+            Constans.height = outMetric.heightPixels.toFloat()
+            Constans.width = outMetric.widthPixels.toFloat()
+            Constans.initStatus = true
         }
     }
 }

@@ -68,6 +68,11 @@
 
             </LinearLayout>
 
+            <View
+                android:background="#dadada"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
             <include layout="@layout/school_common_recycler_view"/>
 
         </LinearLayout>

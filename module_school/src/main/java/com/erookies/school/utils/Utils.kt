@@ -4,9 +4,12 @@ import android.app.Activity
 import android.graphics.Color
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.school.R
 import com.erookies.school.data.model.Tag
@@ -14,6 +17,7 @@ import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
+import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.textColor
 
 
@@ -87,5 +91,11 @@ fun ConfigurePictureSelect(activity: Activity,medias:List<LocalMedia>){
         .previewEggs(true)
         .maxSelectNum(3)
         .forResult(PictureConfig.CHOOSE_REQUEST)
+}
+
+object Constans{
+    var initStatus:Boolean = false
+    var height:Float = 0f
+    var width:Float = 0f
 }
 

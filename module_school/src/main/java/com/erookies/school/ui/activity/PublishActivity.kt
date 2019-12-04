@@ -20,6 +20,7 @@ import com.erookies.lib_common.BaseApp.Companion.context
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.SCHOOL_PUBLISH
 import com.erookies.lib_common.extentions.getRequestBody
+import com.erookies.lib_common.extentions.toast
 import com.erookies.lib_common.network.ApiGenerator
 import com.erookies.school.R
 import com.erookies.school.network.Api
@@ -32,7 +33,9 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.school_activity_publish.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.http.Multipart
 import java.io.File
 
 @Route(path = SCHOOL_PUBLISH)
@@ -62,7 +65,7 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
                     smallTag = 0
                 }else{
                     option_type_text.text = optionsList[1][options2]
-                    smallTag = options2
+                    smallTag = options2+1
                 }
             }).build<String>()
     }
@@ -122,9 +125,14 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
                 ConfigurePictureSelect(this,selectedPicture)
             }
             R.id.publish_info -> {
-                changeLoadingDialogStatus(true)
-                upload(picturesForLoad[0])
-                changeLoadingDialogStatus(false)
+                content = publish_detail_describe_input.text.toString()
+                if (content.isEmpty()){
+                    toast("请简单填写必要的介绍")
+                }else{
+                    changeLoadingDialogStatus(true)
+                    upload(picturesForLoad)
+                    changeLoadingDialogStatus(false)
+                }
             }
         }
     }
@@ -154,25 +162,41 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
     }
 
     @SuppressLint("CheckResult")
-    private fun upload(fileName:String?){
-        Log.d("PublishActivityInfo",fileName)
-        val sno = BaseApp.user?.stuNum
-        val file = File(fileName)
-        val filePart = MultipartBody.Part.createFormData("file",file.name,file.getRequestBody())
-        val body = (sno ?: "0").toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        val observable = ApiGenerator.getApiService(Api::class.java).uploadInfo(filePart,body)
+    private fun upload(fileNames:List<String>?){
+        Log.d("PublishActivityInfo",userNo)
+        Log.d("PublishActivityInfo",fileNames.toString())
+        val files = mutableListOf<MultipartBody.Part>()
+        val map = hashMapOf<String,RequestBody>(
+            "bigtag" to bigTag.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+            "smalltag" to smallTag.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+            "sno" to userNo.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+            "info" to content.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+            "num" to (picturesForLoad.size).toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        )
+        var file:File
+        var filePart:MultipartBody.Part
+        var index = 1
+        for (url in picturesForLoad){
+            file = File(url)
+            filePart = MultipartBody.Part.createFormData("file${index}",file.name,file.getRequestBody())
+            files.add(filePart)
+            index++
+        }
+
+        val observable = ApiGenerator.getApiService(Api::class.java).uploadInfo(files,map)
         observable.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({wrapper->
                 if (wrapper.code == 0){
                     Log.d("PublishActivityInfo",wrapper.msg)
                     Toast.makeText(this,"上传成功",Toast.LENGTH_SHORT).show()
+                    finish()
                 }else{
                     Log.d("PublishActivityInfo",wrapper.msg)
                     Toast.makeText(this,"上传失败",Toast.LENGTH_SHORT).show()
                 }
             },{err->
-                Toast.makeText(this,err.message.toString(),Toast.LENGTH_SHORT).show()
+                toast(err.message.toString())
                 Log.d("PublishActivityInfo",err.message.toString())
             })
     }

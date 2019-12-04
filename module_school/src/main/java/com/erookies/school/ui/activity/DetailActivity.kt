@@ -1,6 +1,7 @@
 package com.erookies.school.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -27,13 +28,14 @@ import kotlinx.android.synthetic.main.school_common_picture_list.*
  */
 
 class DetailActivity : BaseActivity() {
+    val pictures:MutableList<String> = mutableListOf()
 
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewModel(DetailViewModel::class.java) }
 
     private var type = 15
 
     private val adapter:CommonPicRVAdapter
-        get() = CommonPicRVAdapter()
+        get() = CommonPicRVAdapter(pictures,false)
 
     private var itemData:ItemData = ItemData()
 
@@ -76,18 +78,18 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun observe(){
-        val pictures:MutableList<String> = mutableListOf()
         viewModel.itemData.observe(this,
             Observer { data->
                 tagButton.text = data.tag.tag
-                if (data.user.avatar.isNotEmpty()){
-                    userAvatar.setImageFromUrl(data.user.avatar)
-                }else{
-                    userAvatar.setImageResource(R.mipmap.ic_launcher_round)
-                }
+                Glide.with(this).load("http://118.24.129.217/api/download_face_api/${data.user.avatar}").placeholder(R.drawable.common_default_avatar).into(userAvatar)
                 userName.text = data.user.nickname
                 content.text = data.content
-                pictures.addAll(data.pictures)
+                if (data.pictures.isNullOrEmpty()){
+                    recyclerView.visibility = View.GONE
+                }else{
+                    pictures.addAll(data.pictures)
+                    adapter.notifyDataSetChanged()
+                }
             })
     }
 

@@ -17,6 +17,6 @@ interface Api{
     fun getPeople(@Query("sno") sno:String):Observable<ItemDataWrapper>
 
     @Multipart
-    @POST("/api/up_file")
-    fun uploadInfo(@Part files:MultipartBody.Part?, @Part("sno") sno: RequestBody):Observable<Wrapper>
+    @POST("/api/missing")
+    fun uploadInfo(@Part files:List<MultipartBody.Part>?, @PartMap map: HashMap<String,RequestBody>):Observable<Wrapper>
 }
