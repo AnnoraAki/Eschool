@@ -4,17 +4,20 @@ import android.app.Activity
 import android.graphics.Color
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.school.R
 import com.erookies.school.data.model.Tag
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
-import com.luck.picture.lib.style.PictureCropParameterStyle
-import com.luck.picture.lib.style.PictureParameterStyle
+import com.luck.picture.lib.entity.LocalMedia
+import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.textColor
 
 
@@ -31,8 +34,10 @@ fun TextView.change(need: Boolean) {
 
 fun Button.changeStyle(restore:Boolean){
     if (!restore){
+        this.textColor = Color.parseColor("#ffffff")
         this.background = resources.getDrawable(R.drawable.school_tag_button_select_style,null)
     }else{
+        this.textColor = Color.parseColor("#000000")
         this.background = resources.getDrawable(R.drawable.school_tag_button_not_select_style,null)
     }
 }
@@ -74,16 +79,23 @@ fun TagParseToInt(tag:Tag):Int{
     }
 }
 
-fun ConfiguratePictureSelector(activity:Activity){
+fun ConfigurePictureSelect(activity: Activity,medias:List<LocalMedia>){
     PictureSelector.create(activity)
         .openGallery(PictureMimeType.ofImage())
         .loadImageEngine(GlideEngine)
-        .maxSelectNum(3)
-        .imageSpanCount(4)
         .selectionMode(PictureConfig.MULTIPLE)
-        .imageFormat(PictureMimeType.JPEG)
+        .isOriginalImageControl(true)
         .compress(true)
-        .isGif(false)
+        .selectionMedia(medias)
+        .isCamera(false)
+        .previewEggs(true)
+        .maxSelectNum(3)
         .forResult(PictureConfig.CHOOSE_REQUEST)
+}
+
+object Constans{
+    var initStatus:Boolean = false
+    var height:Float = 0f
+    var width:Float = 0f
 }
 

@@ -11,7 +11,6 @@ import com.luck.picture.lib.engine.ImageEngine
 
 
 object GlideEngine : ImageEngine {
-
     override fun loadFolderAsBitmapImage(
         context: Context,
         url: String,
@@ -37,14 +36,14 @@ object GlideEngine : ImageEngine {
     }
 
     override fun loadImage(context: Context, url: String, imageView: ImageView) {
-        Glide.with(context).load(url).into(imageView)
+        Glide.with(context).load(url).into(imageView);
     }
 
     override fun loadAsGifImage(context: Context, url: String, imageView: ImageView) {
         Glide.with(context)
             .asGif()
             .load(url)
-            .into(imageView)
+            .into(imageView);
     }
 
     override fun loadAsBitmapGridImage(
@@ -60,7 +59,7 @@ object GlideEngine : ImageEngine {
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(placeholderId)
             .load(url)
-            .into(imageView)
+            .into(imageView);
     }
 
 }

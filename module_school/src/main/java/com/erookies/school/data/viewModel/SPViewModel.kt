@@ -36,14 +36,14 @@ class SPViewModel(private val repository: SearchPeopleRepository) :  BaseViewMod
         repository.loadItemList(startType, {list ->
             items.value?.addAll(list)
             if (items.value.isNullOrEmpty()){
-                needToast.value = true
                 error = "没有相关数据"
+                needToast.value = true
             }
             isRefresh.value = false
         },{
             isRefresh.value = false
-            needToast.value = true
             error = "建立连接失败"
+            needToast.value = true
             Log.d("SPViewModel",it)
         })
     }

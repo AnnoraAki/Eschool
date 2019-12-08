@@ -1,20 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
+            "outputFile": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\res\\merged\\debug\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
-                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/values-large-v4/values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,114,185,256,326,396,464,532,636",
-                        "endColumns": "58,70,70,69,69,67,67,103,115",
-                        "endOffsets": "109,180,251,321,391,459,527,631,747"
-                    }
-                },
-                {
-                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/values-large-v4/values-large-v4.xml",
+                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\4f65ea47b6188b4a8386ad007b8099ef\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -28,25 +18,25 @@
                         "startOffsets": "752,874",
                         "endColumns": "121,133",
                         "endOffsets": "869,1003"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\afcbaa9653856a999e0eddcb164b4fcd\\res\\values-large-v4\\values-large-v4.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,114,185,256,326,396,464,532,636",
+                        "endColumns": "58,70,70,69,69,67,67,103,115",
+                        "endOffsets": "109,180,251,321,391,459,527,631,747"
                     }
                 }
             ]
         },
         {
-            "outputFile": "/Users/cchanges/AndroidProject/Eschool/module_school/build/intermediates/res/merged/debug/values-large-v4/values-large-v4.xml",
+            "outputFile": "D:\\ForkPro\\Eschool\\module_school\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
-                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/eeb717c73b945775882d14b821d84d0c/res/values-large-v4/values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,114,185,256,326,396,464,532,636",
-                        "endColumns": "58,70,70,69,69,67,67,103,115",
-                        "endOffsets": "109,180,251,321,391,459,527,631,747"
-                    }
-                },
-                {
-                    "source": "/Users/cchanges/.gradle/caches/transforms-2/files-2.1/b0f6a6e6163d8899ef24f29d5e935c32/res/values-large-v4/values-large-v4.xml",
+                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\4f65ea47b6188b4a8386ad007b8099ef\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -60,6 +50,16 @@
                         "startOffsets": "752,874",
                         "endColumns": "121,133",
                         "endOffsets": "869,1003"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Hasee\\.gradle\\caches\\transforms-2\\files-2.1\\afcbaa9653856a999e0eddcb164b4fcd\\res\\values-large-v4\\values-large-v4.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,114,185,256,326,396,464,532,636",
+                        "endColumns": "58,70,70,69,69,67,67,103,115",
+                        "endOffsets": "109,180,251,321,391,459,527,631,747"
                     }
                 }
             ]

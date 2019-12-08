@@ -16,7 +16,7 @@ public class SchoolItemSearchPeopleBindingImpl extends SchoolItemSearchPeopleBin
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.school_sp_item_user_avatar, 3);
         sViewsWithIds.put(R.id.school_sp_item_tag_button, 4);
-        sViewsWithIds.put(R.id.school_sp_item_image_group, 5);
+        sViewsWithIds.put(R.id.school_sp_item_pictures, 5);
     }
     // views
     @NonNull
@@ -32,7 +32,7 @@ public class SchoolItemSearchPeopleBindingImpl extends SchoolItemSearchPeopleBin
     private SchoolItemSearchPeopleBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (android.widget.TextView) bindings[2]
-            , (android.widget.LinearLayout) bindings[5]
+            , (androidx.recyclerview.widget.RecyclerView) bindings[5]
             , (android.widget.Button) bindings[4]
             , (de.hdodenhof.circleimageview.CircleImageView) bindings[3]
             , (android.widget.TextView) bindings[1]

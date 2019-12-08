@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.recyclerview.widget.RecyclerView;
 import com.erookies.school.data.model.ItemData;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.Deprecated;
@@ -18,6 +19,9 @@ import java.lang.Object;
 public abstract class SchoolItemLostFoundBinding extends ViewDataBinding {
   @NonNull
   public final TextView schoolItemContent;
+
+  @NonNull
+  public final RecyclerView schoolItemPictures;
 
   @NonNull
   public final Button schoolItemTagButton;
@@ -32,10 +36,11 @@ public abstract class SchoolItemLostFoundBinding extends ViewDataBinding {
   protected ItemData mItem;
 
   protected SchoolItemLostFoundBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      TextView schoolItemContent, Button schoolItemTagButton, CircleImageView schoolItemUserAvatar,
-      TextView schoolItemUserName) {
+      TextView schoolItemContent, RecyclerView schoolItemPictures, Button schoolItemTagButton,
+      CircleImageView schoolItemUserAvatar, TextView schoolItemUserName) {
     super(_bindingComponent, _root, _localFieldCount);
     this.schoolItemContent = schoolItemContent;
+    this.schoolItemPictures = schoolItemPictures;
     this.schoolItemTagButton = schoolItemTagButton;
     this.schoolItemUserAvatar = schoolItemUserAvatar;
     this.schoolItemUserName = schoolItemUserName;

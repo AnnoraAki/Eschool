@@ -48,8 +48,9 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
             originalItems.value?.addAll(list)
             //装载数据
             if (originalItems.value.isNullOrEmpty()){
+                isRefreshing.value = false
+                errorMsg = "无相关数据"
                 needToast.value = true
-                errorMsg = "拉取数据失败"
             }else{
                 items.value?.clear()
 
@@ -66,38 +67,16 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
 
                 isRefreshing.value = false
                 if (items.value.isNullOrEmpty()){
-                    needToast.value = true
                     errorMsg = "没有相关数据"
+                    needToast.value = true
                 }
             }
         },{
             //错误处理
             isRefreshing.value = false
-            needToast.value = true
             errorMsg = "建立连接失败"
+            needToast.value = true
             Log.d("LostAndFoundViewModel",it)
         })
-    }
-
-    fun getItemByCurrentTag(){
-        isRefreshing.value = true
-        errorMsg = ""
-
-        items.value?.clear()
-
-        if (!originalItems.value.isNullOrEmpty()){
-            items.value?.addAll(
-                originalItems.value!!.filter { item->
-                    item.tag == currentTag.value
-                })
-        }
-
-        if (items.value.isNullOrEmpty()){
-            needToast.value = true
-            errorMsg = "没有相关数据"
-        }
-
-        needToast.value = false
-        isRefreshing.value = false
     }
 }

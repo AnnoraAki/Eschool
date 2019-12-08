@@ -1,31 +1,41 @@
 package com.erookies.school.ui.activity
 
-import android.Manifest
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
+import com.luck.picture.lib.PictureSelector
 import android.view.View
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.erookies.lib_common.BaseApp
+import com.erookies.lib_common.BaseApp.Companion.context
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.SCHOOL_PUBLISH
+import com.erookies.lib_common.extentions.getRequestBody
+import com.erookies.lib_common.extentions.toast
+import com.erookies.lib_common.network.ApiGenerator
 import com.erookies.school.R
+import com.erookies.school.network.Api
 import com.erookies.school.ui.adapter.CommonPicRVAdapter
-import com.erookies.school.utils.ConfiguratePictureSelector
-import com.luck.picture.lib.PictureSelector
+import com.erookies.school.utils.ConfigurePictureSelect
 import com.luck.picture.lib.config.PictureConfig
-import com.luck.picture.lib.config.PictureMimeType
-import com.luck.picture.lib.permissions.PermissionChecker
-import com.luck.picture.lib.tools.PictureFileUtils
+import com.luck.picture.lib.entity.LocalMedia
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.school_activity_publish.*
-import kotlinx.android.synthetic.main.school_common_picture_list.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.http.Multipart
 import java.io.File
 
 @Route(path = SCHOOL_PUBLISH)
@@ -34,8 +44,8 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
     private var bigTag = 1
     private var smallTag = 4
     private var content = ""
+    private val selectedPicture = mutableListOf<LocalMedia>()
     private var picturesForLoad = mutableListOf<String>()
-    private var picturesForUpload = mutableListOf<String>()
     private val userNo:String? by lazy { BaseApp.user?.stuNum.toString() }
 
     private val adapter = CommonPicRVAdapter(picturesForLoad)
@@ -55,7 +65,7 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
                     smallTag = 0
                 }else{
                     option_type_text.text = optionsList[1][options2]
-                    smallTag = options2
+                    smallTag = options2+1
                 }
             }).build<String>()
     }
@@ -72,6 +82,9 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
     }
 
     private fun init(){
+        publish_loading_dialog.indeterminateDrawable.setColorFilter(ContextCompat.getColor(context,R.color.themeBlue),PorterDuff.Mode.MULTIPLY)
+        changeLoadingDialogStatus(false)
+
         optionsItem1.add("寻人")
         optionsItem1.add("失物招领")
 
@@ -86,18 +99,12 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
         optionPickView.setPicker(optionsItem1,optionsList)
         optionPickView.setTitleText("选择类型")
 
+        option_type_text.text = optionsList[bigTag][smallTag-1]
+
         option_div.setOnClickListener(this)
         option_select_button.setOnClickListener(this)
         option_type_text.setOnClickListener(this)
-
-        // 清空图片缓存，包括裁剪、压缩后的图片 注意:必须要在上传完成后调用 必须要获取权限
-        if (PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            //PictureFileUtils.deleteCacheDirFile(this, PictureMimeType.ofImage());
-            PictureFileUtils.deleteCacheDirFile(this,PictureMimeType.ofImage())
-        } else {
-            PermissionChecker.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                PictureConfig.APPLY_STORAGE_PERMISSIONS_CODE)
-        }
+        publish_info.setOnClickListener(this)
 
         publish_add_picture_button.setOnClickListener(this)
 
@@ -115,34 +122,91 @@ class PublishActivity : BaseActivity(),View.OnClickListener {
 
             R.id.publish_add_picture_button -> {
                 Log.d("PublishActivity","start to select picture")
-                ConfiguratePictureSelector(this)
+                ConfigurePictureSelect(this,selectedPicture)
+            }
+            R.id.publish_info -> {
+                content = publish_detail_describe_input.text.toString()
+                if (content.isEmpty()){
+                    toast("请简单填写必要的介绍")
+                }else{
+                    changeLoadingDialogStatus(true)
+                    upload(picturesForLoad)
+                    changeLoadingDialogStatus(false)
+                }
             }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK){
+        if (resultCode == Activity.RESULT_OK){
             when(requestCode){
                 PictureConfig.CHOOSE_REQUEST -> {
-                    val selectList = PictureSelector.obtainMultipleResult(data)
-                    var originalFile:File
-                    var compressFile:File
-                    for (selector in selectList){
-                        Log.d("PublishActivityInfo",selector.compressPath)
-                        Log.d("PublishActivityInfo",selector.path)
-
-                        if (picturesForUpload.contains(selector.path)){
-                            picturesForUpload.remove(selector.path)
-                            picturesForLoad.remove(selector.compressPath)
+                    picturesForLoad.clear()
+                    val selectors = PictureSelector.obtainMultipleResult(data)
+                    selectedPicture.clear()
+                    selectedPicture.addAll(selectors)
+                    if (selectedPicture.isNotEmpty()){
+                        for (media in selectedPicture){
+                            if (media.isOriginal){
+                                picturesForLoad.add(media.originalPath)
+                            }else{
+                                picturesForLoad.add(media.compressPath)
+                            }
                         }
-
-                        picturesForLoad.add(selector.compressPath)
-                        picturesForUpload.add(selector.path)
                     }
                     adapter.notifyDataSetChanged()
                 }
             }
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun upload(fileNames:List<String>?){
+        Log.d("PublishActivityInfo",userNo)
+        Log.d("PublishActivityInfo",fileNames.toString())
+        val files = mutableListOf<MultipartBody.Part>()
+        val map = hashMapOf<String,RequestBody>(
+            "bigtag" to bigTag.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+            "smalltag" to smallTag.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+            "sno" to userNo.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+            "info" to content.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+            "num" to (picturesForLoad.size).toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        )
+        var file:File
+        var filePart:MultipartBody.Part
+        var index = 1
+        for (url in picturesForLoad){
+            file = File(url)
+            filePart = MultipartBody.Part.createFormData("file${index}",file.name,file.getRequestBody())
+            files.add(filePart)
+            index++
+        }
+
+        val observable = ApiGenerator.getApiService(Api::class.java).uploadInfo(files,map)
+        observable.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({wrapper->
+                if (wrapper.code == 0){
+                    Log.d("PublishActivityInfo",wrapper.msg)
+                    Toast.makeText(this,"上传成功",Toast.LENGTH_SHORT).show()
+                    finish()
+                }else{
+                    Log.d("PublishActivityInfo",wrapper.msg)
+                    Toast.makeText(this,"上传失败",Toast.LENGTH_SHORT).show()
+                }
+            },{err->
+                toast(err.message.toString())
+                Log.d("PublishActivityInfo",err.message.toString())
+            })
+    }
+
+    private fun changeLoadingDialogStatus(show:Boolean){
+        if (show){
+            publish_loading_dialog.contentDescription = "正在上传..."
+            publish_loading_dialog.show()
+        }else{
+            publish_loading_dialog.hide()
         }
     }
 }

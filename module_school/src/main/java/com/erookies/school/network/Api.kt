@@ -2,6 +2,7 @@ package com.erookies.school.network
 
 import com.erookies.school.data.model.ItemData
 import com.erookies.school.data.model.ItemDataWrapper
+import com.erookies.school.data.model.Wrapper
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -16,6 +17,6 @@ interface Api{
     fun getPeople(@Query("sno") sno:String):Observable<ItemDataWrapper>
 
     @Multipart
-    @POST("/api/up_file")
-    fun uploadInfo(@Part body:List<MultipartBody.Part>, sno: String):Observable<ItemDataWrapper>
+    @POST("/api/missing")
+    fun uploadInfo(@Part files:List<MultipartBody.Part>?, @PartMap map: HashMap<String,RequestBody>):Observable<Wrapper>
 }

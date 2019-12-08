@@ -1,6 +1,7 @@
 package com.erookies.school.data.repository
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.annotation.IntDef
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.config.START_FROM_MAIN
@@ -35,6 +36,7 @@ class LostAndFoundRepository private constructor(){
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({items->
+                Log.d("LostAndFoundRepository",items.data.toString())
                 operation.invoke(items.data)
             },{
                 error.invoke(it.message.toString())
