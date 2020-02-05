@@ -15,3 +15,5 @@ const val PIC_BASE_URL = "${BASE_URL}api/download_face_api/"
 //启动参数
 const val START_FROM_USER = 21
 const val START_FROM_MAIN = 20
+
+const val APK_KEY = "4feda540d1138efffa567959"

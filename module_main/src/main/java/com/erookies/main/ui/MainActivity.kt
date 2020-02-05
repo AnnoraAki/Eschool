@@ -43,6 +43,8 @@ class MainActivity : BaseActivity() {
     private fun initFragment() {
         fragments.add(getFragment(ADD_ENTRY))
         fragments.add(getFragment(SCHOOL_ENTRY))
+        //增加IM模块
+        fragments.add(getFragment(IM_ENTRY))
         fragments.add(getFragment(MINE_ENTRY))
     }
 
