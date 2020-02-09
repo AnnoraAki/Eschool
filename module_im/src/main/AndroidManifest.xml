@@ -3,7 +3,7 @@
     package="com.erookies.module_im">
 
     <application>
-        <activity android:name=".ui.activity.ConversationActivity" />
+        <activity android:name=".ui.activity.conversation.ConversationActivity" />
         <service
             android:name=".service.IMJpushService"
             android:process=":pushcore">

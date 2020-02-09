@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:padding="8dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_alignParentLeft="true"
+            tools:src="@drawable/common_default_avatar"
+            android:id="@+id/im_user_avatar"
+            android:scaleType="centerCrop"
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+
+        <RelativeLayout
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:padding="4dp"
+            android:layout_toRightOf="@id/im_user_avatar"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_alignParentTop="true"
+                tools:text="@string/app_name"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:id="@+id/im_user_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="4dp"
+                android:layout_below="@id/im_user_nickname"
+                tools:text="@string/app_name"
+                android:textSize="14sp"
+                android:id="@+id/im_conversation_newest_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginRight="8dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:scaleType="centerCrop"
+                android:src="#ff0000"
+                android:layout_width="25dp"
+                android:layout_height="25dp"/>
+
+            <TextView
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                tools:text="15"
+                android:id="@+id/im_conversation_unread_msg_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
