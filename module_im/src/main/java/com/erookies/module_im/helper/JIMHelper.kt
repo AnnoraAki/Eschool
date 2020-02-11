@@ -13,6 +13,7 @@ import com.erookies.lib_common.config.APK_KEY
 object JIMHelper {
     lateinit var conversation: Conversation
     private val TAG = "JIMHelper"
+    var oldPwd:String = ""
 
     fun register(user: User,callback: BasicCallback){
         val registerOptionalUserInfo = RegisterOptionalUserInfo()
@@ -33,7 +34,7 @@ object JIMHelper {
         JMessageClient.logout()
     }
 
-    fun updateMyPwd(oldPwd:String,newPwd:String,callback: BasicCallback){
+    fun updateMyPwd(newPwd:String,callback: BasicCallback){
         JMessageClient.updateUserPassword(oldPwd,newPwd,callback)
     }
 

@@ -2,6 +2,7 @@ package com.erookies.mine.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.erookies.lib_common.base.BaseViewModel
+import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.extentions.safeSubscribeBy
 import com.erookies.lib_common.extentions.setSchedulers
 import com.erookies.lib_common.network.ApiGenerator
@@ -14,8 +15,15 @@ import com.erookies.lib_common.network.ApiGenerator
 
 class RegisterViewModel : BaseViewModel() {
     val statusEvent = MutableLiveData<Int>()
+    var registerUser:User = User()
 
     fun register(r: com.erookies.mine.bean.RegisterBean) {
+        registerUser = User(
+            stuNum = r.sno,
+            nickname = r.nickname,
+            pwd = r.password,
+            college = r.institute
+        )
         ApiGenerator.getApiService(com.erookies.mine.network.Api::class.java)
             .register(r)
             .setSchedulers()

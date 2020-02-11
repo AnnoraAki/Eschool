@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.entry.IMEntryFragment">
 
-    <include layout="@layout/common_toolbar"/>
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/im_swipe_refresh"
         android:layout_width="match_parent"

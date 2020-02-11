@@ -64,9 +64,9 @@ class IMEntryFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observe()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
+        observe()
         adapter.apply {
             conversations.addAll(viewModel.conversations.value!!)
         }
@@ -121,28 +121,28 @@ class IMEntryFragment : BaseFragment() {
      */
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     fun attchIMFunction(event:IMEvent){
-        Log.d(TAG,BaseApp.user?.username)
         when(event.type){
-            IMEventType.REGISTER -> JIMHelper.register(BaseApp.user!!,object : BasicCallback() {
-                override fun gotResult(responseCode: Int, responseMessage: String?) {
-                    Log.d(TAG,"状态码：$responseCode")
-                    if (responseCode != 0){
-                        Log.d(TAG,responseMessage)
-                        toast("状态码：$responseCode\n$responseMessage")
-                    }else if (responseCode == 0){
-                        toast("注册成功")
+            IMEventType.REGISTER -> {
+                JIMHelper.register(event.friend!!,object : BasicCallback() {
+                    override fun gotResult(responseCode: Int, responseMessage: String?) {
+                        Log.d(TAG,"状态码：$responseCode")
+                        if (responseCode != 0){
+                            Log.d(TAG,"状态码：$responseCode\n$responseMessage")
+                            toast("注册失败")
+                        }else if (responseCode == 0){
+                            toast("注册成功")
+                        }
                     }
-                }
-            })
+                })
+            }
 
             IMEventType.LOGIN -> JIMHelper.login(BaseApp.user!!,object : BasicCallback(){
                 override fun gotResult(responseCode: Int, responseMessage: String?) {
                     Log.d(TAG,"状态码：$responseCode")
                     if (responseCode != 0){
-                        Log.d(TAG,responseMessage)
-                        toast("状态码：$responseCode\n$responseMessage")
+                        Log.d(TAG,"状态码：$responseCode\n$responseMessage")
                     }else if (responseCode == 0){
-                        toast("登录成功")
+                        JIMHelper.oldPwd = BaseApp.user!!.pwd
                     }
                 }
             })
@@ -174,13 +174,13 @@ class IMEntryFragment : BaseFragment() {
             IMEventType.UPDATE_PWD -> {
                 if (BaseApp.isLogin){
                     if (!TextUtils.isEmpty(event.newPwd)){
-                        JIMHelper.updateMyPwd(BaseApp.user!!.pwd,event.newPwd,object : BasicCallback(){
+                        JIMHelper.updateMyPwd(event.newPwd,object : BasicCallback(){
                             override fun gotResult(responseCode: Int, responseMessage: String?) {
                                 if (responseCode != 0){
-                                    Log.d(TAG,responseMessage)
-                                    toast("密码更新失败~")
+                                    Log.d(TAG,"状态码：$responseCode 错误信息：$responseMessage")
+                                    Log.d(TAG,"原密码：${BaseApp.user!!.pwd} 新密码：${event.newPwd}")
                                 }else{
-                                    toast("密码更新成功！")
+                                    JIMHelper.oldPwd = event.newPwd
                                 }
                             }
                         })

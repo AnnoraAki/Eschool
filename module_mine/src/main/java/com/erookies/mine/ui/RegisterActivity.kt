@@ -7,7 +7,9 @@ import android.text.style.ForegroundColorSpan
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
+import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.base.BaseActivity
+import com.erookies.lib_common.config.IM_ENTRY
 import com.erookies.lib_common.event.IMEvent
 import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.extentions.toast
@@ -41,6 +43,7 @@ class RegisterActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mine_activity_register)
+        ARouter.getInstance().inject(this)
 
         common_toolbar.init("注册")
 
@@ -48,7 +51,8 @@ class RegisterActivity : BaseActivity() {
             when (it) {
                 REGISTER_SUCCEED -> {
                     toast("注册成功")
-                    EventBus.getDefault().postSticky(IMEvent(IMEventType.REGISTER))
+                    val fragment = ARouter.getInstance().build(IM_ENTRY).navigation() as Fragment
+                    EventBus.getDefault().postSticky(IMEvent(IMEventType.REGISTER,friend = viewModel.registerUser))
                     startActivity<LoginActivity>()
                     finish()
                 }

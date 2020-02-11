@@ -29,12 +29,20 @@ class IMEntryViewModel() : BaseViewModel() {
     }
 
     fun updateConversations(){
+        needToast.value = false
         if (BaseApp.isLogin){
             conversations.value?.clear()
             conversations.value?.addAll(JIMHelper.getConversationList())
+            if (conversations.value?.size == 0){
+                toastMsg = "当前没有会话"
+                needToast.value = true
+            }
         }else{
             toastMsg = "当前没有登录用户"
             needToast.value = true
         }
+
+        toastMsg = ""
+        needToast.value = false
     }
 }
