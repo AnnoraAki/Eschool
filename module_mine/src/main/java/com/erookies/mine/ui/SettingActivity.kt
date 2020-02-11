@@ -5,6 +5,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.MINE_LOGIN
+import com.erookies.lib_common.event.IMEvent
+import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.event.LoginEvent
 import com.erookies.lib_common.extentions.toast
 import com.erookies.mine.R
@@ -29,7 +31,10 @@ class SettingActivity : BaseActivity() {
 
         changePwdViewModel.changePwdStatusEvent.observe {
             when (it) {
-                CHANGE_SUCCEED -> toast("修改密码成功")
+                CHANGE_SUCCEED -> {
+                    toast("修改密码成功")
+                    EventBus.getDefault().post(IMEvent(IMEventType.UPDATE_PWD,newPwd = BaseApp.user?.pwd ?: ""))
+                }
                 CHANGE_ERROR -> toast("修改密码失败")
                 NOT_LOGIN -> toast("未登录不能使用该功能哦")
             }
@@ -61,6 +66,7 @@ class SettingActivity : BaseActivity() {
                         checkEvent = { true }
                         todoEvent = {
                             EventBus.getDefault().post(LoginEvent(false))
+                            EventBus.getDefault().postSticky(IMEvent(IMEventType.LOGOUT))
                             BaseApp.user = null
                             finish()
                         }

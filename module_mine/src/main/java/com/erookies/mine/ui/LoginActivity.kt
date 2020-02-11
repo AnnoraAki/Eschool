@@ -2,9 +2,12 @@ package com.erookies.mine.ui
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.FIRST_IN
 import com.erookies.lib_common.config.MINE_LOGIN
+import com.erookies.lib_common.event.IMEvent
+import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.event.LoginEvent
 import com.erookies.lib_common.extentions.defaultSharedPreferences
 import com.erookies.lib_common.extentions.editor
@@ -66,6 +69,7 @@ class LoginActivity : BaseActivity() {
                 )
                 LOGIN_SUCCEED -> {
                     toast("欢迎登陆")
+                    EventBus.getDefault().postSticky(IMEvent(IMEventType.LOGIN))
                     EventBus.getDefault().post(LoginEvent(true))
                     finish()
                 }
@@ -76,7 +80,10 @@ class LoginActivity : BaseActivity() {
 
         changePwdViewModel.changePwdStatusEvent.observe {
             when(it) {
-                CHANGE_SUCCEED -> toast("修改密码成功")
+                CHANGE_SUCCEED -> {
+                    toast("修改密码成功")
+                    EventBus.getDefault().post(IMEvent(IMEventType.UPDATE_PWD,newPwd = BaseApp.user?.pwd ?: ""))
+                }
                 CHANGE_ERROR -> toast("修改密码失败")
             }
         }

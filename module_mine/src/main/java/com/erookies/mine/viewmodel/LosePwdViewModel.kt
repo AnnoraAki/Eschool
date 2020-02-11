@@ -25,7 +25,10 @@ class LosePwdViewModel : BaseViewModel() {
                 .changePwd(ChangeBody(if (sno.isBlank()) user.stuNum else sno, str))
                 .setSchedulers()
                 .safeSubscribeBy {
-                    changePwdStatusEvent.value = if (it.code == 0) CHANGE_SUCCEED else CHANGE_ERROR
+                    changePwdStatusEvent.value = if (it.code == 0) {
+                        BaseApp.user?.pwd = str
+                        CHANGE_SUCCEED
+                    } else CHANGE_ERROR
                 }.lifeCycle()
         }
 

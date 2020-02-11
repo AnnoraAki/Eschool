@@ -8,6 +8,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import com.erookies.lib_common.base.BaseActivity
+import com.erookies.lib_common.event.IMEvent
+import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.extentions.toast
 import com.erookies.mine.R
 import com.erookies.mine.bean.RegisterBean
@@ -15,6 +17,7 @@ import com.erookies.mine.viewmodel.RegisterViewModel
 import com.erookies.mine.viewmodel.RegisterViewModel.Companion.REGISTER_FAILED
 import com.erookies.mine.viewmodel.RegisterViewModel.Companion.REGISTER_SUCCEED
 import kotlinx.android.synthetic.main.mine_activity_register.*
+import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.startActivity
 
 class RegisterActivity : BaseActivity() {
@@ -45,6 +48,7 @@ class RegisterActivity : BaseActivity() {
             when (it) {
                 REGISTER_SUCCEED -> {
                     toast("注册成功")
+                    EventBus.getDefault().postSticky(IMEvent(IMEventType.REGISTER))
                     startActivity<LoginActivity>()
                     finish()
                 }

@@ -1,13 +1,17 @@
 package com.erookies.mine.ui
 
 import android.os.Bundle
+import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseActivity
+import com.erookies.lib_common.event.IMEvent
+import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.extentions.toast
 import com.erookies.mine.R
 import com.erookies.mine.viewmodel.LosePwdViewModel
 import com.erookies.mine.viewmodel.LosePwdViewModel.Companion.CHANGE_ERROR
 import com.erookies.mine.viewmodel.LosePwdViewModel.Companion.CHANGE_SUCCEED
 import kotlinx.android.synthetic.main.mine_activity_lose_pwd.*
+import org.greenrobot.eventbus.EventBus
 
 class LosePwdActivity : BaseActivity() {
 
@@ -19,7 +23,10 @@ class LosePwdActivity : BaseActivity() {
 
         viewModel.changePwdStatusEvent.observe {
             when(it) {
-                CHANGE_SUCCEED -> toast("修改密码成功")
+                CHANGE_SUCCEED -> {
+                    toast("修改密码成功")
+                    EventBus.getDefault().post(IMEvent(IMEventType.UPDATE_PWD,newPwd = BaseApp.user?.pwd ?: ""))
+                }
                 CHANGE_ERROR -> toast("修改密码失败")
             }
         }
