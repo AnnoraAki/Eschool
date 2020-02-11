@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import cn.jpush.im.android.api.JMessageClient
 import cn.jpush.im.android.api.enums.ContentType
 import cn.jpush.im.android.api.event.MessageEvent
 import cn.jpush.im.android.api.event.OfflineMessageEvent
@@ -25,13 +26,14 @@ class ConversationActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.im_activity_conversation)
-        JIMHelper.receiver = this
-        JIMHelper.enterChat()
+        JMessageClient.registerEventReceiver(this)
+        JMessageClient.enterSingleConversation((JIMHelper.conversation.targetInfo as UserInfo).userName)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        JIMHelper.exitChat()
+        JMessageClient.unRegisterEventReceiver(this)
+        JMessageClient.exitConversation()
     }
 
     override fun getFactory(): ViewModelProvider.Factory? {

@@ -7,17 +7,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.jpush.im.android.api.JMessageClient
+import cn.jpush.im.android.api.event.ConversationRefreshEvent
 import cn.jpush.im.android.api.event.MessageEvent
 import cn.jpush.im.android.api.event.NotificationClickEvent
 import cn.jpush.im.android.api.event.OfflineMessageEvent
+import cn.jpush.im.android.api.model.UserInfo
 import cn.jpush.im.api.BasicCallback
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseFragment
+import com.erookies.lib_common.config.APK_KEY
 import com.erookies.lib_common.config.IM_ENTRY
 import com.erookies.lib_common.event.IMEvent
 import com.erookies.lib_common.event.IMEventType
@@ -38,10 +43,15 @@ class IMEntryFragment : BaseFragment() {
     private val adapter:ConversationRVAdapter = ConversationRVAdapter()
     private val recyclerView:RecyclerView
         get() = im_conversation_list
+    private val swipeRefreshLayout:SwipeRefreshLayout
+        get() = im_swipe_refresh
+
+    private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewModel(IMEntryViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         JMessageClient.init(BaseApp.context)
+        JMessageClient.registerEventReceiver(this)
         ARouter.getInstance().inject(this)
     }
 
@@ -54,26 +64,44 @@ class IMEntryFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observe()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
-        adapter.conversations.addAll(JIMHelper.getConversationList())
-        adapter.notifyDataSetChanged()
+        adapter.apply {
+            conversations.addAll(viewModel.conversations.value!!)
+        }
+        swipeRefreshLayout.apply {
+            setColorSchemeColors(
+                ContextCompat.getColor(context, R.color.themeYellow)
+            )
+            setOnRefreshListener {
+                viewModel.updateConversations()
+                isRefreshing = false
+            }
+        }
     }
 
-    /**
-     * 处理SDK上抛的在线消息
-     */
-    fun onEventMainThread(event: MessageEvent){
-        //todo 根据上抛的在线消息放入对应的conversation所持有的消息列表
+    private fun observe(){
+        viewModel.needToast.observe {
+            if (it){
+                toast(viewModel.toastMsg)
+            }
+        }
+        viewModel.conversations.observe {
+            adapter.notifyDataSetChanged()
+        }
     }
 
-    /**
-     * 处理SDK上抛的离线消息
-     */
-    fun onEventMainThread(event: OfflineMessageEvent){
-        //todo 根据上抛的离线消息放入对应的conversation所持有的消息列表
-        val msgs = event.offlineMessageList
-        event.conversation.targetInfo
+    override fun onDestroyView() {
+        super.onDestroyView()
+        JMessageClient.unRegisterEventReceiver(this)
+    }
+
+    fun onEventMainThread(event: ConversationRefreshEvent){
+        val reason = event.reason
+        if (reason == ConversationRefreshEvent.Reason.UNREAD_CNT_UPDATED){
+            viewModel.updateConversations()
+        }
     }
 
     /**
@@ -81,6 +109,11 @@ class IMEntryFragment : BaseFragment() {
      */
     fun onEventMainThread(event: NotificationClickEvent){
         val msg = event.message
+        val userInfo = msg.fromUser
+        val cvs = JMessageClient.getSingleConversation(userInfo.userName, APK_KEY)
+        JIMHelper.conversation = cvs
+        val intent = Intent(this.context,ConversationActivity::class.java)
+        startActivity(intent)
     }
 
     /**

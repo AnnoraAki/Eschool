@@ -12,7 +12,6 @@ import com.erookies.lib_common.config.APK_KEY
 
 object JIMHelper {
     lateinit var conversation: Conversation
-    var receiver:Any? = null
     private val TAG = "JIMHelper"
 
     fun register(user: User,callback: BasicCallback){
@@ -63,17 +62,6 @@ object JIMHelper {
      * 进入界面后设置receiver
      */
 
-    //进入聊天界面调用
-    fun enterChat(){
-        JMessageClient.registerEventReceiver(receiver)
-    }
-
-    //退出聊天界面调用
-    fun exitChat(){
-        JMessageClient.unRegisterEventReceiver(receiver)
-        JMessageClient.exitConversation()
-    }
-
     fun getAllMessageForUser():MutableList<Message>{
         return conversation.allMessage
     }
@@ -82,10 +70,6 @@ object JIMHelper {
     fun sendMessage(content:String,callback: BasicCallback){
         val message = conversation.createSendTextMessage(content)
         message.setOnSendCompleteCallback(callback)
-        //接收消息需要写到UI里面或者viewModel内 onEventMainThread(event:MessageEvent)
-        //接收消息的界面需要记得注册和解绑
-        //JMessageClient.registerEventReceiver(this)
-        //JMessageClient.unRegisterEventReceiver(this)
         JMessageClient.sendMessage(message)
     }
 }
