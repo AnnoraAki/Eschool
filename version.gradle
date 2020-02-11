@@ -1,4 +1,4 @@
-ext.gradle_version = '3.4.2'
+ext.gradle_version = '3.5.3'
 
 ext.deps = [:]
 

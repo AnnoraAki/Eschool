@@ -19,6 +19,17 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        //        极光IM配置
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "9f717c429551f29726d8d55c", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
         kapt {
             arguments {
                 arg("AROUTER_MODULE_NAME", project.getName())
@@ -66,6 +77,7 @@ dependencies {
         implementation project(':module_mine')
         implementation project(':module_school')
         implementation project(':module_add')
+        implementation project(':module_im')
     }
 
     kapt deps.arouter.compiler
