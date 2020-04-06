@@ -55,6 +55,8 @@
             android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/im_conversation_unread_msg_bg"
+                android:visibility="gone"
                 android:scaleType="centerCrop"
                 android:src="#ff0000"
                 android:layout_width="25dp"

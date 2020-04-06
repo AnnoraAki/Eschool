@@ -32,12 +32,13 @@ class SPViewModel(private val repository: SearchPeopleRepository) :  BaseViewMod
 
         Log.d("SPViewModel",items.value.toString())
 
-        items.value?.clear()
         repository.loadItemList(startType, {list ->
-            items.value?.addAll(list)
-            if (items.value.isNullOrEmpty()){
+            if (list.isNullOrEmpty()){
                 error = "没有相关数据"
                 needToast.value = true
+            }else{
+                list.toMutableList().addAll(items.value?: mutableListOf())
+                items.value = list.toMutableList()
             }
             isRefresh.value = false
         },{

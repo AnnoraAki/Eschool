@@ -61,4 +61,7 @@ dependencies {
     api deps.bugly.nativecrashreport
 
     api 'org.conscrypt:conscrypt-android:2.2.1'
+
+    api 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    api 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 }

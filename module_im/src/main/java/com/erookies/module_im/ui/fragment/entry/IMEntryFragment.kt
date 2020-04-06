@@ -15,12 +15,11 @@ import cn.jpush.im.android.api.JMessageClient
 import cn.jpush.im.android.api.event.ConversationRefreshEvent
 import cn.jpush.im.android.api.event.MessageEvent
 import cn.jpush.im.android.api.event.NotificationClickEvent
-import cn.jpush.im.android.api.event.OfflineMessageEvent
-import cn.jpush.im.android.api.model.UserInfo
 import cn.jpush.im.api.BasicCallback
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.BaseApp
+import com.erookies.lib_common.IStartConversation
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.APK_KEY
 import com.erookies.lib_common.config.IM_ENTRY
@@ -29,7 +28,7 @@ import com.erookies.lib_common.event.IMEventType
 
 import com.erookies.module_im.R
 import com.erookies.module_im.helper.JIMHelper
-import com.erookies.module_im.ui.activity.conversation.ConversationActivity
+import com.erookies.module_im.ui.activity.conversation.SingleConversationActivity
 import com.erookies.module_im.ui.adapter.ConversationRVAdapter
 import kotlinx.android.synthetic.main.im_fragment_imentry.*
 import org.greenrobot.eventbus.EventBus
@@ -38,9 +37,9 @@ import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.support.v4.toast
 
 @Route(path = IM_ENTRY)
-class IMEntryFragment : BaseFragment() {
+class IMEntryFragment : BaseFragment(),IStartConversation {
     private val TAG = "IMEntryFragment"
-    private val adapter:ConversationRVAdapter = ConversationRVAdapter()
+    private val adapter:ConversationRVAdapter = ConversationRVAdapter(listener = this)
     private val recyclerView:RecyclerView
         get() = im_conversation_list
     private val swipeRefreshLayout:SwipeRefreshLayout
@@ -64,11 +63,12 @@ class IMEntryFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.updateConversations()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         observe()
         adapter.apply {
-            conversations.addAll(viewModel.conversations.value!!)
+            conversations.addAll(viewModel.conversations.value?: mutableListOf())
         }
         swipeRefreshLayout.apply {
             setColorSchemeColors(
@@ -76,10 +76,10 @@ class IMEntryFragment : BaseFragment() {
             )
             setOnRefreshListener {
                 viewModel.updateConversations()
-                isRefreshing = false
             }
         }
     }
+
 
     private fun observe(){
         viewModel.needToast.observe {
@@ -88,7 +88,11 @@ class IMEntryFragment : BaseFragment() {
             }
         }
         viewModel.conversations.observe {
+            swipeRefreshLayout.isRefreshing = true
+            adapter.conversations.clear()
+            adapter.conversations.addAll(it)
             adapter.notifyDataSetChanged()
+            swipeRefreshLayout.isRefreshing = false
         }
     }
 
@@ -112,15 +116,16 @@ class IMEntryFragment : BaseFragment() {
         val userInfo = msg.fromUser
         val cvs = JMessageClient.getSingleConversation(userInfo.userName, APK_KEY)
         JIMHelper.conversation = cvs
-        val intent = Intent(this.context,ConversationActivity::class.java)
+        val intent = Intent(this.context,SingleConversationActivity::class.java)
         startActivity(intent)
     }
 
     /**
-     * 处理即时聊天相关的时间
+     * 处理即时聊天相关的事件
      */
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     fun attchIMFunction(event:IMEvent){
+        Log.d("attchIMFunction","event content : $event")
         when(event.type){
             IMEventType.REGISTER -> {
                 JIMHelper.register(event.friend!!,object : BasicCallback() {
@@ -159,9 +164,9 @@ class IMEntryFragment : BaseFragment() {
             IMEventType.START_CONVERSATION -> {
                 if (BaseApp.isLogin){
                     if (event.friend != null){
-                        JIMHelper.chatWith(event.friend!!)
+                        JIMHelper.chatWith(event.friend)
                         val intent = Intent(activity,
-                            ConversationActivity::class.java)
+                            SingleConversationActivity::class.java)
                         startActivity(intent)
                     }else{
                         toast("没有聊天对象不能进行聊天哦~")
@@ -215,5 +220,9 @@ class IMEntryFragment : BaseFragment() {
         if (stickyEvent != null){
             EventBus.getDefault().removeStickyEvent(stickyEvent)
         }
+    }
+
+    override fun sendEvent(event: IMEvent) {
+        EventBus.getDefault().post(event)
     }
 }

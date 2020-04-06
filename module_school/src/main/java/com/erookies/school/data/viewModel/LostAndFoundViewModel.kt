@@ -15,7 +15,6 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
     var currentUser = MutableLiveData<User>()
 
     var items = MutableLiveData<MutableList<ItemData>>()
-    private var originalItems = MutableLiveData<MutableList<ItemData>>()
 
     var currentTag = MutableLiveData<Tag>()
 
@@ -28,7 +27,6 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
 
     init {
         items.value = mutableListOf()
-        originalItems.value = mutableListOf()
         users.value = mutableListOf()
         currentUser.value = User()
         isRefreshing.value = true
@@ -40,29 +38,23 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
         isRefreshing.value = true
 
         errorMsg = ""
-        originalItems.value?.clear()
 
         //获取数据
         repository.loadItemList(startType, {list->
-            //数据处理
-            originalItems.value?.addAll(list)
             //装载数据
-            if (originalItems.value.isNullOrEmpty()){
+            if (list.isNullOrEmpty()){
                 isRefreshing.value = false
                 errorMsg = "无相关数据"
                 needToast.value = true
             }else{
-                items.value?.clear()
-
                 //判断启动类型再装载数据
                 if (startType == START_FROM_MAIN){
-                    items.value?.addAll(
-                        originalItems.value!!
-                            .asSequence().filter {item->
-                                item.tag == currentTag.value
-                            })
+                    items.value = list
+                        .asSequence().filter {item->
+                            item.tag == currentTag.value
+                        }.toMutableList()
                 }else{
-                    items.value?.addAll(originalItems.value!!)
+                    items.value = list.toMutableList()
                 }
 
                 isRefreshing.value = false

@@ -6,23 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
-import androidx.annotation.IntDef
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.BaseApp
-import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.SCHOOL_LOST_FOUND
 import com.erookies.lib_common.config.START_FROM_MAIN
+import com.erookies.lib_common.event.IMEvent
 import com.erookies.school.R
+import com.erookies.lib_common.IStartConversation
 import com.erookies.school.data.factory.LostAndFoundFactory
 import com.erookies.school.data.model.Tag
 import com.erookies.school.data.repository.LostAndFoundRepository
@@ -34,6 +32,7 @@ import com.erookies.school.utils.restoreStyle
 import com.erookies.school.utils.toast
 import kotlinx.android.synthetic.main.school_common_recycler_view.*
 import kotlinx.android.synthetic.main.school_fragment_lost_found.*
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Create by Koalak.
@@ -41,7 +40,8 @@ import kotlinx.android.synthetic.main.school_fragment_lost_found.*
  */
 
 @Route(path = SCHOOL_LOST_FOUND)
-class LostAndFoundEntryFragment : BaseFragment(),View.OnClickListener {
+class LostAndFoundEntryFragment : BaseFragment(),View.OnClickListener,
+    IStartConversation {
 
     //添加JvmField解决字段注入问题
     @JvmField
@@ -86,7 +86,8 @@ class LostAndFoundEntryFragment : BaseFragment(),View.OnClickListener {
 
         viewModel.currentUser.value = BaseApp.user
         viewModel.getItemDataList()
-        adapter = LostAndFoundRVAdapter(viewModel.items.value)
+        adapter = LostAndFoundRVAdapter(listener = this)
+        adapter.list.addAll(viewModel.items.value ?: mutableListOf())
 
         binding.lifecycleOwner = this.viewLifecycleOwner
 
@@ -134,6 +135,10 @@ class LostAndFoundEntryFragment : BaseFragment(),View.OnClickListener {
                     }
                 })
         }
+        viewModel.items.observe(this.viewLifecycleOwner, Observer {
+            adapter.list.addAll(it)
+            adapter.notifyDataSetChanged()
+        })
         viewModel.isRefreshing.observe(this.viewLifecycleOwner,
             Observer {
                 adapter.notifyDataSetChanged()
@@ -170,4 +175,9 @@ class LostAndFoundEntryFragment : BaseFragment(),View.OnClickListener {
 
     override fun getFactory(): ViewModelProvider.Factory? = LostAndFoundFactory(
         LostAndFoundRepository.getInstance())
+
+    override fun sendEvent(event: IMEvent) {
+        EventBus.getDefault().post(event)
+        Log.d("sendEvent_ls","send finish : $event")
+    }
 }

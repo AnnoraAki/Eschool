@@ -17,15 +17,17 @@ import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.SCHOOL_SEARCH_PEOPLE
 import com.erookies.lib_common.config.START_FROM_MAIN
+import com.erookies.lib_common.event.IMEvent
 import com.erookies.school.R
+import com.erookies.lib_common.IStartConversation
 import com.erookies.school.data.factory.SearchPeopleFactory
 import com.erookies.school.data.repository.SearchPeopleRepository
 import com.erookies.school.data.viewModel.SPViewModel
 import com.erookies.school.databinding.SchoolFragmentSearchPeopleBinding
 import com.erookies.school.ui.adapter.SearchPeopleRVAdapter
 import com.erookies.school.utils.toast
-import debug.MainDebugApplication
 import kotlinx.android.synthetic.main.school_common_recycler_view.*
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Create by Koalak.
@@ -33,7 +35,8 @@ import kotlinx.android.synthetic.main.school_common_recycler_view.*
  */
 
 @Route(path = SCHOOL_SEARCH_PEOPLE)
-class SearchPeopleEntryFragment : BaseFragment() {
+class SearchPeopleEntryFragment : BaseFragment(),
+    IStartConversation {
 
     @JvmField
     @Autowired(name = "start_type")
@@ -65,7 +68,8 @@ class SearchPeopleEntryFragment : BaseFragment() {
         viewModel.startType = startType
         viewModel.currentUser.value = BaseApp.user
         viewModel.getItemDataListFromNetWork()
-        adapter = SearchPeopleRVAdapter(viewModel.items.value)
+        adapter = SearchPeopleRVAdapter(listener = this)
+        adapter.list.addAll(viewModel.items.value ?: mutableListOf())
 
         binding.lifecycleOwner = this.viewLifecycleOwner
         return binding.root
@@ -77,6 +81,10 @@ class SearchPeopleEntryFragment : BaseFragment() {
     }
 
     private fun observe(){
+        viewModel.items.observe(this.viewLifecycleOwner, Observer {
+            adapter.list.addAll(it)
+            adapter.notifyDataSetChanged()
+        })
         viewModel.isRefresh.observe(this.viewLifecycleOwner,
             Observer {
                 adapter.notifyDataSetChanged()
@@ -97,4 +105,9 @@ class SearchPeopleEntryFragment : BaseFragment() {
 
     override fun getFactory(): ViewModelProvider.Factory? = SearchPeopleFactory(
         SearchPeopleRepository.getInstance())
+
+    override fun sendEvent(event: IMEvent) {
+        EventBus.getDefault().post(event)
+        Log.d("sendEvent_sp","send finish : $event")
+    }
 }

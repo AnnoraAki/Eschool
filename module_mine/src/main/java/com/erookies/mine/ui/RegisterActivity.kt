@@ -61,7 +61,6 @@ class RegisterActivity : BaseActivity() {
                 }
             }
         }
-
         showFragment(RegisterContainerFragment.newInstance(R.layout.mine_fragment_stu), 1)
     }
 

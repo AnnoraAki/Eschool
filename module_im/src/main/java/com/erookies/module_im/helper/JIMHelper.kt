@@ -1,8 +1,11 @@
 package com.erookies.module_im.helper
 
+import android.text.TextUtils
 import cn.jpush.im.android.api.JMessageClient
 import cn.jpush.im.android.api.callback.GetUserInfoCallback
+import cn.jpush.im.android.api.enums.ConversationType
 import cn.jpush.im.android.api.model.Conversation
+import cn.jpush.im.android.api.model.GroupInfo
 import cn.jpush.im.android.api.model.Message
 import cn.jpush.im.android.api.model.UserInfo
 import cn.jpush.im.android.api.options.RegisterOptionalUserInfo
@@ -17,7 +20,7 @@ object JIMHelper {
 
     fun register(user: User,callback: BasicCallback){
         val registerOptionalUserInfo = RegisterOptionalUserInfo()
-        registerOptionalUserInfo.nickname = user.nickname
+        registerOptionalUserInfo.nickname = if (!TextUtils.isEmpty(user.nickname)) user.nickname else user.stuNum
         registerOptionalUserInfo.extras = mapOf(
             "collage" to user.college,
             "email" to user.email,
@@ -38,9 +41,11 @@ object JIMHelper {
         JMessageClient.updateUserPassword(oldPwd,newPwd,callback)
     }
 
-    fun chatWith(user: User){
-        conversation = Conversation.createSingleConversation(user.stuNum, APK_KEY)
-        JMessageClient.enterSingleConversation(user.stuNum, APK_KEY)
+    fun chatWith(user: User?){
+        if (user != null){
+            conversation = Conversation.createSingleConversation(user.stuNum)
+            JMessageClient.enterSingleConversation(user.stuNum, APK_KEY)
+        }
     }
 
     fun getConversationList():MutableList<Conversation>{
@@ -58,18 +63,41 @@ object JIMHelper {
         JMessageClient.getUserInfo(userID, APK_KEY,callback)
     }
 
+    fun getSingleConversation(userNum:String):Conversation{
+        for (con in JMessageClient.getConversationList()){
+            if (conversation.type == ConversationType.single){
+                if (userNum == (con.targetInfo as UserInfo).userName){
+                    return con
+                }
+            }
+        }
+        return Conversation.createSingleConversation(userNum, APK_KEY)
+    }
+
+    fun getGroupConversation(groupId:Long):Conversation{
+        for (con in JMessageClient.getConversationList()){
+            if (conversation.type == ConversationType.group){
+                if (groupId == (con.targetInfo as GroupInfo).groupID){
+                    return con
+                }
+            }
+        }
+        return Conversation.createGroupConversation(groupId)
+    }
+
     /**
      * 以下方法需在进入聊天界面后调用才行
-     * 进入界面后设置receiver
      */
 
     fun getAllMessageForUser():MutableList<Message>{
         return conversation.allMessage
     }
 
+    //创建消息
+    fun createMessage(content:String):Message = conversation.createSendTextMessage(content)
+
     //发送消息
-    fun sendMessage(content:String,callback: BasicCallback){
-        val message = conversation.createSendTextMessage(content)
+    fun sendMessage(message:Message,callback: BasicCallback){
         message.setOnSendCompleteCallback(callback)
         JMessageClient.sendMessage(message)
     }
