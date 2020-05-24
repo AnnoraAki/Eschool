@@ -42,13 +42,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <Button
+            <TextView
                 android:id="@+id/school_sp_item_tag_button"
                 android:text="@string/school_search_people_align"
+                android:padding="4dp"
                 android:background="@drawable/school_tag_button_not_select_style"
                 android:layout_alignParentEnd="true"
-                android:layout_width="106dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp" />
