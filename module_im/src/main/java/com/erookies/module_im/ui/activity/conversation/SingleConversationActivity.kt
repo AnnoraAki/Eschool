@@ -41,6 +41,7 @@ class SingleConversationActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.im_activity_conversation)
+        window.decorView.viewTreeObserver.addOnGlobalLayoutListener(mViewGlobalListener)
         JMessageClient.registerEventReceiver(this)
         JMessageClient.enterSingleConversation((JIMHelper.conversation.targetInfo as UserInfo).userName)
         common_toolbar.init(title = nickName)
@@ -90,7 +91,7 @@ class SingleConversationActivity : BaseActivity() {
         val topValue = mCurrentWindowRect.bottom - mInputAreaRect.height()
         val margin = ViewGroup.MarginLayoutParams(im_input_area.layoutParams)
         margin.setMargins(topValue, 0, 0, 0)
-        window.decorView.requestLayout()
+        im_input_area.layoutParams = margin
     }
 
     private fun computeInputAreaBounds() {
