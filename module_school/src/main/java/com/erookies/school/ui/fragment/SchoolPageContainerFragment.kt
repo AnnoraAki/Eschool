@@ -21,7 +21,7 @@ import com.erookies.school.data.factory.SchoolPageContainerFactory
 import com.erookies.school.data.viewModel.SchoolPageContainerViewModel
 import com.erookies.school.databinding.SchoolFragmentContainerBinding
 import com.erookies.school.ui.activity.PublishActivity
-import com.erookies.school.utils.Constans
+import com.erookies.school.utils.Constants
 import com.erookies.school.utils.change
 import com.erookies.school.utils.toast
 import kotlinx.android.synthetic.main.school_fragment_container.*
@@ -152,13 +152,13 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
     }
 
     fun initConstants(){
-        if (!Constans.initStatus){
+        if (!Constants.initStatus){
             val windowManager = this.activity?.windowManager ?: return
             val outMetric = DisplayMetrics()
             windowManager.defaultDisplay.getMetrics(outMetric)
-            Constans.height = outMetric.heightPixels.toFloat()
-            Constans.width = outMetric.widthPixels.toFloat()
-            Constans.initStatus = true
+            Constants.height = outMetric.heightPixels.toFloat()
+            Constants.width = outMetric.widthPixels.toFloat()
+            Constants.initStatus = true
         }
     }
 }

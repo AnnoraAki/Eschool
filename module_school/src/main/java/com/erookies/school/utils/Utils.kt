@@ -93,7 +93,7 @@ fun ConfigurePictureSelect(activity: Activity,medias:List<LocalMedia>){
         .forResult(PictureConfig.CHOOSE_REQUEST)
 }
 
-object Constans{
+object Constants{
     var initStatus:Boolean = false
     var height:Float = 0f
     var width:Float = 0f

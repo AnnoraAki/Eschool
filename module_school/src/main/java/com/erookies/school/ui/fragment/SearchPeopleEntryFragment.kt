@@ -82,6 +82,7 @@ class SearchPeopleEntryFragment : BaseFragment(),
 
     private fun observe(){
         viewModel.items.observe(this.viewLifecycleOwner, Observer {
+            adapter.list.clear()
             adapter.list.addAll(it)
             adapter.notifyDataSetChanged()
         })
