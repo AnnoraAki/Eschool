@@ -13,6 +13,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/school_ls_top_layout"
             android:paddingTop="4dp"
             android:paddingBottom="6dp"
             android:orientation="horizontal"
@@ -62,6 +63,7 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/school_ls_divider"
             android:background="#dadada"
             android:layout_width="match_parent"
             android:layout_height="10dp"/>

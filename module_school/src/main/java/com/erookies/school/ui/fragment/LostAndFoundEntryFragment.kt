@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -48,6 +49,9 @@ class LostAndFoundEntryFragment : BaseFragment(),View.OnClickListener,
     @Autowired(name = "start_type")
     var startType:Int = START_FROM_MAIN
 
+    private val schoolLsTopLayout:LinearLayout
+        get() = school_ls_top_layout
+
     private val viewModel:LostAndFoundViewModel by lazy { getViewModel(LostAndFoundViewModel::class.java) }
 
     private lateinit var binding:SchoolFragmentLostFoundBinding
@@ -72,6 +76,7 @@ class LostAndFoundEntryFragment : BaseFragment(),View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this)
+        viewModel.startType = startType
     }
 
     override fun onCreateView(
@@ -102,28 +107,29 @@ class LostAndFoundEntryFragment : BaseFragment(),View.OnClickListener,
 
     private fun init(){
         recyclerView.layoutManager = LinearLayoutManager(this.context)
-        Log.d("LostAndFoundFragment","LayoutManager is : ${recyclerView.layoutManager.toString()}")
         recyclerView.adapter = adapter
-        Log.d("LostAndFoundFragment","recyclerview list is : ${adapter.itemCount}")
 
+        //控制失物类别的button、
+        //后面替换为TabLayout+ViewPager的形式
+        //yysy,这一处我当时写的确实很💩
         buttons[Tag.CARD.tag] = cardButton
         buttons[Tag.COMMODITY.tag] = dailyButton
         buttons[Tag.DIGITAL.tag] = digitalButton
         buttons[Tag.OTHER.tag] = othersButton
 
-        if (startType == START_FROM_MAIN){
-            cardButton.setOnClickListener(this)
-            digitalButton.setOnClickListener(this)
-            dailyButton.setOnClickListener(this)
-            othersButton.setOnClickListener(this)
+        //从用户页启动会直接隐藏切换页面的button所在的layout
+        if (viewModel.startType == START_FROM_MAIN){
+            schoolLsTopLayout.visibility = View.VISIBLE
+            for (btn in buttons) {
+                btn.value.setOnClickListener(this)
+            }
         }else{
-            val btns = buttons.values
-            hideButton(btns)
+            schoolLsTopLayout.visibility = View.GONE
         }
     }
 
     private fun observe(){
-        if (startType == START_FROM_MAIN){
+        if (viewModel.startType == START_FROM_MAIN){
             viewModel.currentTag.observe(this.viewLifecycleOwner,
                 Observer {tag ->
                     Log.d("LostAndFoundFragment","current tag is changed, current tag is : ${tag.tag}")
