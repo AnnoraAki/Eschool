@@ -23,7 +23,7 @@ class SearchPeopleRepository private constructor(){
      * @return 失物招领信息的列表
      */
     @SuppressLint("CheckResult")
-    fun loadItemList(@LoadType type:Int, operation:(List<ItemData>)->Unit, error:(message:String)->Unit){
+    inline fun loadItemList(@LoadType type:Int, crossinline operation:(List<ItemData>)->Unit, crossinline error:(message:String)->Unit){
 
         val body = when(type){
             START_FROM_MAIN ->  "0"

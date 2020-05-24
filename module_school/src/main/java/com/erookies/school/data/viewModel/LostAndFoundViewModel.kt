@@ -36,6 +36,7 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
 
     fun getItemDataList(){
         isRefreshing.value = true
+        needToast.value = false
 
         errorMsg = ""
 
@@ -49,8 +50,7 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
             }else{
                 //判断启动类型再装载数据
                 if (startType == START_FROM_MAIN){
-                    items.value = list
-                        .asSequence().filter {item->
+                    items.value = list.filter {item->
                             item.tag == currentTag.value
                         }.toMutableList()
                 }else{
