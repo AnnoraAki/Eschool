@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.erookies.add.R
 import com.erookies.add.bean.AddEntry
 import com.erookies.add.ui.adapter.AddViewAdapter
+import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseFragment
 import com.erookies.lib_common.config.ADD_ENTRY
 import com.erookies.lib_common.event.ClickMenuEvent
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.add_fragment_add.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 @Route(path = ADD_ENTRY)
 class AddContainerFragment : BaseFragment() {
@@ -58,7 +60,11 @@ class AddContainerFragment : BaseFragment() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun clickMenu(event: ClickMenuEvent) {
         if (event.position == 0) {
-            startActivity<AddActivity>()
+            if (BaseApp.isLogin) {
+                startActivity<AddActivity>()
+            } else {
+                toast("登录才能使用功能哦")
+            }
         }
     }
 }

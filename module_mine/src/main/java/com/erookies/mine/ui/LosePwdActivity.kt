@@ -21,6 +21,8 @@ class LosePwdActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mine_activity_lose_pwd)
 
+        common_toolbar.init("忘记密码")
+
         viewModel.changePwdStatusEvent.observe {
             when(it) {
                 CHANGE_SUCCEED -> {

@@ -3,7 +3,7 @@ package com.erookies.school.ui.activity
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.commit
+//import androidx.fragment.app.commit
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.school.R
@@ -24,8 +24,8 @@ class MainActivity : BaseActivity() {
 
         common_toolbar.init("e校",listener = null)
 
-        manager.commit {
-            add(R.id.school_page_container,SchoolPageContainerFragment(),SchoolPageContainerFragment::class.java.name)
-        }
+//        manager.commit {
+//            add(R.id.school_page_container,SchoolPageContainerFragment(),SchoolPageContainerFragment::class.java.name)
+//        }
     }
 }

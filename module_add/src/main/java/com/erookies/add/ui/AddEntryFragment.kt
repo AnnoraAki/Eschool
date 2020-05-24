@@ -1,10 +1,14 @@
 package com.erookies.add.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
+import androidx.core.util.Pair
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.erookies.add.R
@@ -13,7 +17,8 @@ import com.erookies.add.ui.adapter.AddRecyclerViewAdapter
 import com.erookies.add.ui.viemodel.AddEntryViewModel
 import com.erookies.lib_common.base.BaseFragment
 import kotlinx.android.synthetic.main.add_fragment_container.*
-import org.jetbrains.anko.support.v4.startActivity
+import kotlinx.android.synthetic.main.add_recycler_item.*
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Create by Cchanges.
@@ -51,9 +56,21 @@ class AddEntryFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val adapter = AddRecyclerViewAdapter {
-            startActivity<AddDetailActivity>("entry" to lists[it])
-        }
+        val adapter = AddRecyclerViewAdapter({
+            val options = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(
+                    activity as Activity,
+                    Pair.create(civ_add_avatar, "add_avatar"),
+                    Pair.create(tv_address, "add_address"),
+                    Pair.create(tv_time, "add_time"),
+                    Pair.create(tv_tag, "add_type"),
+                    Pair.create(tv_add_nickname, "add_nickname")
+                )
+            val intent = Intent(this.context, AddDetailActivity::class.java)
+            intent.putExtra("entry", lists[it])
+            startActivity(intent, options.toBundle())
+        }, { EventBus.getDefault().post(it) })
+
         viewModel.list.observe {
             adapter.changeData(it.toMutableList())
             lists = it

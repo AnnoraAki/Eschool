@@ -18,20 +18,15 @@ class LosePwdViewModel : BaseViewModel() {
     val changePwdStatusEvent = MutableLiveData<Int>()
 
     fun changePwd(str: String, sno: String = "") {
-        val user = BaseApp.user
-        if (user == null) changePwdStatusEvent.value = NOT_LOGIN
-        else {
-            ApiGenerator.getApiService(Api::class.java)
-                .changePwd(ChangeBody(if (sno.isBlank()) user.stuNum else sno, str))
-                .setSchedulers()
-                .safeSubscribeBy {
-                    changePwdStatusEvent.value = if (it.code == 0) {
-                        BaseApp.user?.pwd = str
-                        CHANGE_SUCCEED
-                    } else CHANGE_ERROR
-                }.lifeCycle()
-        }
-
+        ApiGenerator.getApiService(Api::class.java)
+            .changePwd(ChangeBody(sno, str))
+            .setSchedulers()
+            .safeSubscribeBy {
+                changePwdStatusEvent.value = if (it.code == 0) {
+                    BaseApp.user?.pwd = str
+                    CHANGE_SUCCEED
+                } else CHANGE_ERROR
+            }.lifeCycle()
     }
 
     companion object {
