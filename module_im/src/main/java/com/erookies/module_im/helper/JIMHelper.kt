@@ -49,7 +49,7 @@ object JIMHelper {
     }
 
     fun getConversationList():MutableList<Conversation>{
-        return JMessageClient.getConversationList()
+        return JMessageClient.getConversationList() ?: mutableListOf()
     }
 
     fun updateUserInfo(user: User,basicCallback: BasicCallback){

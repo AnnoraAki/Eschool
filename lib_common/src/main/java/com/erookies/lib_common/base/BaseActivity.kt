@@ -38,7 +38,9 @@ abstract class BaseActivity : AppCompatActivity() {
     protected fun Toolbar.init(
         title: String,
         @DrawableRes icon: Int = R.drawable.common_ic_back,
-        listener: View.OnClickListener? = View.OnClickListener { finish() },
+        listener: View.OnClickListener? = View.OnClickListener {
+            finishAfterTransition()
+        },
         @DrawableRes rightIcon: Int = R.drawable.common_ic_add,
         rightListener: View.OnClickListener? = null
     ) {

@@ -1,8 +1,11 @@
 package com.erookies.school.ui.holder
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -36,7 +39,24 @@ class SearchPeopleViewHolder(
             val intent = Intent(binding.root.context, DetailActivity::class.java)
             intent.putExtra("item_data",item)
             intent.putExtra("type",16)
-            binding.root.context.startActivity(intent)
+            val options = if (item?.pictures.isNullOrEmpty()) ActivityOptionsCompat
+                .makeSceneTransitionAnimation(
+                    binding.root.context as Activity,
+                    Pair.create(binding.schoolSpItemUserName, "people_nickname"),
+                    Pair.create(binding.schoolSpItemUserAvatar, "people_avatar"),
+                    Pair.create(binding.schoolSpItemTagButton, "people_type"),
+                    Pair.create(binding.schoolSpItemContent, "people_content")
+                )
+            else ActivityOptionsCompat
+                .makeSceneTransitionAnimation(
+                    binding.root.context as Activity,
+                    Pair.create(binding.schoolSpItemUserName, "people_nickname"),
+                    Pair.create(binding.schoolSpItemUserAvatar, "people_avatar"),
+                    Pair.create(binding.schoolSpItemTagButton, "people_type"),
+                    Pair.create(binding.schoolSpItemContent, "people_content"),
+                    Pair.create(binding.schoolSpItemPictures, "people_rv")
+                )
+            binding.root.context.startActivity(intent, options.toBundle())
         }
 
         binding.root.school_sp_item_user_avatar.setOnClickListener {

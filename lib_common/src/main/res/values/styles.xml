@@ -5,9 +5,17 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/themeBlue</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
     </style>
 
     <style name="AppTheme.FullScreen" parent="AppTheme" tools:ignore="ResourceName">
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="ActivityAnimation" parent="@android:style/Animation.Activity" tools:ignore="ResourceName">
+        <item name="android:activityOpenEnterAnimation">@anim/common_anim_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/common_anim_exit</item>
+    </style>
+
 </resources>

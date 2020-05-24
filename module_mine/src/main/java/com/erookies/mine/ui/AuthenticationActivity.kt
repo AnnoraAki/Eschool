@@ -6,7 +6,6 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.MINE_LOGIN
-import com.erookies.lib_common.extentions.toast
 import com.erookies.mine.R
 import com.erookies.mine.utils.DialogBuilder
 import com.erookies.mine.utils.DialogHelper
@@ -38,6 +37,7 @@ class AuthenticationActivity : BaseActivity() {
                 ARouter.getInstance().build(MINE_LOGIN).navigation()
                 finish()
             }
+            falseEvent = { finish() }
         }
         DialogHelper.toastDialog(this@AuthenticationActivity, builder)
     }

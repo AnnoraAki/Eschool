@@ -84,13 +84,23 @@ class UserFragment : BaseFragment() {
         }
         tv_mine_material.setOnClickListener { startActivity<AuthenticationActivity>() }
         tv_mine_add.setOnClickListener {
-            ARouter.getInstance().build(ADD_OWN).navigation()
+            if (BaseApp.user != null)
+                ARouter.getInstance().build(ADD_OWN).navigation()
+            else askToLogin(it.context)
         }
         tv_find_people.setOnClickListener {
-            //todo：我的寻人
+            if (BaseApp.isLogin) {
+                val intent = Intent(activity,MineContainerActivity::class.java)
+                intent.putExtra(MineContainerActivity.TAG_NAME,MineContainerActivity.TAG_PEOPLE)
+                startActivity(intent)
+            } else askToLogin(it.context)
         }
         tv_find_things.setOnClickListener {
-            //todo: 我的失物招领
+            if (BaseApp.isLogin) {
+                val intent = Intent(activity,MineContainerActivity::class.java)
+                intent.putExtra(MineContainerActivity.TAG_NAME,MineContainerActivity.TAG_LOST)
+                startActivity(intent)
+            } else askToLogin(it.context)
         }
         tv_setting.setOnClickListener { startActivity<SettingActivity>() }
     }

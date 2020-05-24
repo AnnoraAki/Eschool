@@ -3,6 +3,7 @@
     package="com.erookies.mine">
 
     <application>
+        <activity android:name=".ui.MineContainerActivity"></activity>
         <activity android:name=".ui.LosePwdActivity" />
         <activity android:name=".ui.AuthenticationActivity" />
         <activity android:name=".ui.SettingActivity" />
