@@ -12,7 +12,7 @@ const val FIRST_IN = "eschool_first_in"
 
 const val PIC_BASE_URL = "${BASE_URL}api/download_face_api/"
 
-//启动参数
+//e校启动参数
 const val START_FROM_USER = 21
 const val START_FROM_MAIN = 20
 
