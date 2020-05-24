@@ -16,6 +16,8 @@ const val MINE_LOGIN = "/mine/login"
 
 const val SCHOOL_ENTRY = "/school/entry"
 const val SCHOOL_LOST_FOUND = "/user/school/lost"
+const val SCHOOL_LOST_FOUND_NEW_STYLE = "/user/school/lost_new_style"
+const val SCHOOL_DETAIL_LOST_FOUND = "/user/school/detail_lost_found"
 const val SCHOOL_SEARCH_PEOPLE = "/user/school/search"
 const val SCHOOL_DETAIL = "/school/detail"
 const val SCHOOL_PUBLISH = "/school/publish"
