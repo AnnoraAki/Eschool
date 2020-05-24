@@ -73,9 +73,11 @@ class ConversationViewHolder(view: View,private val listener:IStartConversation)
                 .into(itemView.im_user_avatar)
 
             itemView.im_user_nickname.text = if (!TextUtils.isEmpty(info.nickname)) info.nickname else info.userName
-            itemView.im_conversation_newest_msg.text = when(conversation.latestMessage.contentType){
-                ContentType.text -> (conversation.latestMessage.content as TextContent).text
-                else -> "[不支持的消息类型]"
+            if (conversation.latestMessage != null) {
+                itemView.im_conversation_newest_msg.text = when(conversation.latestMessage.contentType){
+                    ContentType.text -> (conversation.latestMessage.content as TextContent).text
+                    else -> "[不支持的消息类型]"
+                }
             }
 
             if (conversation.unReadMsgCnt > 0){
