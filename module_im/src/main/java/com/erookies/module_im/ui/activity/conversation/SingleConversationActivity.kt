@@ -1,9 +1,13 @@
 package com.erookies.module_im.ui.activity.conversation
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.os.Looper
 import android.text.TextUtils
 import android.util.Log
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.widget.RelativeLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.jpush.im.android.api.JMessageClient
@@ -29,6 +33,8 @@ class SingleConversationActivity : BaseActivity() {
     private val nickName:String = if (!TextUtils.isEmpty(userInfo.nickname)) userInfo.nickname else userInfo.userName
     private val adapter = MessagesAdapter(avatar)
 
+    private val mInputAreaRect = Rect()
+    private val mCurrentWindowRect = Rect()
 
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewModel(SingleConversationViewModel::class.java) }
 
@@ -44,6 +50,7 @@ class SingleConversationActivity : BaseActivity() {
     private fun initView(){
         val msgs = viewModel.getAllMessages()
         adapter.messages.addAll(msgs)
+        computeInputAreaBounds()
         im_message_list.layoutManager = LinearLayoutManager(this)
         im_message_list.adapter = adapter
         adapter.notifyDataSetChanged()
@@ -78,10 +85,21 @@ class SingleConversationActivity : BaseActivity() {
         return SingleConversationFactory()
     }
 
+    private val mViewGlobalListener = ViewTreeObserver.OnGlobalLayoutListener {
+        window.decorView.getWindowVisibleDisplayFrame(mCurrentWindowRect)
+        val topValue = mCurrentWindowRect.bottom - mInputAreaRect.height()
+        val margin = ViewGroup.MarginLayoutParams(im_input_area.layoutParams)
+        margin.setMargins(topValue, 0, 0, 0)
+        window.decorView.requestLayout()
+    }
+
+    private fun computeInputAreaBounds() {
+        im_input_area.getLocalVisibleRect(mInputAreaRect)
+    }
+
     /**
      * EventBus事件
      */
-
     fun onEventMainThread(event: OfflineMessageEvent){
         val offlineMessages = event.offlineMessageList
         for (msg in offlineMessages){
