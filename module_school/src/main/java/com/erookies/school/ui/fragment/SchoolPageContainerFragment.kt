@@ -42,7 +42,7 @@ class SchoolPageContainerFragment : BaseFragment(),View.OnClickListener {
         get() = school_page_list_container
 
     //fragment列表
-    val fragments = mutableListOf<Fragment>(SearchPeopleEntryFragment(),LostAndFoundEntryFragment())
+    val fragments = mutableListOf<Fragment>(SearchPeopleEntryFragment(),LostFoundEntryFragmentNewStyle())
 
     override fun getFactory(): ViewModelProvider.Factory? {
         return SchoolPageContainerFactory()

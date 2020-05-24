@@ -11,7 +11,6 @@ import com.erookies.school.data.model.Tag
 import com.erookies.school.data.repository.LostAndFoundRepository
 
 class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : BaseViewModel() {
-    var users = MutableLiveData<MutableList<User>>()
     var currentUser = MutableLiveData<User>()
 
     var items = MutableLiveData<MutableList<ItemData>>()
@@ -27,7 +26,6 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
 
     init {
         items.value = mutableListOf()
-        users.value = mutableListOf()
         currentUser.value = User()
         isRefreshing.value = true
         currentTag.value = Tag.CARD
@@ -54,7 +52,9 @@ class LostAndFoundViewModel(private val repository: LostAndFoundRepository) : Ba
                             item.tag == currentTag.value
                         }.toMutableList()
                 }else{
-                    items.value = list.toMutableList()
+                    items.value = list.filter {item->
+                        item.tag != Tag.SP
+                    }.toMutableList()
                 }
 
                 isRefreshing.value = false

@@ -8,14 +8,14 @@ import com.erookies.school.data.model.ItemData
 import com.erookies.school.data.model.Tag
 import com.erookies.school.databinding.SchoolItemSearchPeopleBinding
 import com.erookies.school.ui.holder.SearchPeopleViewHolder
-import com.erookies.school.utils.TagParseToInt
+import com.erookies.school.utils.TagToInt
 
 class SearchPeopleRVAdapter(
     val list:MutableList<ItemData> = mutableListOf(),
     val listener: IStartConversation
 ) : RecyclerView.Adapter<SearchPeopleViewHolder>() {
 
-    private val tag = TagParseToInt(Tag.SP)
+    private val tag = TagToInt(Tag.SP)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchPeopleViewHolder {
         val binding = SchoolItemSearchPeopleBinding.inflate(LayoutInflater.from(parent.context),

@@ -85,6 +85,7 @@ class LostAndFoundEntryFragment : BaseFragment(),View.OnClickListener,
         savedInstanceState: Bundle?
     ): View? {
 
+        //数据绑定真的有毒，再也不用了
         binding = DataBindingUtil.inflate(inflater, R.layout.school_fragment_lost_found,container,false)
 
         binding.viewModel = viewModel

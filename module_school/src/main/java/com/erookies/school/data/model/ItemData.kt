@@ -2,7 +2,7 @@ package com.erookies.school.data.model
 
 import android.os.Parcelable
 import com.erookies.lib_common.bean.User
-import com.erookies.school.utils.IntParseToTag
+import com.erookies.school.utils.IntToTag
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import java.lang.StringBuilder
@@ -16,7 +16,7 @@ class ItemData(@SerializedName("id") var id:Int = -1,
                @SerializedName("creat_time") var createTime:String = "",
                @SerializedName("image_urls") val pictures:MutableList<String> = mutableListOf()) : Parcelable {
     val tag:Tag
-        get() = IntParseToTag(tagNum)
+        get() = IntToTag(tagNum)
 
     override fun toString(): String {
         return StringBuilder().apply {

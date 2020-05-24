@@ -59,7 +59,7 @@ fun BaseFragment.toast(meesage:CharSequence){
     Toast.makeText(this.context,meesage,Toast.LENGTH_SHORT).show()
 }
 
-fun IntParseToTag(type:Int):Tag{
+fun IntToTag(type:Int):Tag{
     return when(type){
         0 -> Tag.SP
         1 -> Tag.CARD
@@ -69,7 +69,7 @@ fun IntParseToTag(type:Int):Tag{
     }
 }
 
-fun TagParseToInt(tag:Tag):Int{
+fun TagToInt(tag:Tag):Int{
     return when(tag){
         Tag.SP -> 0
         Tag.DIGITAL -> 2
