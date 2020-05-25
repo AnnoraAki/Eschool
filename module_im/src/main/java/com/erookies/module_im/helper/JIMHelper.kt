@@ -42,7 +42,7 @@ object JIMHelper {
     }
 
     fun chatWith(user: User?){
-        if (user != null){
+        if (user != null && user.stuNum != null){
             conversation = Conversation.createSingleConversation(user.stuNum)
             JMessageClient.enterSingleConversation(user.stuNum, APK_KEY)
         }

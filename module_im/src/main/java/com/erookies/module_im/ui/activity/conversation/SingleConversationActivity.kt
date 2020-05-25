@@ -23,6 +23,7 @@ import com.erookies.module_im.R
 import com.erookies.module_im.helper.JIMHelper
 import com.erookies.module_im.model.MessageWrapper
 import com.erookies.module_im.ui.adapter.MessagesAdapter
+import com.erookies.module_im.util.updateMarginLayout
 import kotlinx.android.synthetic.main.im_activity_conversation.*
 import java.lang.StringBuilder
 
@@ -41,7 +42,6 @@ class SingleConversationActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.im_activity_conversation)
-        window.decorView.viewTreeObserver.addOnGlobalLayoutListener(mViewGlobalListener)
         JMessageClient.registerEventReceiver(this)
         JMessageClient.enterSingleConversation((JIMHelper.conversation.targetInfo as UserInfo).userName)
         common_toolbar.init(title = nickName)
@@ -51,7 +51,6 @@ class SingleConversationActivity : BaseActivity() {
     private fun initView(){
         val msgs = viewModel.getAllMessages()
         adapter.messages.addAll(msgs)
-        computeInputAreaBounds()
         im_message_list.layoutManager = LinearLayoutManager(this)
         im_message_list.adapter = adapter
         adapter.notifyDataSetChanged()
@@ -87,11 +86,12 @@ class SingleConversationActivity : BaseActivity() {
     }
 
     private val mViewGlobalListener = ViewTreeObserver.OnGlobalLayoutListener {
+        computeInputAreaBounds()
         window.decorView.getWindowVisibleDisplayFrame(mCurrentWindowRect)
+        Log.d("SingleConversation","window height : ${mCurrentWindowRect.height()}")
         val topValue = mCurrentWindowRect.bottom - mInputAreaRect.height()
-        val margin = ViewGroup.MarginLayoutParams(im_input_area.layoutParams)
-        margin.setMargins(topValue, 0, 0, 0)
-        im_input_area.layoutParams = margin
+        Log.d("SingleConversation","input area height : $topValue")
+        im_input_area.updateMarginLayout(0,topValue,0,0)
     }
 
     private fun computeInputAreaBounds() {
