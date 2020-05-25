@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.os.Looper
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import android.widget.FrameLayout
 import android.widget.RelativeLayout
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.jpush.im.android.api.JMessageClient
@@ -36,12 +39,17 @@ class SingleConversationActivity : BaseActivity() {
 
     private val mInputAreaRect = Rect()
     private val mCurrentWindowRect = Rect()
+    private var mWindowOriginHeight:Int = 0
+    private var mMeasuredWindowHeight = false
+
+    private lateinit var content:View
 
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewModel(SingleConversationViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.im_activity_conversation)
+        //window.decorView.viewTreeObserver.addOnGlobalLayoutListener(mViewGlobalListener)
         JMessageClient.registerEventReceiver(this)
         JMessageClient.enterSingleConversation((JIMHelper.conversation.targetInfo as UserInfo).userName)
         common_toolbar.init(title = nickName)
@@ -58,19 +66,21 @@ class SingleConversationActivity : BaseActivity() {
 
         im_send_message.setOnClickListener {
             val str = im_input_text.text.toString()
-            im_input_text.setText("")
-            val msg = JIMHelper.createMessage(str)
-            adapter.messages.add(msg)
-            adapter.notifyDataSetChanged()
-            im_message_list.scrollToPosition(adapter.itemCount - 1)
+            if (!TextUtils.isEmpty(str)) {
+                im_input_text.setText("")
+                val msg = JIMHelper.createMessage(str)
+                adapter.messages.add(msg)
+                adapter.notifyDataSetChanged()
+                im_message_list.scrollToPosition(adapter.itemCount - 1)
 
-            JIMHelper.sendMessage(msg,object : BasicCallback(){
-                override fun gotResult(responseCode: Int, responseMessage: String?) {
-                    if (responseCode != 0){
-                        toast(responseMessage.toString())
+                JIMHelper.sendMessage(msg,object : BasicCallback(){
+                    override fun gotResult(responseCode: Int, responseMessage: String?) {
+                        if (responseCode != 0){
+                            toast(responseMessage.toString())
+                        }
                     }
-                }
-            })
+                })
+            }
 
         }
     }
@@ -86,16 +96,19 @@ class SingleConversationActivity : BaseActivity() {
     }
 
     private val mViewGlobalListener = ViewTreeObserver.OnGlobalLayoutListener {
-        computeInputAreaBounds()
         window.decorView.getWindowVisibleDisplayFrame(mCurrentWindowRect)
-        Log.d("SingleConversation","window height : ${mCurrentWindowRect.height()}")
-        val topValue = mCurrentWindowRect.bottom - mInputAreaRect.height()
-        Log.d("SingleConversation","input area height : $topValue")
-        im_input_area.updateMarginLayout(0,topValue,0,0)
-    }
-
-    private fun computeInputAreaBounds() {
-        im_input_area.getLocalVisibleRect(mInputAreaRect)
+        if (!mMeasuredWindowHeight) {
+            mWindowOriginHeight = mCurrentWindowRect.height()
+            mMeasuredWindowHeight = true
+        } else {
+            if (mCurrentWindowRect.height() != mWindowOriginHeight) {
+                mMeasuredWindowHeight = false
+            } else {
+                val params = content.layoutParams as FrameLayout.LayoutParams
+                params.height = mCurrentWindowRect.height()
+                content.requestLayout()
+            }
+        }
     }
 
     /**

@@ -4,7 +4,7 @@
 
     <application>
         <activity android:name=".ui.activity.conversation.SingleConversationActivity"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustResize" />
         <service
             android:name=".service.IMJpushService"
             android:process=":pushcore">
