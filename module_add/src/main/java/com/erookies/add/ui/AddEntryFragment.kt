@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.util.Pair
@@ -53,9 +54,9 @@ class AddEntryFragment : BaseFragment() {
         return inflater.inflate(R.layout.add_fragment_container, container, false)
     }
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        activity?.window?.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         val adapter = AddRecyclerViewAdapter({
             val options = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(

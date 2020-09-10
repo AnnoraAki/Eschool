@@ -3,7 +3,7 @@
     package="com.erookies.add">
 
     <application>
-        <activity android:name=".ui.AddOwnActivity"></activity>
+        <activity android:name=".ui.AddOwnActivity" />
         <activity android:name=".ui.AddDetailActivity" />
         <activity android:name=".ui.AddActivity" />
     </application>
