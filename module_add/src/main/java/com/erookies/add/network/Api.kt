@@ -26,4 +26,10 @@ interface Api {
         @Query("tag") tag: Int,
         @Query("sno") sno: String = "0"
     ): Observable<StatusWrapper<List<AddEntry>>>
+
+    @POST("/api/join_purchase")
+    fun addGroup(
+        @Query("sno") sno: String,
+        @Query("id") id: Int
+    ): Observable<StatusWrapper<List<String>>>
 }
