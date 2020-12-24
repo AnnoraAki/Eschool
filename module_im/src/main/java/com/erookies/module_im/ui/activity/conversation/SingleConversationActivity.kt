@@ -2,15 +2,11 @@ package com.erookies.module_im.ui.activity.conversation
 
 import android.graphics.Rect
 import android.os.Bundle
-import android.os.Looper
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
-import android.widget.RelativeLayout
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.jpush.im.android.api.JMessageClient
@@ -19,17 +15,17 @@ import cn.jpush.im.android.api.event.MessageEvent
 import cn.jpush.im.android.api.event.OfflineMessageEvent
 import cn.jpush.im.android.api.model.UserInfo
 import cn.jpush.im.api.BasicCallback
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseActivity
+import com.erookies.lib_common.config.SINGLE_CONVERSATION
 import com.erookies.lib_common.extentions.toast
 import com.erookies.module_im.R
-import com.erookies.module_im.helper.JIMHelper
-import com.erookies.module_im.model.MessageWrapper
+import com.erookies.lib_common.utils.JIMHelper
 import com.erookies.module_im.ui.adapter.MessagesAdapter
-import com.erookies.module_im.util.updateMarginLayout
 import kotlinx.android.synthetic.main.im_activity_conversation.*
-import java.lang.StringBuilder
 
+@Route(path = SINGLE_CONVERSATION)
 class SingleConversationActivity : BaseActivity() {
     private val TAG = "ConversationActivity"
     private val userInfo: UserInfo = JIMHelper.conversation.targetInfo as UserInfo

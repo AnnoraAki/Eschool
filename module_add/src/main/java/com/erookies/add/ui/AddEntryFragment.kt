@@ -56,7 +56,7 @@ class AddEntryFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        activity?.window?.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        //activity?.window?.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         val adapter = AddRecyclerViewAdapter({
             val options = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(

@@ -2,11 +2,9 @@ package com.erookies.module_im.ui.fragment.entry
 
 import androidx.lifecycle.MutableLiveData
 import cn.jpush.im.android.api.model.Conversation
-import cn.jpush.im.android.api.model.Message
-import cn.jpush.im.android.api.model.UserInfo
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseViewModel
-import com.erookies.module_im.helper.JIMHelper
+import com.erookies.lib_common.utils.JIMHelper
 
 class IMEntryViewModel() : BaseViewModel() {
     val conversations = MutableLiveData<MutableList<Conversation>>()

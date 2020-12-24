@@ -51,7 +51,6 @@ class RegisterActivity : BaseActivity() {
             when (it) {
                 REGISTER_SUCCEED -> {
                     toast("注册成功")
-                    val fragment = ARouter.getInstance().build(IM_ENTRY).navigation() as Fragment
                     EventBus.getDefault().postSticky(IMEvent(IMEventType.REGISTER,friend = viewModel.registerUser))
                     startActivity<LoginActivity>()
                     finish()

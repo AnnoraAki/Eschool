@@ -5,13 +5,6 @@
     <application>
         <activity android:name=".ui.activity.conversation.SingleConversationActivity"
             android:windowSoftInputMode="adjustResize" />
-        <service
-            android:name=".service.IMJpushService"
-            android:process=":pushcore">
-            <intent-filter>
-                <action android:name="cn.jiguang.user.service.action" />
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>

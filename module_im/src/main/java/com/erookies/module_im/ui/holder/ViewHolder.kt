@@ -1,14 +1,8 @@
 package com.erookies.module_im.ui.holder
 
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
-import cn.jpush.im.android.api.callback.GetUserInfoCallback
 import cn.jpush.im.android.api.content.TextContent
 import cn.jpush.im.android.api.enums.ContentType
 import cn.jpush.im.android.api.enums.ConversationType
@@ -20,7 +14,6 @@ import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.event.IMEvent
 import com.erookies.lib_common.event.IMEventType
 import com.erookies.module_im.R
-import com.erookies.module_im.helper.JIMHelper
 import com.erookies.module_im.model.MessageWrapper
 import kotlinx.android.synthetic.main.im_item_conversation.view.*
 import kotlinx.android.synthetic.main.im_item_left_msg.view.*
@@ -83,6 +76,9 @@ class ConversationViewHolder(view: View,private val listener:IStartConversation)
             if (conversation.unReadMsgCnt > 0){
                 itemView.im_conversation_unread_msg_bg.visibility = View.VISIBLE
                 itemView.im_conversation_unread_msg_count.text = conversation.unReadMsgCnt.toString()
+            } else {
+                itemView.im_conversation_unread_msg_bg.visibility = View.GONE
+                itemView.im_conversation_unread_msg_count.visibility = View.GONE
             }
 
             itemView.setOnClickListener {

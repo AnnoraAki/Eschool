@@ -1,4 +1,4 @@
-package com.erookies.module_im.helper
+package com.erookies.lib_common.utils
 
 import android.text.TextUtils
 import cn.jpush.im.android.api.JMessageClient
@@ -41,11 +41,12 @@ object JIMHelper {
         JMessageClient.updateUserPassword(oldPwd,newPwd,callback)
     }
 
-    fun chatWith(user: User?){
-        if (user != null && user.stuNum != null){
-            conversation = Conversation.createSingleConversation(user.stuNum)
-            JMessageClient.enterSingleConversation(user.stuNum, APK_KEY)
-        }
+    fun chatWith(user: User?): Boolean{
+        user ?: return false
+        user.stuNum ?: return false
+        conversation = Conversation.createSingleConversation(user.stuNum, APK_KEY)
+        JMessageClient.enterSingleConversation(user.stuNum, APK_KEY)
+        return true
     }
 
     fun getConversationList():MutableList<Conversation>{

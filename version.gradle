@@ -30,6 +30,11 @@ versions.bugly_crashreport = '2.6.6.1'
 versions.bugly_crashreport_upgrade = '1.3.6'
 versions.bugly_nativecrashreport = '3.3.1'
 
+//jiguang
+versions.jiguang_message = '2.9.0'
+versions.jiguang_core = '2.5.5'
+versions.jiguang_push = '3.8.5'
+
 def build_versions = [:]
 build_versions.min_sdk = 21
 build_versions.target_sdk = 26
@@ -114,3 +119,9 @@ deps.bugly = bugly
 def rxpermissions = [:]
 rxpermissions.runtime = "com.github.tbruyelle:rxpermissions:$versions.rxpermissions"
 deps.rxpermissions = rxpermissions
+
+def jiguang = [:]
+jiguang.message = "cn.jiguang.sdk:jmessage:$versions.jiguang_message"
+jiguang.core = "cn.jiguang.sdk:jcore:$versions.jiguang_core"
+jiguang.push = "cn.jiguang.sdk:jpush:$versions.jiguang_push"
+deps.jiguang = jiguang
