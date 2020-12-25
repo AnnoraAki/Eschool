@@ -3,12 +3,11 @@ package com.erookies.lib_common
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-import android.content.Intent
 import android.os.Process
 import android.text.TextUtils
 import android.util.Log
 import cn.jpush.im.android.api.JMessageClient
-import cn.jpush.im.android.api.event.ConversationRefreshEvent
+import cn.jpush.im.android.api.JMessageClient.FLAG_NOTIFY_DEFAULT
 import cn.jpush.im.android.api.event.MessageEvent
 import cn.jpush.im.android.api.event.NotificationClickEvent
 import cn.jpush.im.api.BasicCallback
@@ -22,7 +21,7 @@ import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.extentions.defaultSharedPreferences
 import com.erookies.lib_common.extentions.editor
 import com.erookies.lib_common.extentions.toast
-import com.erookies.lib_common.utils.JIMHelper
+import com.erookies.lib_common.utils.JIMUtils
 import com.erookies.lib_common.utils.LogUtils
 import com.google.gson.Gson
 import com.tencent.bugly.crashreport.CrashReport
@@ -30,7 +29,6 @@ import com.tencent.bugly.crashreport.CrashReport.UserStrategy
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import org.jetbrains.anko.support.v4.toast
 
 
 /**
@@ -106,6 +104,7 @@ open class BaseApp : Application() {
     private fun initJMessage() {
         JMessageClient.init(context)
         JMessageClient.registerEventReceiver(this)
+        JMessageClient.setNotificationFlag(FLAG_NOTIFY_DEFAULT)
     }
 
     private fun initEventBus() {
@@ -118,8 +117,7 @@ open class BaseApp : Application() {
     fun onEventMainThread(event: NotificationClickEvent){
         val msg = event.message
         val userInfo = msg.fromUser
-        val cvs = JMessageClient.getSingleConversation(userInfo.userName, APK_KEY)
-        JIMHelper.conversation = cvs
+        JIMUtils.chatWith(userInfo.userName)
         ARouter.getInstance().build(SINGLE_CONVERSATION).navigation()
     }
 
@@ -131,7 +129,7 @@ open class BaseApp : Application() {
         Log.d("attchIMFunction","event content : $event")
         when(event.type){
             IMEventType.REGISTER -> {
-                JIMHelper.register(event.friend!!,object : BasicCallback() {
+                JIMUtils.register(event.friend!!,object : BasicCallback() {
                     override fun gotResult(responseCode: Int, responseMessage: String?) {
                         Log.d(TAG,"状态码：$responseCode")
                         if (responseCode != 0){
@@ -144,13 +142,13 @@ open class BaseApp : Application() {
                 })
             }
 
-            IMEventType.LOGIN -> JIMHelper.login(BaseApp.user!!,object : BasicCallback(){
+            IMEventType.LOGIN -> JIMUtils.login(BaseApp.user!!,object : BasicCallback(){
                 override fun gotResult(responseCode: Int, responseMessage: String?) {
                     Log.d(TAG,"状态码：$responseCode")
                     if (responseCode != 0){
                         Log.d(TAG,"状态码：$responseCode\n$responseMessage")
                     }else if (responseCode == 0){
-                        JIMHelper.oldPwd = BaseApp.user!!.pwd
+                        JIMUtils.oldPwd = BaseApp.user!!.pwd
                         toast("${TAG} 登录成功")
                     }
                 }
@@ -158,17 +156,30 @@ open class BaseApp : Application() {
 
             IMEventType.LOGOUT -> {
                 if (BaseApp.isLogin){
-                    JIMHelper.logout()
+                    JIMUtils.logout()
                     toast("${TAG}已退出")
                 }else{
                     toast("${TAG}当前没有登录账号！")
                 }
             }
 
-            IMEventType.START_CONVERSATION -> {
+            IMEventType.START_SINGLE_CONVERSATION -> {
                 if (BaseApp.isLogin){
                     if (event.friend != null){
-                        JIMHelper.chatWith(event.friend)
+                        JIMUtils.chatWith(event.friend)
+                        ARouter.getInstance().build(SINGLE_CONVERSATION).navigation()
+                    }else{
+                        toast("${TAG}没有聊天对象不能进行聊天哦~")
+                    }
+                }else{
+                    toast("${TAG}当前没有登录账号！")
+                }
+            }
+
+            IMEventType.START_GROUP_CONVERSATION -> {
+                if (BaseApp.isLogin){
+                    if (event.friend != null){
+                        JIMUtils.chatWith(event.friend)
                         ARouter.getInstance().build(SINGLE_CONVERSATION).navigation()
                     }else{
                         toast("${TAG}没有聊天对象不能进行聊天哦~")
@@ -181,13 +192,13 @@ open class BaseApp : Application() {
             IMEventType.UPDATE_PWD -> {
                 if (BaseApp.isLogin){
                     if (!TextUtils.isEmpty(event.newPwd)){
-                        JIMHelper.updateMyPwd(event.newPwd,object : BasicCallback(){
+                        JIMUtils.updateMyPwd(event.newPwd,object : BasicCallback(){
                             override fun gotResult(responseCode: Int, responseMessage: String?) {
                                 if (responseCode != 0){
                                     Log.d(TAG,"状态码：$responseCode 错误信息：$responseMessage")
                                     Log.d(TAG,"原密码：${BaseApp.user!!.pwd} 新密码：${event.newPwd}")
                                 }else{
-                                    JIMHelper.oldPwd = event.newPwd
+                                    JIMUtils.oldPwd = event.newPwd
                                 }
                             }
                         })
@@ -201,7 +212,7 @@ open class BaseApp : Application() {
 
             IMEventType.UPDATE_INFO -> {
                 if (BaseApp.isLogin){
-                    JIMHelper.updateUserInfo(BaseApp.user!!,object : BasicCallback(){
+                    JIMUtils.updateUserInfo(BaseApp.user!!,object : BasicCallback(){
                         override fun gotResult(responseCode: Int, responseMessage: String?) {
                             if (responseCode == 0){
                                 toast("${TAG}信息更新成功！")

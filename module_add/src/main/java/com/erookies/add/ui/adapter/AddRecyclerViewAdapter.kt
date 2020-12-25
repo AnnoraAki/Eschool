@@ -11,9 +11,7 @@ import com.erookies.add.int2String
 import com.erookies.lib_common.event.IMEvent
 import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.extentions.setAvatar
-import com.erookies.lib_common.extentions.setImageFromUrl
 import kotlinx.android.synthetic.main.add_recycler_item.view.*
-import org.greenrobot.eventbus.EventBus
 
 /**
  * Create by Cchanges.
@@ -34,7 +32,7 @@ class AddRecyclerViewAdapter(
             civ_add_avatar.setAvatar(entry.user?.avatar)
             civ_add_avatar.setOnClickListener {
                 val event = IMEvent(
-                    type = IMEventType.START_CONVERSATION,
+                    type = IMEventType.START_SINGLE_CONVERSATION,
                     friend = entry.user
                 )
                 imEvent.invoke(event)

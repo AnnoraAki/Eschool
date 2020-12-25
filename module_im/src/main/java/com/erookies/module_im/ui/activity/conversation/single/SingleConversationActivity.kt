@@ -1,10 +1,11 @@
-package com.erookies.module_im.ui.activity.conversation
+package com.erookies.module_im.ui.activity.conversation.single
 
 import android.graphics.Rect
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import androidx.lifecycle.ViewModelProvider
@@ -19,37 +20,35 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseActivity
 import com.erookies.lib_common.config.SINGLE_CONVERSATION
+import com.erookies.lib_common.extentions.margin
 import com.erookies.lib_common.extentions.toast
 import com.erookies.module_im.R
-import com.erookies.lib_common.utils.JIMHelper
+import com.erookies.lib_common.utils.JIMUtils
+import com.erookies.lib_common.utils.getAttrValue
+import com.erookies.lib_common.utils.getStatusBarHeight
+import com.erookies.module_im.ui.activity.conversation.ConversationActivity
 import com.erookies.module_im.ui.adapter.MessagesAdapter
 import kotlinx.android.synthetic.main.im_activity_conversation.*
 
 @Route(path = SINGLE_CONVERSATION)
-class SingleConversationActivity : BaseActivity() {
-    private val TAG = "ConversationActivity"
-    private val userInfo: UserInfo = JIMHelper.conversation.targetInfo as UserInfo
+class SingleConversationActivity : ConversationActivity(ConversationType.single) {
+    private val TAG = "SingleConversationActivity"
+    private val userInfo: UserInfo = JIMUtils.conversation.targetInfo as UserInfo
     private val avatar:String = userInfo.extras["avatar"] ?: ""
     private val nickName:String = if (!TextUtils.isEmpty(userInfo.nickname)) userInfo.nickname else userInfo.userName
     private val adapter = MessagesAdapter(avatar)
 
-    private val mInputAreaRect = Rect()
-    private val mCurrentWindowRect = Rect()
-    private var mWindowOriginHeight:Int = 0
-    private var mMeasuredWindowHeight = false
-
-    private lateinit var content:View
-
-    private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewModel(SingleConversationViewModel::class.java) }
+    private val viewModel by lazy(LazyThreadSafetyMode.NONE) { getViewModel(
+        SingleConversationViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.im_activity_conversation)
-        //window.decorView.viewTreeObserver.addOnGlobalLayoutListener(mViewGlobalListener)
-        JMessageClient.registerEventReceiver(this)
-        JMessageClient.enterSingleConversation((JIMHelper.conversation.targetInfo as UserInfo).userName)
         common_toolbar.init(title = nickName)
         initView()
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.im_activity_conversation
     }
 
     private fun initView(){
@@ -64,12 +63,12 @@ class SingleConversationActivity : BaseActivity() {
             val str = im_input_text.text.toString()
             if (!TextUtils.isEmpty(str)) {
                 im_input_text.setText("")
-                val msg = JIMHelper.createMessage(str)
+                val msg = JIMUtils.createMessage(str)
                 adapter.messages.add(msg)
                 adapter.notifyDataSetChanged()
                 im_message_list.scrollToPosition(adapter.itemCount - 1)
 
-                JIMHelper.sendMessage(msg,object : BasicCallback(){
+                JIMUtils.sendMessage(msg,object : BasicCallback(){
                     override fun gotResult(responseCode: Int, responseMessage: String?) {
                         if (responseCode != 0){
                             toast(responseMessage.toString())
@@ -81,30 +80,8 @@ class SingleConversationActivity : BaseActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        JMessageClient.unRegisterEventReceiver(this)
-        JMessageClient.exitConversation()
-    }
-
     override fun getFactory(): ViewModelProvider.Factory? {
         return SingleConversationFactory()
-    }
-
-    private val mViewGlobalListener = ViewTreeObserver.OnGlobalLayoutListener {
-        window.decorView.getWindowVisibleDisplayFrame(mCurrentWindowRect)
-        if (!mMeasuredWindowHeight) {
-            mWindowOriginHeight = mCurrentWindowRect.height()
-            mMeasuredWindowHeight = true
-        } else {
-            if (mCurrentWindowRect.height() != mWindowOriginHeight) {
-                mMeasuredWindowHeight = false
-            } else {
-                val params = content.layoutParams as FrameLayout.LayoutParams
-                params.height = mCurrentWindowRect.height()
-                content.requestLayout()
-            }
-        }
     }
 
     /**
@@ -145,5 +122,9 @@ class SingleConversationActivity : BaseActivity() {
         }
         adapter.notifyDataSetChanged()
         im_message_list.scrollToPosition(adapter.itemCount - 1)
+    }
+
+    override fun adjustContentViewSize(offset: Int) {
+        parent_container.margin(0, 0, 0, offset)
     }
 }

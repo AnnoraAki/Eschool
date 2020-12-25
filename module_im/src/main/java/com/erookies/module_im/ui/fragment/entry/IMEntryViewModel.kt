@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import cn.jpush.im.android.api.model.Conversation
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseViewModel
-import com.erookies.lib_common.utils.JIMHelper
+import com.erookies.lib_common.utils.JIMUtils
 
 class IMEntryViewModel() : BaseViewModel() {
     val conversations = MutableLiveData<MutableList<Conversation>>()
@@ -15,7 +15,7 @@ class IMEntryViewModel() : BaseViewModel() {
     init {
         needToast.value = false
         if (BaseApp.isLogin){
-            conversations.value?.addAll(JIMHelper.getConversationList())
+            conversations.value?.addAll(JIMUtils.getConversationList())
         }else{
             conversations.value = mutableListOf()
 
@@ -29,7 +29,7 @@ class IMEntryViewModel() : BaseViewModel() {
     fun updateConversations(){
         needToast.value = false
         if (BaseApp.isLogin){
-            conversations.value = JIMHelper.getConversationList()
+            conversations.value = JIMUtils.getConversationList()
             if (conversations.value?.size == 0){
                 toastMsg = "当前没有会话"
                 needToast.value = true

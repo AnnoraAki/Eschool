@@ -1,5 +1,6 @@
 // 引入工程所有模块需要的三方库
 apply from: lib_config
+apply plugin: 'kotlin-android'
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
@@ -21,6 +22,7 @@ dependencies {
     api deps.lifecycle.extentions
     api deps.lifecycle.java8
     api deps.lifecycle.reactivestrean
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     kapt deps.lifecycle.compiler
 
     //room

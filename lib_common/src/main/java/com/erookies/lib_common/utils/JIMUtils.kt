@@ -13,8 +13,10 @@ import cn.jpush.im.api.BasicCallback
 import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.config.APK_KEY
 
-object JIMHelper {
+object JIMUtils {
     lateinit var conversation: Conversation
+        private set
+
     private val TAG = "JIMHelper"
     var oldPwd:String = ""
 
@@ -46,6 +48,13 @@ object JIMHelper {
         user.stuNum ?: return false
         conversation = Conversation.createSingleConversation(user.stuNum, APK_KEY)
         JMessageClient.enterSingleConversation(user.stuNum, APK_KEY)
+        return true
+    }
+
+    fun chatWith(userName: String?): Boolean{
+        userName ?: return false
+        conversation = Conversation.createSingleConversation(userName, APK_KEY)
+        JMessageClient.enterSingleConversation(userName, APK_KEY)
         return true
     }
 
@@ -89,6 +98,22 @@ object JIMHelper {
             }
         }
         return Conversation.createGroupConversation(groupId)
+    }
+
+    fun groupConversationIsExist(groupId:Long):Boolean {
+        for (con in JMessageClient.getConversationList()){
+            if (conversation.type == ConversationType.group){
+                if (groupId == (con.targetInfo as GroupInfo).groupID){
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    fun addMemberIntoGroup(groupId: Long, userName: String, basicCallback: BasicCallback) {
+        if (!groupConversationIsExist(groupId)) return
+        JMessageClient.addGroupMembers(groupId, arrayListOf(userName), basicCallback)
     }
 
     /**

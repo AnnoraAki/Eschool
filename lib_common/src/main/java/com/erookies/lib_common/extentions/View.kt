@@ -2,6 +2,9 @@ package com.erookies.lib_common.extentions
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import com.erookies.lib_common.utils.dip2px
 
 /**
  * Create by Cchanges.
@@ -35,6 +38,14 @@ fun View.margin(l: Int, t: Int, r: Int, b: Int) {
     if (this.layoutParams is ViewGroup.MarginLayoutParams) {
         val p = this.layoutParams as ViewGroup.MarginLayoutParams
         p.setMargins(l, t, r, b)
-        this.requestLayout()
+        this.layoutParams = p
     }
 }
+
+fun RecyclerView.ViewHolder.toast(chars: CharSequence) {
+    Toast.makeText(itemView.context, chars, Toast.LENGTH_SHORT).show()
+}
+
+fun Int.dp(): Int = dip2px(this)
+
+fun Float.dp(): Int = (this + 0.5f).dp()

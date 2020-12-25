@@ -2,12 +2,15 @@ package com.erookies.main.viewmodel
 
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseViewModel
+import com.erookies.lib_common.event.IMEvent
+import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.extentions.safeSubscribeBy
 import com.erookies.lib_common.extentions.setSchedulers
 import com.erookies.lib_common.network.ApiGenerator
 import com.erookies.lib_common.utils.LogUtils
 import com.erookies.main.bean.LoginBean
 import com.erookies.main.network.Api
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Create by Cchanges.
@@ -33,5 +36,9 @@ class LoginViewModel : BaseViewModel() {
                     }
                 }
             }.lifeCycle()
+
+        EventBus.getDefault().postSticky(
+            IMEvent(type = IMEventType.LOGIN)
+        )
     }
 }

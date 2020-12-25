@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import cn.jpush.im.android.api.content.MessageContent
 import cn.jpush.im.android.api.content.TextContent
 import cn.jpush.im.android.api.enums.ContentType
 import cn.jpush.im.android.api.enums.MessageDirect

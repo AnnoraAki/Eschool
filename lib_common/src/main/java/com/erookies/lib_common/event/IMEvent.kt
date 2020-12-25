@@ -2,9 +2,10 @@ package com.erookies.lib_common.event
 
 import com.erookies.lib_common.bean.User
 
-data class IMEvent(val type:IMEventType,
-                   var friend:User? = null,
-                   val newPwd:String="")
+data class IMEvent(val type: IMEventType,
+                   val groupId: Long = -1L,
+                   var friend: User? = null,
+                   val newPwd: String="")
 
 enum class IMEventType{
 
@@ -41,8 +42,14 @@ enum class IMEventType{
     UPDATE_INFO,
 
     /**
-     * 进入聊天界面
+     * 进入单人聊天界面
      * event中需要type和friendUser(聊天对象)
      */
-    START_CONVERSATION
+    START_SINGLE_CONVERSATION,
+
+    /**
+     * 进入群聊界面
+     *  event中需要type和群聊id
+     */
+    START_GROUP_CONVERSATION
 }

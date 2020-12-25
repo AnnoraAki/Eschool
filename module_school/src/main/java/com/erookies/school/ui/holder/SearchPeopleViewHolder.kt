@@ -61,7 +61,7 @@ class SearchPeopleViewHolder(
 
         binding.root.school_sp_item_user_avatar.setOnClickListener {
             val event = IMEvent(
-                type = IMEventType.START_CONVERSATION,
+                type = IMEventType.START_SINGLE_CONVERSATION,
                 friend = item.user
             )
             Log.d("sendEvent_sp_vh","send finish : $event")

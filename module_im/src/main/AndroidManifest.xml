@@ -3,8 +3,8 @@
     package="com.erookies.module_im">
 
     <application>
-        <activity android:name=".ui.activity.conversation.SingleConversationActivity"
-            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.activity.conversation.single.SingleConversationActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

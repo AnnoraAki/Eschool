@@ -1,9 +1,6 @@
 package com.erookies.module_im.ui.fragment.entry
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,27 +11,22 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.jpush.im.android.api.JMessageClient
 import cn.jpush.im.android.api.event.ConversationRefreshEvent
 import cn.jpush.im.android.api.event.MessageEvent
-import cn.jpush.im.android.api.event.NotificationClickEvent
-import cn.jpush.im.api.BasicCallback
+import cn.jpush.im.android.api.event.OfflineMessageEvent
+import cn.jpush.im.android.api.model.Conversation
+import cn.jpush.im.android.api.model.Message
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.IStartConversation
 import com.erookies.lib_common.base.BaseFragment
-import com.erookies.lib_common.config.APK_KEY
 import com.erookies.lib_common.config.IM_ENTRY
 import com.erookies.lib_common.event.IMEvent
-import com.erookies.lib_common.event.IMEventType
-
 import com.erookies.module_im.R
-import com.erookies.lib_common.utils.JIMHelper
-import com.erookies.module_im.ui.activity.conversation.SingleConversationActivity
 import com.erookies.module_im.ui.adapter.ConversationRVAdapter
 import kotlinx.android.synthetic.main.im_fragment_imentry.*
 import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.support.v4.toast
+import java.lang.String
+
 
 @Route(path = IM_ENTRY)
 class IMEntryFragment : BaseFragment(),IStartConversation {
@@ -67,7 +59,7 @@ class IMEntryFragment : BaseFragment(),IStartConversation {
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         observe()
         adapter.apply {
-            conversations.addAll(viewModel.conversations.value?: mutableListOf())
+            conversations.addAll(viewModel.conversations.value ?: mutableListOf())
         }
         swipeRefreshLayout.apply {
             setColorSchemeColors(
@@ -76,6 +68,7 @@ class IMEntryFragment : BaseFragment(),IStartConversation {
             setOnRefreshListener {
                 viewModel.updateConversations()
             }
+            isRefreshing = true
         }
     }
 
@@ -95,8 +88,8 @@ class IMEntryFragment : BaseFragment(),IStartConversation {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         JMessageClient.unRegisterEventReceiver(this)
     }
 
@@ -107,7 +100,16 @@ class IMEntryFragment : BaseFragment(),IStartConversation {
         }
     }
 
+    fun onEventMainThread(event: MessageEvent) {
+        viewModel.updateConversations()
+    }
+
+    fun onEventMainThread(event: OfflineMessageEvent) {
+        viewModel.updateConversations()
+    }
+
     override fun sendEvent(event: IMEvent) {
+        viewModel.updateConversations()
         EventBus.getDefault().post(event)
     }
 }

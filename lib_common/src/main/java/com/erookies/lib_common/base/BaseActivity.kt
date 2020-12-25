@@ -26,7 +26,7 @@ import org.greenrobot.eventbus.ThreadMode
  * Create by Cchanges.
  * Time: 2019-10-11
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity() : AppCompatActivity() {
 
     companion object {
         val TAG = BaseActivity::class.java.simpleName

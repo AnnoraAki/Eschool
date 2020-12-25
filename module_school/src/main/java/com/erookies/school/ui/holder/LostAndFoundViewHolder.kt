@@ -56,7 +56,7 @@ class LostAndFoundViewHolder(
         }
         binding.root.school_item_user_avatar.setOnClickListener {
             val event = IMEvent(
-                type = IMEventType.START_CONVERSATION,
+                type = IMEventType.START_SINGLE_CONVERSATION,
                 friend = item.user
             )
             Log.d("sendEvent_ls_vh","send finish : $event")

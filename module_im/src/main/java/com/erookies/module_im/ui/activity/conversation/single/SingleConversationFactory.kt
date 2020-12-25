@@ -1,4 +1,4 @@
-package com.erookies.module_im.ui.activity.conversation
+package com.erookies.module_im.ui.activity.conversation.single
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

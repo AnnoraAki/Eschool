@@ -3,6 +3,8 @@ package com.erookies.mine.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseViewModel
+import com.erookies.lib_common.event.IMEvent
+import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.extentions.safeSubscribeBy
 import com.erookies.lib_common.extentions.setSchedulers
 import com.erookies.lib_common.network.ApiGenerator
@@ -10,6 +12,7 @@ import com.erookies.mine.bean.ChangeBody
 import com.erookies.mine.bean.LoginBean
 import com.erookies.mine.bean.SnoBean
 import com.erookies.mine.network.Api
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Create by Cchanges.
@@ -57,6 +60,10 @@ class LoginViewModel : BaseViewModel() {
                     else -> ERROR_EXIST
                 }
             }.lifeCycle()
+
+        EventBus.getDefault().postSticky(
+            IMEvent(type = IMEventType.LOGIN)
+        )
     }
 
     companion object {

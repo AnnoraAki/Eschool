@@ -34,6 +34,7 @@ class MainActivity : BaseActivity() {
             ARouter.getInstance().build(MINE_LOGIN).navigation()
         } else {
             viewModel.login(BaseApp.user?.stuNum ?: "",BaseApp.user?.pwd ?: "")
+
         }
 
         initFragment()
