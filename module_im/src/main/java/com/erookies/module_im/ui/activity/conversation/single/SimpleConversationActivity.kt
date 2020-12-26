@@ -139,6 +139,13 @@ class SimpleConversationActivity : ConversationActivity() {
                         viewModel.addMessage(msg)
                     }
                 }
+                ConversationType.group -> {
+                    val groupId = (msg.targetInfo as GroupInfo).groupID
+                    val info = JIMUtils.conversation.targetInfo as GroupInfo
+                    if (groupId == info.groupID){
+                        viewModel.addMessage(msg)
+                    }
+                }
                 else -> {
                     Log.d(TAG,"other conversation")
                 }
@@ -154,6 +161,13 @@ class SimpleConversationActivity : ConversationActivity() {
                 val userId = (msg.targetInfo as UserInfo).userName
                 val info = JIMUtils.conversation.targetInfo as UserInfo
                 if (TextUtils.equals(info.userName,userId)){
+                    viewModel.addMessage(msg)
+                }
+            }
+            ConversationType.group -> {
+                val groupId = (msg.targetInfo as GroupInfo).groupID
+                val info = JIMUtils.conversation.targetInfo as GroupInfo
+                if (groupId == info.groupID){
                     viewModel.addMessage(msg)
                 }
             }
