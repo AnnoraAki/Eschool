@@ -2,6 +2,7 @@ package com.erookies.lib_common.utils
 
 import android.text.TextUtils
 import cn.jpush.im.android.api.JMessageClient
+import cn.jpush.im.android.api.callback.CreateGroupCallback
 import cn.jpush.im.android.api.callback.GetUserInfoCallback
 import cn.jpush.im.android.api.enums.ConversationType
 import cn.jpush.im.android.api.model.Conversation
@@ -43,6 +44,10 @@ object JIMUtils {
         JMessageClient.updateUserPassword(oldPwd,newPwd,callback)
     }
 
+    fun createGroup(groupName: String, callback: CreateGroupCallback) {
+        JMessageClient.createGroup(groupName, "", callback)
+    }
+
     fun chatWith(user: User?): Boolean{
         user ?: return false
         user.stuNum ?: return false
@@ -55,6 +60,13 @@ object JIMUtils {
         userName ?: return false
         conversation = Conversation.createSingleConversation(userName, APK_KEY)
         JMessageClient.enterSingleConversation(userName, APK_KEY)
+        return true
+    }
+
+    fun chatWith(groupId: Long): Boolean {
+        if (groupId == -1L) return false
+        conversation = Conversation.createGroupConversation(groupId)
+        JMessageClient.enterGroupConversation(groupId)
         return true
     }
 
@@ -122,6 +134,10 @@ object JIMUtils {
 
     fun getAllMessageForUser():MutableList<Message>{
         return conversation.allMessage
+    }
+
+    fun getMessageFromNewest(offset: Int, limit: Int): MutableList<Message> {
+        return conversation.getMessagesFromNewest(offset, limit).apply { reverse() }
     }
 
     //创建消息

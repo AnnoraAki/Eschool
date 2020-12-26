@@ -2,7 +2,6 @@ package com.erookies.module_im.ui.holder
 
 import android.text.TextUtils
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import cn.jpush.im.android.api.content.TextContent
 import cn.jpush.im.android.api.enums.ContentType
@@ -18,7 +17,6 @@ import com.erookies.lib_common.event.IMEvent
 import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.extentions.toast
 import com.erookies.module_im.R
-import com.erookies.module_im.model.MessageWrapper
 import kotlinx.android.synthetic.main.im_item_conversation.view.*
 import kotlinx.android.synthetic.main.im_item_left_msg.view.*
 import kotlinx.android.synthetic.main.im_item_right_msg.view.*
@@ -75,22 +73,18 @@ class RightViewHolder(view: View) : BaseMessageViewHolder(view){
 
 class ConversationViewHolder(view: View, private val listener:IStartConversation) : RecyclerView.ViewHolder(view){
     fun load(conversation: Conversation) {
-        var info: UserInfo? = null
-        var type = ConversationType.single
 
-        if (conversation.type == ConversationType.single) {
-            info = conversation.targetInfo as UserInfo
-            type = ConversationType.single
+        when (conversation.type) {
+            ConversationType.single -> {
+                val info = conversation.targetInfo as UserInfo
+                loadSingleConversationItem(info)
+            }
+            ConversationType.group -> {
+                val info = conversation.targetInfo as GroupInfo
+                loadGroupConversationItem(info)
+            }
         }
 
-        if (conversation.type == ConversationType.group) {
-            val groupInfo = conversation.targetInfo as GroupInfo
-            info = groupInfo.ownerMemberInfo.userInfo
-            type = ConversationType.group
-        }
-
-        info ?: return
-        loadTagContent(info, type)
         loadBaseContent(conversation)
     }
 
@@ -112,7 +106,7 @@ class ConversationViewHolder(view: View, private val listener:IStartConversation
         }
     }
 
-    private fun loadTagContent(info: UserInfo, type: ConversationType) {
+    private fun loadSingleConversationItem(info: UserInfo) {
         Glide.with(itemView)
             .asBitmap()
             .placeholder(R.drawable.common_default_avatar)
@@ -121,20 +115,46 @@ class ConversationViewHolder(view: View, private val listener:IStartConversation
 
         itemView.im_user_nickname.text = if (!TextUtils.isEmpty(info.nickname)) info.nickname else info.userName
 
-        var event: IMEvent? = null
-        if (type == ConversationType.single) {
-            event = IMEvent(
+        itemView.setOnClickListener {
+            val event = IMEvent(
                 type = IMEventType.START_SINGLE_CONVERSATION,
                 friend = User(stuNum = info.userName)
             )
+            listener.sendEvent(event)
+        }
+    }
+
+    private fun loadGroupConversationItem(groupInfo: GroupInfo) {
+        val ownnerMemberInfo = groupInfo.ownerMemberInfo.userInfo
+        Glide.with(itemView)
+            .asBitmap()
+            .placeholder(R.drawable.common_default_avatar)
+            .load(
+                if (!TextUtils.isEmpty(groupInfo.avatar)) {
+                    groupInfo.avatar
+                } else {
+                    ownnerMemberInfo.extras["avatar"] ?: ""
+                }
+            )
+            .into(itemView.im_user_avatar)
+
+        itemView.im_user_nickname.text = if (!TextUtils.isEmpty(groupInfo.groupName)) {
+            groupInfo.groupName
+        } else {
+            val info = groupInfo.ownerMemberInfo.userInfo
+            if (!TextUtils.isEmpty(info.nickname)) {
+                info.nickname + "的群聊"
+            } else {
+                info.userName + "的群聊"
+            }
         }
 
         itemView.setOnClickListener {
-            if (event == null) {
-                toast("不支持该种聊天类型~")
-            } else {
-                listener.sendEvent(event)
-            }
+            val event = IMEvent(
+                type = IMEventType.START_GROUP_CONVERSATION,
+                groupId = groupInfo.groupID
+            )
+            listener.sendEvent(event)
         }
     }
 }

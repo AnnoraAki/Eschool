@@ -23,7 +23,7 @@ const val SCHOOL_DETAIL = "/school/detail"
 const val SCHOOL_PUBLISH = "/school/publish"
 
 const val IM_ENTRY = "/im/entry"
-const val SINGLE_CONVERSATION = "/im/single"
+const val SIMPLE_CONVERSATION = "/im/simple"
 
 const val ADD_ENTRY = "/add/entry"
 const val ADD_OWN = "/own/add/entry"

@@ -16,14 +16,14 @@ import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.IStartConversation
 import com.erookies.module_im.R
 import com.erookies.module_im.model.MessageWrapper
+import com.erookies.module_im.ui.activity.conversation.single.PAGE_VALUE
 import com.erookies.module_im.ui.holder.BaseMessageViewHolder
 import com.erookies.module_im.ui.holder.ConversationViewHolder
 import com.erookies.module_im.ui.holder.LeftViewHolder
 import com.erookies.module_im.ui.holder.RightViewHolder
 
 class MessagesAdapter(
-    val avatarUrl:String,
-    val messages:MutableList<Message> = mutableListOf()
+    private var messages:MutableList<Message> = mutableListOf()
 ) : RecyclerView.Adapter<BaseMessageViewHolder>() {
     private val left = -1
     private val right = 1
@@ -56,6 +56,16 @@ class MessagesAdapter(
             right -> (holder as RightViewHolder).load(msg)
             else -> (holder as LeftViewHolder).load(msg)
         }
+    }
+
+    public fun update(msgs: MutableList<Message>) {
+        messages = msgs
+        notifyDataSetChanged()
+    }
+
+    public fun addNewMessage() {
+        val pStart = itemCount - 1
+        notifyItemInserted(pStart)
     }
 }
 

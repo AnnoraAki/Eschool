@@ -68,7 +68,6 @@ class IMEntryFragment : BaseFragment(),IStartConversation {
             setOnRefreshListener {
                 viewModel.updateConversations()
             }
-            isRefreshing = true
         }
     }
 

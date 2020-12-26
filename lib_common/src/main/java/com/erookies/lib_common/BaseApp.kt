@@ -8,13 +8,15 @@ import android.text.TextUtils
 import android.util.Log
 import cn.jpush.im.android.api.JMessageClient
 import cn.jpush.im.android.api.JMessageClient.FLAG_NOTIFY_DEFAULT
+import cn.jpush.im.android.api.enums.ConversationType
 import cn.jpush.im.android.api.event.MessageEvent
 import cn.jpush.im.android.api.event.NotificationClickEvent
+import cn.jpush.im.android.api.model.GroupInfo
+import cn.jpush.im.android.api.model.UserInfo
 import cn.jpush.im.api.BasicCallback
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.bean.User
-import com.erookies.lib_common.config.APK_KEY
-import com.erookies.lib_common.config.SINGLE_CONVERSATION
+import com.erookies.lib_common.config.SIMPLE_CONVERSATION
 import com.erookies.lib_common.config.SP_KEY_USER
 import com.erookies.lib_common.event.IMEvent
 import com.erookies.lib_common.event.IMEventType
@@ -116,9 +118,20 @@ open class BaseApp : Application() {
      */
     fun onEventMainThread(event: NotificationClickEvent){
         val msg = event.message
-        val userInfo = msg.fromUser
-        JIMUtils.chatWith(userInfo.userName)
-        ARouter.getInstance().build(SINGLE_CONVERSATION).navigation()
+
+        var canNavi = false
+        when(msg.targetType) {
+            ConversationType.single -> {
+                val info = msg.targetInfo as UserInfo
+                canNavi = JIMUtils.chatWith(info.userName)
+            }
+            ConversationType.group -> {
+                val info = msg.targetInfo as GroupInfo
+                canNavi = JIMUtils.chatWith(info.groupID)
+            }
+        }
+
+        if (canNavi) ARouter.getInstance().build(SIMPLE_CONVERSATION).navigation()
     }
 
     /**
@@ -166,8 +179,7 @@ open class BaseApp : Application() {
             IMEventType.START_SINGLE_CONVERSATION -> {
                 if (BaseApp.isLogin){
                     if (event.friend != null){
-                        JIMUtils.chatWith(event.friend)
-                        ARouter.getInstance().build(SINGLE_CONVERSATION).navigation()
+                        if (JIMUtils.chatWith(event.friend)) ARouter.getInstance().build(SIMPLE_CONVERSATION).navigation()
                     }else{
                         toast("${TAG}没有聊天对象不能进行聊天哦~")
                     }
@@ -178,11 +190,10 @@ open class BaseApp : Application() {
 
             IMEventType.START_GROUP_CONVERSATION -> {
                 if (BaseApp.isLogin){
-                    if (event.friend != null){
-                        JIMUtils.chatWith(event.friend)
-                        ARouter.getInstance().build(SINGLE_CONVERSATION).navigation()
+                    if (event.groupId != -1L){
+                        if (JIMUtils.chatWith(event.groupId)) ARouter.getInstance().build(SIMPLE_CONVERSATION).navigation()
                     }else{
-                        toast("${TAG}没有聊天对象不能进行聊天哦~")
+                        toast("${TAG}无效的群聊~")
                     }
                 }else{
                     toast("${TAG}当前没有登录账号！")

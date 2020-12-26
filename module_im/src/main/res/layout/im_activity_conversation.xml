@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/parent_container"
-    tools:context=".ui.activity.conversation.single.SingleConversationActivity">
+    tools:context=".ui.activity.conversation.single.SimpleConversationActivity">
 
     <include
         android:id="@+id/im_include"
@@ -16,35 +16,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/im_message_list"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/im_message_list_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/im_include" />
+        app:layout_constraintTop_toBottomOf="@+id/im_include"
+        app:layout_constraintBottom_toTopOf="@+id/input_area">
 
-    <EditText
-        android:id="@+id/im_input_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:inputType="text"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/im_send_message"
-        app:layout_constraintStart_toStartOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/im_message_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/im_send_message"
-        android:layout_width="wrap_content"
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/input_area"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@color/themeYellow"
-        android:padding="8dp"
-        android:text="@string/im_send"
-        app:cornerRadius="40dp"
+        android:background="@color/themeBlue"
+        android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/im_input_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            android:background="@drawable/ic_bg_im_input"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/im_send_message"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:layout_margin="8dp"
+            android:id="@+id/im_send_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_bg_im_send_btn"
+            android:padding="8dp"
+            android:text="@string/im_send"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
