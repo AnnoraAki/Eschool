@@ -35,8 +35,7 @@ class LeftViewHolder(view: View) : BaseMessageViewHolder(view){
     override fun load(msg: Message) {
         super.load(msg)
         Glide.with(itemView)
-            .asBitmap()
-            .load(msg.fromUser.extras["avatar"])
+            .load(msg.fromUser.extras["avatar_url"])
             .placeholder(R.drawable.common_default_avatar)
             .into(itemView.im_left_msg_avatar)
 
@@ -55,8 +54,7 @@ class RightViewHolder(view: View) : BaseMessageViewHolder(view){
     override fun load(msg: Message) {
         super.load(msg)
         Glide.with(itemView)
-            .asBitmap()
-            .load(msg.fromUser.extras["avatar"])
+            .load(msg.fromUser.extras["avatar_url"])
             .placeholder(R.drawable.common_default_avatar)
             .into(itemView.im_right_msg_avatar)
 
@@ -108,9 +106,8 @@ class ConversationViewHolder(view: View, private val listener:IStartConversation
 
     private fun loadSingleConversationItem(info: UserInfo) {
         Glide.with(itemView)
-            .asBitmap()
+            .load(info.extras["avatar_url"])
             .placeholder(R.drawable.common_default_avatar)
-            .load(info.extras["avatar"])
             .into(itemView.im_user_avatar)
 
         itemView.im_user_nickname.text = if (!TextUtils.isEmpty(info.nickname)) info.nickname else info.userName
@@ -127,15 +124,14 @@ class ConversationViewHolder(view: View, private val listener:IStartConversation
     private fun loadGroupConversationItem(groupInfo: GroupInfo) {
         val ownnerMemberInfo = groupInfo.ownerMemberInfo.userInfo
         Glide.with(itemView)
-            .asBitmap()
-            .placeholder(R.drawable.common_default_avatar)
             .load(
                 if (!TextUtils.isEmpty(groupInfo.avatar)) {
                     groupInfo.avatar
                 } else {
-                    ownnerMemberInfo.extras["avatar"] ?: ""
+                    ownnerMemberInfo.extras["avatar_url"] ?: ""
                 }
             )
+            .placeholder(R.drawable.common_default_avatar)
             .into(itemView.im_user_avatar)
 
         itemView.im_user_nickname.text = if (!TextUtils.isEmpty(groupInfo.groupName)) {

@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.base.BaseViewModel
+import com.erookies.lib_common.event.IMEvent
+import com.erookies.lib_common.event.IMEventType
 import com.erookies.lib_common.extentions.getRequestBody
 import com.erookies.lib_common.extentions.safeSubscribeBy
 import com.erookies.lib_common.extentions.setSchedulers
@@ -12,6 +14,7 @@ import com.erookies.mine.network.Api
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.greenrobot.eventbus.EventBus
 import java.io.File
 
 
@@ -44,6 +47,7 @@ class UserViewModel : BaseViewModel() {
             .safeSubscribeBy {
                 status.value = it.code
                 BaseApp.user?.avatar = it.data
+                EventBus.getDefault().post(IMEvent(type = IMEventType.UPDATE_INFO))
             }.lifeCycle()
     }
 

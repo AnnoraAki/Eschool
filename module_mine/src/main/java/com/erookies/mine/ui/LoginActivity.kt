@@ -69,7 +69,7 @@ class LoginActivity : BaseActivity() {
                 )
                 LOGIN_SUCCEED -> {
                     toast("欢迎登陆")
-                    EventBus.getDefault().postSticky(IMEvent(IMEventType.LOGIN))
+                    EventBus.getDefault().post(IMEvent(type = IMEventType.LOGIN))
                     EventBus.getDefault().post(LoginEvent(true))
                     finish()
                 }

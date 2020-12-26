@@ -37,7 +37,7 @@ class LoginViewModel : BaseViewModel() {
                 }
             }.lifeCycle()
 
-        EventBus.getDefault().postSticky(
+        EventBus.getDefault().post(
             IMEvent(type = IMEventType.LOGIN)
         )
     }

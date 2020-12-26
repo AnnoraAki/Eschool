@@ -51,7 +51,7 @@ class RegisterActivity : BaseActivity() {
             when (it) {
                 REGISTER_SUCCEED -> {
                     toast("注册成功")
-                    EventBus.getDefault().postSticky(IMEvent(IMEventType.REGISTER,friend = viewModel.registerUser))
+                    EventBus.getDefault().post(IMEvent(IMEventType.REGISTER,friend = viewModel.registerUser))
                     startActivity<LoginActivity>()
                     finish()
                 }

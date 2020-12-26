@@ -60,10 +60,6 @@ class LoginViewModel : BaseViewModel() {
                     else -> ERROR_EXIST
                 }
             }.lifeCycle()
-
-        EventBus.getDefault().postSticky(
-            IMEvent(type = IMEventType.LOGIN)
-        )
     }
 
     companion object {

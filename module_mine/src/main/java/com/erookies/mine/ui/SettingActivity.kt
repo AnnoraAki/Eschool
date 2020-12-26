@@ -66,7 +66,7 @@ class SettingActivity : BaseActivity() {
                         checkEvent = { true }
                         todoEvent = {
                             EventBus.getDefault().post(LoginEvent(false))
-                            EventBus.getDefault().postSticky(IMEvent(IMEventType.LOGOUT))
+                            EventBus.getDefault().post(IMEvent(IMEventType.LOGOUT))
                             BaseApp.user = null
                             finish()
                         }
