@@ -6,9 +6,12 @@ import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import cn.jpush.im.android.api.content.TextContent
 import cn.jpush.im.android.api.enums.ContentType
+import cn.jpush.im.android.api.enums.ConversationType
 import cn.jpush.im.android.api.enums.MessageDirect
 import cn.jpush.im.android.api.model.Conversation
+import cn.jpush.im.android.api.model.GroupInfo
 import cn.jpush.im.android.api.model.Message
+import cn.jpush.im.android.api.model.UserInfo
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.IStartConversation
 import com.erookies.module_im.R
@@ -49,13 +52,9 @@ class MessagesAdapter(
 
     override fun onBindViewHolder(holder: BaseMessageViewHolder, position: Int) {
         val msg = messages[position]
-        val msgContent = when(msg.contentType){
-            ContentType.text -> (msg.content as TextContent).text
-            else -> "[不支持的消息类型!]"
-        }
         when(getItemViewType(position)){
-            right -> (holder as RightViewHolder).load(MessageWrapper(msgContent,BaseApp.user?.avatar?:""))
-            else -> (holder as LeftViewHolder).load(MessageWrapper(msgContent,avatarUrl))
+            right -> (holder as RightViewHolder).load(msg)
+            else -> (holder as LeftViewHolder).load(msg)
         }
     }
 }

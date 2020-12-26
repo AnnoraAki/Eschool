@@ -9,6 +9,7 @@ import cn.jpush.im.android.api.enums.ContentType
 import cn.jpush.im.android.api.enums.ConversationType
 import cn.jpush.im.android.api.model.Conversation
 import cn.jpush.im.android.api.model.GroupInfo
+import cn.jpush.im.android.api.model.Message
 import cn.jpush.im.android.api.model.UserInfo
 import com.bumptech.glide.Glide
 import com.erookies.lib_common.IStartConversation
@@ -27,34 +28,48 @@ open class BaseMessageViewHolder(view: View) : RecyclerView.ViewHolder(view){
         const val TAG = "BaseMessageViewHolder"
     }
 
-    open fun load(msg:MessageWrapper){
+    open fun load(msg:Message){
 
     }
 }
 
 class LeftViewHolder(view: View) : BaseMessageViewHolder(view){
-    override fun load(msg: MessageWrapper) {
+    override fun load(msg: Message) {
         super.load(msg)
         Glide.with(itemView)
             .asBitmap()
-            .load(msg.avatarUrl)
+            .load(msg.fromUser.extras["avatar"])
             .placeholder(R.drawable.common_default_avatar)
             .into(itemView.im_left_msg_avatar)
 
-        itemView.im_left_msg_content.text = msg.msg
+        val msgContent = when(msg.contentType){
+            ContentType.text -> (msg.content as TextContent).text
+            else -> "[不支持的消息类型!]"
+        }
+        itemView.im_left_msg_content.text = msgContent
+
+        val nickname = msg.fromUser.nickname
+        itemView.im_left_nick_name.text = if (!TextUtils.isEmpty(nickname)) nickname else msg.fromUser.userName
     }
 }
 
 class RightViewHolder(view: View) : BaseMessageViewHolder(view){
-    override fun load(msg: MessageWrapper) {
+    override fun load(msg: Message) {
         super.load(msg)
         Glide.with(itemView)
             .asBitmap()
-            .load(msg.avatarUrl)
+            .load(msg.fromUser.extras["avatar"])
             .placeholder(R.drawable.common_default_avatar)
             .into(itemView.im_right_msg_avatar)
 
-        itemView.im_right_msg_content.text = msg.msg
+        val msgContent = when(msg.contentType){
+            ContentType.text -> (msg.content as TextContent).text
+            else -> "[不支持的消息类型!]"
+        }
+        itemView.im_right_msg_content.text = msgContent
+
+        val nickname = msg.fromUser.nickname
+        itemView.im_right_nick_name.text = if (!TextUtils.isEmpty(nickname)) nickname else msg.fromUser.userName
     }
 }
 
