@@ -3,6 +3,7 @@ package com.erookies.main.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import cn.jpush.android.api.JPushInterface
 import com.alibaba.android.arouter.launcher.ARouter
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseActivity
@@ -28,13 +29,14 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity_main)
 
+        JPushInterface.requestPermission(this)
+
         val isFirstIn = defaultSharedPreferences.getBoolean(FIRST_IN, true)
 
         if (isFirstIn) {
             ARouter.getInstance().build(MINE_LOGIN).navigation()
         } else {
             viewModel.login(BaseApp.user?.stuNum ?: "",BaseApp.user?.pwd ?: "")
-
         }
 
         initFragment()

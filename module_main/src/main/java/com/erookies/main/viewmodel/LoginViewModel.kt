@@ -1,5 +1,6 @@
 package com.erookies.main.viewmodel
 
+import android.util.Log
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseViewModel
 import com.erookies.lib_common.event.IMEvent
@@ -32,13 +33,13 @@ class LoginViewModel : BaseViewModel() {
             .safeSubscribeBy {
                 when (it.code) {
                     0 -> {
+                        it.data.pwd = BaseApp.user?.pwd ?: ""
                         BaseApp.user = it.data
+                        EventBus.getDefault().post(
+                            IMEvent(type = IMEventType.LOGIN)
+                        )
                     }
                 }
             }.lifeCycle()
-
-        EventBus.getDefault().post(
-            IMEvent(type = IMEventType.LOGIN)
-        )
     }
 }

@@ -1,5 +1,6 @@
 package com.erookies.mine.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.erookies.lib_common.BaseApp
 import com.erookies.lib_common.base.BaseViewModel

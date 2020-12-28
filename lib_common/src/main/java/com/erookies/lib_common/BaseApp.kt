@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Process
 import android.text.TextUtils
 import android.util.Log
+import cn.jpush.android.api.JPushInterface
 import cn.jpush.im.android.api.JMessageClient
 import cn.jpush.im.android.api.JMessageClient.FLAG_NOTIFY_DEFAULT
 import cn.jpush.im.android.api.enums.ConversationType
@@ -38,6 +39,8 @@ import org.greenrobot.eventbus.ThreadMode
  * Time: 2019-09-29
  */
 const val TAG = "BaseApp"
+
+const val JPUSH_SEQUENCE = 1000
 
 open class BaseApp : Application() {
 
@@ -104,7 +107,8 @@ open class BaseApp : Application() {
     }
 
     private fun initJMessage() {
-        JMessageClient.init(context)
+        JPushInterface.init(this)
+        JMessageClient.init(this)
         JMessageClient.registerEventReceiver(this)
         JMessageClient.setNotificationFlag(FLAG_NOTIFY_DEFAULT)
     }
@@ -137,11 +141,14 @@ open class BaseApp : Application() {
     /**
      * 处理即时聊天相关的事件
      */
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public fun handleIMEvent(event: IMEvent){
-        Log.d("attchIMFunction","event content : $event")
         when(event.type){
             IMEventType.REGISTER -> {
+                if (event.friend == null) {
+                    toast("注册用户信息不能为null")
+                    return
+                }
                 JIMUtils.register(event.friend!!,object : BasicCallback() {
                     override fun gotResult(responseCode: Int, responseMessage: String?) {
                         Log.d(TAG,"状态码：$responseCode")
@@ -150,19 +157,21 @@ open class BaseApp : Application() {
                             toast("${TAG}注册失败")
                         }else if (responseCode == 0){
                             toast("${TAG}注册成功")
+                            JPushInterface.setAlias(this@BaseApp, JPUSH_SEQUENCE, event.friend?.stuNum+"#")
                         }
                     }
                 })
             }
 
-            IMEventType.LOGIN -> JIMUtils.login(BaseApp.user!!,object : BasicCallback(){
+            IMEventType.LOGIN -> JIMUtils.login(user!!,object : BasicCallback(){
                 override fun gotResult(responseCode: Int, responseMessage: String?) {
                     Log.d(TAG,"状态码：$responseCode")
                     if (responseCode != 0){
                         Log.d(TAG,"状态码：$responseCode\n$responseMessage")
                     }else if (responseCode == 0){
-                        JIMUtils.oldPwd = BaseApp.user!!.pwd
+                        JIMUtils.oldPwd = user!!.pwd
                         toast("${TAG} 登录成功")
+                        JPushInterface.setAlias(this@BaseApp, JPUSH_SEQUENCE, BaseApp.user?.stuNum+"#")
                     }
                 }
             })
@@ -178,7 +187,7 @@ open class BaseApp : Application() {
 
             IMEventType.START_SINGLE_CONVERSATION -> {
                 if (BaseApp.isLogin){
-                    if (event.friend != null){
+                    if (event.friend != null && event.friend?.stuNum != user?.stuNum){
                         if (JIMUtils.chatWith(event.friend)) ARouter.getInstance().build(SIMPLE_CONVERSATION).navigation()
                     }else{
                         toast("${TAG}没有聊天对象不能进行聊天哦~")
@@ -207,7 +216,7 @@ open class BaseApp : Application() {
                             override fun gotResult(responseCode: Int, responseMessage: String?) {
                                 if (responseCode != 0){
                                     Log.d(TAG,"状态码：$responseCode 错误信息：$responseMessage")
-                                    Log.d(TAG,"原密码：${BaseApp.user!!.pwd} 新密码：${event.newPwd}")
+                                    Log.d(TAG,"原密码：${user!!.pwd} 新密码：${event.newPwd}")
                                 }else{
                                     JIMUtils.oldPwd = event.newPwd
                                 }
@@ -223,7 +232,7 @@ open class BaseApp : Application() {
 
             IMEventType.UPDATE_INFO -> {
                 if (BaseApp.isLogin){
-                    JIMUtils.updateUserInfo(BaseApp.user!!,object : BasicCallback(){
+                    JIMUtils.updateUserInfo(user!!,object : BasicCallback(){
                         override fun gotResult(responseCode: Int, responseMessage: String?) {
                             if (responseCode == 0){
                                 toast("${TAG}信息更新成功！")
@@ -237,12 +246,6 @@ open class BaseApp : Application() {
                     toast("${TAG}当前没有登录账号！")
                 }
             }
-        }
-
-        //移除粘性事件
-        val stickyEvent = EventBus.getDefault().getStickyEvent(MessageEvent::class.java)
-        if (stickyEvent != null){
-            EventBus.getDefault().removeStickyEvent(stickyEvent)
         }
     }
 }

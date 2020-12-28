@@ -1,13 +1,24 @@
 package com.erookies.lib_common
 
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
+import android.util.Log
+import android.widget.Toast
+import cn.jpush.android.api.JPushInterface
+import cn.jpush.android.api.JPushMessage
+import cn.jpush.android.service.JPushMessageReceiver
 
-class JPushReceiver : BroadcastReceiver() {
-
-    override fun onReceive(context: Context, intent: Intent) {
-        // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
-        TODO("JPushReceiver.onReceive() is not implemented")
+class JPushReceiver : JPushMessageReceiver() {
+    override fun onAliasOperatorResult(context: Context?, msg: JPushMessage?) {
+        super.onAliasOperatorResult(context, msg)
+        context ?: return
+        msg ?: return
+        if (msg.errorCode == 0) {
+            Log.d(TAG, "onAliasOperatorResult: 设置alias成功 ${msg?.alias}")
+            return
+        }
+        if (msg.sequence == JPUSH_SEQUENCE && context != null && BaseApp.isLogin) {
+            Log.d(TAG, "onAliasOperatorResult: ${msg.errorCode}设置alias失败")
+            JPushInterface.setAlias(context, JPUSH_SEQUENCE, BaseApp.user?.stuNum+"#")
+        }
     }
 }

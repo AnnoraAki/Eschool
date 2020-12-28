@@ -15,7 +15,6 @@ import com.erookies.lib_common.IStartConversation
 import com.erookies.lib_common.bean.User
 import com.erookies.lib_common.event.IMEvent
 import com.erookies.lib_common.event.IMEventType
-import com.erookies.lib_common.extentions.toast
 import com.erookies.module_im.R
 import kotlinx.android.synthetic.main.im_item_conversation.view.*
 import kotlinx.android.synthetic.main.im_item_left_msg.view.*
@@ -75,11 +74,15 @@ class ConversationViewHolder(view: View, private val listener:IStartConversation
         when (conversation.type) {
             ConversationType.single -> {
                 val info = conversation.targetInfo as UserInfo
-                loadSingleConversationItem(info)
+                if (info != null) {
+                    loadSingleConversationItem(info)
+                }
             }
             ConversationType.group -> {
                 val info = conversation.targetInfo as GroupInfo
-                loadGroupConversationItem(info)
+                if (info != null) {
+                    loadGroupConversationItem(info)
+                }
             }
         }
 
@@ -122,13 +125,14 @@ class ConversationViewHolder(view: View, private val listener:IStartConversation
     }
 
     private fun loadGroupConversationItem(groupInfo: GroupInfo) {
-        val ownnerMemberInfo = groupInfo.ownerMemberInfo.userInfo
+        val ownerMemberInfo = groupInfo.ownerMemberInfo ?: return
+        val ownerMember = ownerMemberInfo.userInfo
         Glide.with(itemView)
             .load(
                 if (!TextUtils.isEmpty(groupInfo.avatar)) {
                     groupInfo.avatar
                 } else {
-                    ownnerMemberInfo.extras["avatar_url"] ?: ""
+                    ownerMember.extras["avatar_url"] ?: ""
                 }
             )
             .placeholder(R.drawable.common_default_avatar)
@@ -137,7 +141,7 @@ class ConversationViewHolder(view: View, private val listener:IStartConversation
         itemView.im_user_nickname.text = if (!TextUtils.isEmpty(groupInfo.groupName)) {
             groupInfo.groupName
         } else {
-            val info = groupInfo.ownerMemberInfo.userInfo
+            val info = ownerMember
             if (!TextUtils.isEmpty(info.nickname)) {
                 info.nickname + "的群聊"
             } else {
